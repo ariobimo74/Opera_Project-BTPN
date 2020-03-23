@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_2_0.dtd">
+
+<service-builder dependency-injector="spring" package-path="operation">
+	<namespace>SurveyOperation</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+	<entity table="survey_operation" local-service="true" name="SurveyOperation" remote-service="true" uuid="false" data-source="SurveyOperation">
+
+		<!-- PK fields -->
+
+		<column db-name="id" name="id" primary="true" type="long" />
+
+		<!-- Audit fields -->
+
+		<column db-name="title" name="title" type="String" />
+		<column db-name="description" name="description" type="String" />
+		<column db-name="survey_obj_id" name="surveyObjId" type="long" />
+		<column db-name="start_date" name="startDate" type="Date" />
+		<column db-name="end_date" name="endDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column db-name="question1" name="question1" type="String" />
+		<column db-name="question2" name="question2" type="String" />
+		<column db-name="question3" name="question3" type="String" />
+		<column db-name="question4" name="question4" type="String" />
+		<column db-name="question5" name="question5" type="String" />
+		<column db-name="question6" name="question6" type="String" />
+		<column db-name="question7" name="question7" type="String" />
+		<column db-name="question8" name="question8" type="String" />
+		<column db-name="question9" name="question9" type="String" />
+		<column db-name="question10" name="question10" type="String" />
+		<column db-name="status" name="status" type="String"/>
+		<column db-name="submitted_date" name="submittedDate" type="Date"/>
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="id" />
+			<order-column name="title"/>
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="Title" return-type="Collection">
+			<finder-column name="title" />
+		</finder>
+	</entity>
+</service-builder>
