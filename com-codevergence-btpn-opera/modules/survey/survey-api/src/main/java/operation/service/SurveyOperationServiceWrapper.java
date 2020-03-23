@@ -77,10 +77,10 @@ public class SurveyOperationServiceWrapper
 	}
 
 	@Override
-	public operation.model.SurveyOperation getSurveOperationyById(long id)
+	public operation.model.SurveyOperation getSurveyOperationById(long id)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _surveyOperationService.getSurveOperationyById(id);
+		return _surveyOperationService.getSurveyOperationById(id);
 	}
 
 	@Override

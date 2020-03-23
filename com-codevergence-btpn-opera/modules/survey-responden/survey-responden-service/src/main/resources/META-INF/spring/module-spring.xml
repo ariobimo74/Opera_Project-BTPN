@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+	<bean class="responden.service.impl.SurveyRespondenLocalServiceImpl" id="responden.service.SurveyRespondenLocalService" />
+	<bean class="responden.service.impl.SurveyRespondenServiceImpl" id="responden.service.SurveyRespondenService" />
+	<bean class="responden.service.persistence.impl.SurveyRespondenPersistenceImpl" id="responden.service.persistence.SurveyRespondenPersistence">
+		<property name="dataSource" ref="SurveyResponden" />
+	</bean>
+</beans>

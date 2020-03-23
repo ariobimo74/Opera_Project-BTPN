@@ -1,0 +1,10 @@
+Bundle-Name: survey-responden-api
+Bundle-SymbolicName: responden.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	responden.exception,\
+	responden.model,\
+	responden.service,\
+	responden.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../survey-responden-service/service.xml

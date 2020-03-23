@@ -82,13 +82,13 @@ public class SurveyOperationServiceSoap {
 		}
 	}
 
-	public static operation.model.SurveyOperationSoap getSurveOperationyById(
+	public static operation.model.SurveyOperationSoap getSurveyOperationById(
 			long id)
 		throws RemoteException {
 
 		try {
 			operation.model.SurveyOperation returnValue =
-				SurveyOperationServiceUtil.getSurveOperationyById(id);
+				SurveyOperationServiceUtil.getSurveyOperationById(id);
 
 			return operation.model.SurveyOperationSoap.toSoapModel(returnValue);
 		}

@@ -16,8 +16,6 @@ package operation.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil;
 import operation.model.SurveyOperation;
 import operation.service.base.SurveyOperationLocalServiceBaseImpl;
 
@@ -120,7 +118,7 @@ public class SurveyOperationLocalServiceImpl
 			surveyOperation.setQuestion10(question10);
 			surveyOperation.setStatus(status);
 
-			if (status.equals("Submitted"))
+			if (status.equals("Submitted") || status.equals("submitted"))
 			{
 				surveyOperation.setSubmittedDate(now);
 			}

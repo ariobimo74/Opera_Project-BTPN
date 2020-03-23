@@ -77,11 +77,11 @@ public class SurveyOperationServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static operation.model.SurveyOperation getSurveOperationyById(
+	public static operation.model.SurveyOperation getSurveyOperationById(
 			long id)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().getSurveOperationyById(id);
+		return getService().getSurveyOperationById(id);
 	}
 
 	public static java.util.List<operation.model.SurveyOperation>

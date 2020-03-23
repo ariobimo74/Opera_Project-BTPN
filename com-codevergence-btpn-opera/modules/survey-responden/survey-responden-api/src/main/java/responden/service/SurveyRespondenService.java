@@ -12,7 +12,7 @@
  * details.
  */
 
-package operation.service;
+package responden.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -25,56 +25,51 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
-import java.util.Date;
 import java.util.List;
-
-import operation.model.SurveyOperation;
 
 import org.osgi.annotation.versioning.ProviderType;
 
+import responden.model.SurveyResponden;
+
 /**
- * Provides the remote service interface for SurveyOperation. Methods of this
+ * Provides the remote service interface for SurveyResponden. Methods of this
  * service are expected to have security checks based on the propagated JAAS
  * credentials because this service can be accessed remotely.
  *
  * @author Brian Wing Shun Chan
- * @see SurveyOperationServiceUtil
+ * @see SurveyRespondenServiceUtil
  * @generated
  */
 @AccessControlled
 @JSONWebService
 @OSGiBeanProperties(
 	property = {
-		"json.web.service.context.name=surveyoperation",
-		"json.web.service.context.path=SurveyOperation"
+		"json.web.service.context.name=responden",
+		"json.web.service.context.path=SurveyResponden"
 	},
-	service = SurveyOperationService.class
+	service = SurveyRespondenService.class
 )
 @ProviderType
 @Transactional(
 	isolation = Isolation.PORTAL,
 	rollbackFor = {PortalException.class, SystemException.class}
 )
-public interface SurveyOperationService extends BaseService {
+public interface SurveyRespondenService extends BaseService {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link SurveyOperationServiceUtil} to access the survey operation remote service. Add custom service methods to <code>operation.service.impl.SurveyOperationServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link SurveyRespondenServiceUtil} to access the survey responden remote service. Add custom service methods to <code>responden.service.impl.SurveyRespondenServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public SurveyOperation addSurveyOperation(
-			String title, String description, long surveyObjId, Date startDate,
-			Date endDate, String question1, String question2, String question3,
-			String question4, String question5, String question6,
-			String question7, String question8, String question9,
-			String question10, String status, ServiceContext serviceContext)
+	public SurveyResponden addSurveyRespondenByAdmin(
+			String nik, long surveyId, ServiceContext serviceContext)
 		throws PortalException;
 
-	public SurveyOperation deleteSurveyOperationById(long id)
+	public SurveyResponden deleteSurveyrespondenByIdByAdmin(long id)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SurveyOperation> getAllSurveyOperation();
+	public List<SurveyResponden> getAllSurveyResponden();
 
 	/**
 	 * Returns the OSGi service identifier.
@@ -84,19 +79,17 @@ public interface SurveyOperationService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SurveyOperation getSurveyOperationById(long id)
+	public SurveyResponden getSurveyRespondenById(long id)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SurveyOperation> getSurveyOperationByTitle(String title);
+	public List<SurveyResponden> getSurveyRespondenBySurveyId(long surveyId);
 
-	public SurveyOperation updateSurveyOperation(
-			long id, String title, String description, long surveyObjId,
-			Date startDate, Date endDate, String question1, String question2,
-			String question3, String question4, String question5,
-			String question6, String question7, String question8,
-			String question9, String question10, String status,
-			ServiceContext serviceContext)
+	public SurveyResponden updateSurveyRespondenByUser(
+			long id, Double answer1, Double answer2, Double answer3,
+			Double answer4, Double answer5, Double answer6, Double answer7,
+			Double answer8, Double answer9, Double answer10, String note,
+			String status, ServiceContext serviceContext)
 		throws PortalException;
 
 }

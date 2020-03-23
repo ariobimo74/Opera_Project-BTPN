@@ -12,7 +12,7 @@
  * details.
  */
 
-package operation.service.http;
+package responden.service.http;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -21,13 +21,13 @@ import com.liferay.portal.kernel.service.http.TunnelUtil;
 import com.liferay.portal.kernel.util.MethodHandler;
 import com.liferay.portal.kernel.util.MethodKey;
 
-import operation.service.SurveyOperationServiceUtil;
-
 import org.osgi.annotation.versioning.ProviderType;
+
+import responden.service.SurveyRespondenServiceUtil;
 
 /**
  * Provides the HTTP utility for the
- * <code>SurveyOperationServiceUtil</code> service
+ * <code>SurveyRespondenServiceUtil</code> service
  * utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it requires an additional
@@ -49,19 +49,19 @@ import org.osgi.annotation.versioning.ProviderType;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see SurveyOperationServiceSoap
+ * @see SurveyRespondenServiceSoap
  * @generated
  */
 @ProviderType
-public class SurveyOperationServiceHttp {
+public class SurveyRespondenServiceHttp {
 
-	public static java.util.List<operation.model.SurveyOperation>
-		getAllSurveyOperation(HttpPrincipal httpPrincipal) {
+	public static java.util.List<responden.model.SurveyResponden>
+		getAllSurveyResponden(HttpPrincipal httpPrincipal) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				SurveyOperationServiceUtil.class, "getAllSurveyOperation",
-				_getAllSurveyOperationParameterTypes0);
+				SurveyRespondenServiceUtil.class, "getAllSurveyResponden",
+				_getAllSurveyRespondenParameterTypes0);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey);
 
@@ -75,7 +75,7 @@ public class SurveyOperationServiceHttp {
 					e);
 			}
 
-			return (java.util.List<operation.model.SurveyOperation>)returnObj;
+			return (java.util.List<responden.model.SurveyResponden>)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -84,14 +84,14 @@ public class SurveyOperationServiceHttp {
 		}
 	}
 
-	public static operation.model.SurveyOperation getSurveyOperationById(
+	public static responden.model.SurveyResponden getSurveyRespondenById(
 			HttpPrincipal httpPrincipal, long id)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				SurveyOperationServiceUtil.class, "getSurveyOperationById",
-				_getSurveyOperationByIdParameterTypes1);
+				SurveyRespondenServiceUtil.class, "getSurveyRespondenById",
+				_getSurveyRespondenByIdParameterTypes1);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, id);
 
@@ -112,7 +112,7 @@ public class SurveyOperationServiceHttp {
 					e);
 			}
 
-			return (operation.model.SurveyOperation)returnObj;
+			return (responden.model.SurveyResponden)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -121,25 +121,61 @@ public class SurveyOperationServiceHttp {
 		}
 	}
 
-	public static operation.model.SurveyOperation addSurveyOperation(
-			HttpPrincipal httpPrincipal, String title, String description,
-			long surveyObjId, java.util.Date startDate, java.util.Date endDate,
-			String question1, String question2, String question3,
-			String question4, String question5, String question6,
-			String question7, String question8, String question9,
-			String question10, String status,
+	public static responden.model.SurveyResponden addSurveyRespondenByAdmin(
+			HttpPrincipal httpPrincipal, String nik, long surveyId,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				SurveyOperationServiceUtil.class, "addSurveyOperation",
-				_addSurveyOperationParameterTypes2);
+				SurveyRespondenServiceUtil.class, "addSurveyRespondenByAdmin",
+				_addSurveyRespondenByAdminParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, title, description, surveyObjId, startDate, endDate,
-				question1, question2, question3, question4, question5,
-				question6, question7, question8, question9, question10, status,
+				methodKey, nik, surveyId, serviceContext);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (responden.model.SurveyResponden)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static responden.model.SurveyResponden updateSurveyRespondenByUser(
+			HttpPrincipal httpPrincipal, long id, Double answer1,
+			Double answer2, Double answer3, Double answer4, Double answer5,
+			Double answer6, Double answer7, Double answer8, Double answer9,
+			Double answer10, String note, String status,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				SurveyRespondenServiceUtil.class, "updateSurveyRespondenByUser",
+				_updateSurveyRespondenByUserParameterTypes3);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, id, answer1, answer2, answer3, answer4, answer5,
+				answer6, answer7, answer8, answer9, answer10, note, status,
 				serviceContext);
 
 			Object returnObj = null;
@@ -159,7 +195,7 @@ public class SurveyOperationServiceHttp {
 					e);
 			}
 
-			return (operation.model.SurveyOperation)returnObj;
+			return (responden.model.SurveyResponden)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -168,61 +204,16 @@ public class SurveyOperationServiceHttp {
 		}
 	}
 
-	public static operation.model.SurveyOperation updateSurveyOperation(
-			HttpPrincipal httpPrincipal, long id, String title,
-			String description, long surveyObjId, java.util.Date startDate,
-			java.util.Date endDate, String question1, String question2,
-			String question3, String question4, String question5,
-			String question6, String question7, String question8,
-			String question9, String question10, String status,
-			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+	public static responden.model.SurveyResponden
+			deleteSurveyrespondenByIdByAdmin(
+				HttpPrincipal httpPrincipal, long id)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				SurveyOperationServiceUtil.class, "updateSurveyOperation",
-				_updateSurveyOperationParameterTypes3);
-
-			MethodHandler methodHandler = new MethodHandler(
-				methodKey, id, title, description, surveyObjId, startDate,
-				endDate, question1, question2, question3, question4, question5,
-				question6, question7, question8, question9, question10, status,
-				serviceContext);
-
-			Object returnObj = null;
-
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
-			}
-			catch (Exception e) {
-				if (e instanceof
-						com.liferay.portal.kernel.exception.PortalException) {
-
-					throw (com.liferay.portal.kernel.exception.PortalException)
-						e;
-				}
-
-				throw new com.liferay.portal.kernel.exception.SystemException(
-					e);
-			}
-
-			return (operation.model.SurveyOperation)returnObj;
-		}
-		catch (com.liferay.portal.kernel.exception.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
-		}
-	}
-
-	public static operation.model.SurveyOperation deleteSurveyOperationById(
-			HttpPrincipal httpPrincipal, long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		try {
-			MethodKey methodKey = new MethodKey(
-				SurveyOperationServiceUtil.class, "deleteSurveyOperationById",
-				_deleteSurveyOperationByIdParameterTypes4);
+				SurveyRespondenServiceUtil.class,
+				"deleteSurveyrespondenByIdByAdmin",
+				_deleteSurveyrespondenByIdByAdminParameterTypes4);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, id);
 
@@ -243,7 +234,7 @@ public class SurveyOperationServiceHttp {
 					e);
 			}
 
-			return (operation.model.SurveyOperation)returnObj;
+			return (responden.model.SurveyResponden)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -252,15 +243,18 @@ public class SurveyOperationServiceHttp {
 		}
 	}
 
-	public static java.util.List<operation.model.SurveyOperation>
-		getSurveyOperationByTitle(HttpPrincipal httpPrincipal, String title) {
+	public static java.util.List<responden.model.SurveyResponden>
+		getSurveyRespondenBySurveyId(
+			HttpPrincipal httpPrincipal, long surveyId) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				SurveyOperationServiceUtil.class, "getSurveyOperationByTitle",
-				_getSurveyOperationByTitleParameterTypes5);
+				SurveyRespondenServiceUtil.class,
+				"getSurveyRespondenBySurveyId",
+				_getSurveyRespondenBySurveyIdParameterTypes5);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, title);
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, surveyId);
 
 			Object returnObj = null;
 
@@ -272,7 +266,7 @@ public class SurveyOperationServiceHttp {
 					e);
 			}
 
-			return (java.util.List<operation.model.SurveyOperation>)returnObj;
+			return (java.util.List<responden.model.SurveyResponden>)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -282,32 +276,29 @@ public class SurveyOperationServiceHttp {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
-		SurveyOperationServiceHttp.class);
+		SurveyRespondenServiceHttp.class);
 
-	private static final Class<?>[] _getAllSurveyOperationParameterTypes0 =
+	private static final Class<?>[] _getAllSurveyRespondenParameterTypes0 =
 		new Class[] {};
-	private static final Class<?>[] _getSurveyOperationByIdParameterTypes1 =
+	private static final Class<?>[] _getSurveyRespondenByIdParameterTypes1 =
 		new Class[] {long.class};
-	private static final Class<?>[] _addSurveyOperationParameterTypes2 =
+	private static final Class<?>[] _addSurveyRespondenByAdminParameterTypes2 =
 		new Class[] {
-			String.class, String.class, long.class, java.util.Date.class,
-			java.util.Date.class, String.class, String.class, String.class,
-			String.class, String.class, String.class, String.class,
-			String.class, String.class, String.class, String.class,
+			String.class, long.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
-	private static final Class<?>[] _updateSurveyOperationParameterTypes3 =
-		new Class[] {
-			long.class, String.class, String.class, long.class,
-			java.util.Date.class, java.util.Date.class, String.class,
-			String.class, String.class, String.class, String.class,
-			String.class, String.class, String.class, String.class,
-			String.class, String.class,
+	private static final Class<?>[]
+		_updateSurveyRespondenByUserParameterTypes3 = new Class[] {
+			long.class, Double.class, Double.class, Double.class, Double.class,
+			Double.class, Double.class, Double.class, Double.class,
+			Double.class, Double.class, String.class, String.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
-	private static final Class<?>[] _deleteSurveyOperationByIdParameterTypes4 =
-		new Class[] {long.class};
-	private static final Class<?>[] _getSurveyOperationByTitleParameterTypes5 =
-		new Class[] {String.class};
+	private static final Class<?>[]
+		_deleteSurveyrespondenByIdByAdminParameterTypes4 = new Class[] {
+			long.class
+		};
+	private static final Class<?>[]
+		_getSurveyRespondenBySurveyIdParameterTypes5 = new Class[] {long.class};
 
 }

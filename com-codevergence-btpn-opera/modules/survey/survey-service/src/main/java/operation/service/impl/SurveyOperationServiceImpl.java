@@ -50,7 +50,7 @@ public class SurveyOperationServiceImpl extends SurveyOperationServiceBaseImpl {
 		return surveyOperationLocalService.getAllSurveyOperation();
 	}
 
-	public SurveyOperation getSurveOperationyById(long id) throws PortalException
+	public SurveyOperation getSurveyOperationById(long id) throws PortalException
 	{
 		return surveyOperationLocalService.getSurveyOperationById(id);
 	}
