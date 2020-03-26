@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="operation.model.Questions">
+		<field name="id" type="long" />
+		<field name="question" type="String" />
+		<field name="answer" type="String" />
+		<field name="value" type="double" />
+	</model>
+	<model name="operation.model.SurveyOperation">
+		<field name="id" type="long" />
+		<field name="title" type="String" />
+		<field name="description" type="String" />
+		<field name="surveyObj" type="String" />
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="status" type="String" />
+		<field name="submittedDate" type="Date" />
+	</model>
+</model-hints>
