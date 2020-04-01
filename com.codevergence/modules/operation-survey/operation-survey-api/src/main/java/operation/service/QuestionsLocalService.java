@@ -74,8 +74,9 @@ public interface QuestionsLocalService
 	public Questions addQuestions(Questions questions);
 
 	public Questions addQuestions(
-		String question, String answer, double value,
-		ServiceContext serviceContext);
+			String question, String answer, double value,
+			ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	 * Creates a new questions with the primary key. Does not add the questions to the database.
@@ -251,5 +252,7 @@ public interface QuestionsLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Questions updateQuestions(Questions questions);
+
+	public void validation(String question) throws PortalException;
 
 }

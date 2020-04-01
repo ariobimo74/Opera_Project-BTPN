@@ -58,14 +58,14 @@ public class SurveyOperationServiceImpl extends SurveyOperationServiceBaseImpl
 		return surveyOperationLocalService.getSurveyOperationById(id);
 	}
 
-	public SurveyOperation addSurveyOperation(String title, String description, String surveyObj, Date startDate, Date endDate, String status, ServiceContext serviceContext)
+	public SurveyOperation addSurveyOperation(String title, String description, String surveyObj, Date startDate, Date endDate, ServiceContext serviceContext) throws PortalException
 	{
-		return surveyOperationLocalService.addSurveyOperation(title, description, surveyObj, startDate, endDate, status, serviceContext);
+		return surveyOperationLocalService.addSurveyOperation(title, description, surveyObj, startDate, endDate, serviceContext);
 	}
 
-	public SurveyOperation editSurveyOperation(long id, String title, String description, String surveyObj, Date startDate, Date endDate, String status, ServiceContext serviceContext) throws PortalException
+	public SurveyOperation editSurveyOperation(long id, String title, String description, String surveyObj, Date startDate, Date endDate, ServiceContext serviceContext) throws PortalException
 	{
-		return surveyOperationLocalService.editSurveyOperation(id, title, description, surveyObj, startDate, endDate, status, serviceContext);
+		return surveyOperationLocalService.editSurveyOperation(id, title, description, surveyObj, startDate, endDate, serviceContext);
 	}
 
 	public SurveyOperation deleteSurveyOperationById(long id) throws PortalException

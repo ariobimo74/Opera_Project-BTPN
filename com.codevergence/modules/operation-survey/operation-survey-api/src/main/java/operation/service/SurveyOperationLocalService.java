@@ -64,8 +64,9 @@ public interface SurveyOperationLocalService
 	 * Never modify or reference this interface directly. Always use {@link SurveyOperationLocalServiceUtil} to access the survey operation local service. Add custom service methods to <code>operation.service.impl.SurveyOperationLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public SurveyOperation addSurveyOperation(
-		String title, String description, String surveyObj, Date startDate,
-		Date endDate, String status, ServiceContext serviceContext);
+			String title, String description, String surveyObj, Date startDate,
+			Date endDate, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	 * Adds the survey operation to the database. Also notifies the appropriate model listeners.
@@ -190,8 +191,7 @@ public interface SurveyOperationLocalService
 
 	public SurveyOperation editSurveyOperation(
 			long id, String title, String description, String surveyObj,
-			Date startDate, Date endDate, String status,
-			ServiceContext serviceContext)
+			Date startDate, Date endDate, ServiceContext serviceContext)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

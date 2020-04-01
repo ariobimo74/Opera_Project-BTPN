@@ -17,7 +17,6 @@
 		<column db-name="survey_obj" name="surveyObj" type="String" />
 		<column db-name="start_date" name="startDate" type="Date" />
 		<column db-name="end_date" name="endDate" type="Date" />
-		<column db-name="status" name="status" type="String"/>
 		<column db-name="submitted_date" name="submittedDate" type="Date"/>
 
 		<!-- Order -->
@@ -45,4 +44,10 @@
 			<order-column name="id"/>
 		</order>
 	</entity>
+	<exceptions>
+		<exception>SurveyOperationSurveyObj</exception>
+		<exception>SurveyOperationStartDate</exception>
+		<exception>SurveyOperationEndDate</exception>
+		<exception>QuestionsQuestion</exception>
+	</exceptions>
 </service-builder>

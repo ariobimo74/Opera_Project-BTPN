@@ -55,8 +55,9 @@ public interface SurveyOperationService extends BaseService {
 	 * Never modify or reference this interface directly. Always use {@link SurveyOperationServiceUtil} to access the survey operation remote service. Add custom service methods to <code>operation.service.impl.SurveyOperationServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public SurveyOperation addSurveyOperation(
-		String title, String description, String surveyObj, Date startDate,
-		Date endDate, String status, ServiceContext serviceContext);
+			String title, String description, String surveyObj, Date startDate,
+			Date endDate, ServiceContext serviceContext)
+		throws PortalException;
 
 	public int countAllSurveyOperation();
 
@@ -69,8 +70,7 @@ public interface SurveyOperationService extends BaseService {
 
 	public SurveyOperation editSurveyOperation(
 			long id, String title, String description, String surveyObj,
-			Date startDate, Date endDate, String status,
-			ServiceContext serviceContext)
+			Date startDate, Date endDate, ServiceContext serviceContext)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

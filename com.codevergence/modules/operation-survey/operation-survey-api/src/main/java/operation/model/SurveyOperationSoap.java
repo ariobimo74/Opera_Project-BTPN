@@ -40,7 +40,6 @@ public class SurveyOperationSoap implements Serializable {
 		soapModel.setSurveyObj(model.getSurveyObj());
 		soapModel.setStartDate(model.getStartDate());
 		soapModel.setEndDate(model.getEndDate());
-		soapModel.setStatus(model.getStatus());
 		soapModel.setSubmittedDate(model.getSubmittedDate());
 
 		return soapModel;
@@ -149,14 +148,6 @@ public class SurveyOperationSoap implements Serializable {
 		_endDate = endDate;
 	}
 
-	public String getStatus() {
-		return _status;
-	}
-
-	public void setStatus(String status) {
-		_status = status;
-	}
-
 	public Date getSubmittedDate() {
 		return _submittedDate;
 	}
@@ -171,7 +162,6 @@ public class SurveyOperationSoap implements Serializable {
 	private String _surveyObj;
 	private Date _startDate;
 	private Date _endDate;
-	private String _status;
 	private Date _submittedDate;
 
 }

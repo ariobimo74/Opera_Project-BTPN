@@ -50,8 +50,9 @@ public class QuestionsLocalServiceWrapper
 
 	@Override
 	public operation.model.Questions addQuestions(
-		String question, String answer, double value,
-		org.omg.IOP.ServiceContext serviceContext) {
+			String question, String answer, double value,
+			org.omg.IOP.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _questionsLocalService.addQuestions(
 			question, answer, value, serviceContext);
@@ -313,6 +314,13 @@ public class QuestionsLocalServiceWrapper
 		operation.model.Questions questions) {
 
 		return _questionsLocalService.updateQuestions(questions);
+	}
+
+	@Override
+	public void validation(String question)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		_questionsLocalService.validation(question);
 	}
 
 	@Override

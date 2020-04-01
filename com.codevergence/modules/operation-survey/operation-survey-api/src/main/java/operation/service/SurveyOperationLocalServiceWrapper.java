@@ -38,13 +38,13 @@ public class SurveyOperationLocalServiceWrapper
 
 	@Override
 	public operation.model.SurveyOperation addSurveyOperation(
-		String title, String description, String surveyObj,
-		java.util.Date startDate, java.util.Date endDate, String status,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+			String title, String description, String surveyObj,
+			java.util.Date startDate, java.util.Date endDate,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _surveyOperationLocalService.addSurveyOperation(
-			title, description, surveyObj, startDate, endDate, status,
-			serviceContext);
+			title, description, surveyObj, startDate, endDate, serviceContext);
 	}
 
 	/**
@@ -227,12 +227,12 @@ public class SurveyOperationLocalServiceWrapper
 	@Override
 	public operation.model.SurveyOperation editSurveyOperation(
 			long id, String title, String description, String surveyObj,
-			java.util.Date startDate, java.util.Date endDate, String status,
+			java.util.Date startDate, java.util.Date endDate,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _surveyOperationLocalService.editSurveyOperation(
-			id, title, description, surveyObj, startDate, endDate, status,
+			id, title, description, surveyObj, startDate, endDate,
 			serviceContext);
 	}
 

@@ -101,14 +101,14 @@ public class SurveyOperationServiceSoap {
 
 	public static operation.model.SurveyOperationSoap addSurveyOperation(
 			String title, String description, String surveyObj,
-			java.util.Date startDate, java.util.Date endDate, String status,
+			java.util.Date startDate, java.util.Date endDate,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 
 		try {
 			operation.model.SurveyOperation returnValue =
 				SurveyOperationServiceUtil.addSurveyOperation(
-					title, description, surveyObj, startDate, endDate, status,
+					title, description, surveyObj, startDate, endDate,
 					serviceContext);
 
 			return operation.model.SurveyOperationSoap.toSoapModel(returnValue);
@@ -122,7 +122,7 @@ public class SurveyOperationServiceSoap {
 
 	public static operation.model.SurveyOperationSoap editSurveyOperation(
 			long id, String title, String description, String surveyObj,
-			java.util.Date startDate, java.util.Date endDate, String status,
+			java.util.Date startDate, java.util.Date endDate,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 
@@ -130,7 +130,7 @@ public class SurveyOperationServiceSoap {
 			operation.model.SurveyOperation returnValue =
 				SurveyOperationServiceUtil.editSurveyOperation(
 					id, title, description, surveyObj, startDate, endDate,
-					status, serviceContext);
+					serviceContext);
 
 			return operation.model.SurveyOperationSoap.toSoapModel(returnValue);
 		}

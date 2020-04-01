@@ -55,8 +55,9 @@ public interface QuestionsService extends BaseService {
 	 * Never modify or reference this interface directly. Always use {@link QuestionsServiceUtil} to access the questions remote service. Add custom service methods to <code>operation.service.impl.QuestionsServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public Questions addQuestions(
-		String question, String answer, double value,
-		ServiceContext serviceContext);
+			String question, String answer, double value,
+			ServiceContext serviceContext)
+		throws PortalException;
 
 	public void deleteAllQuestions();
 

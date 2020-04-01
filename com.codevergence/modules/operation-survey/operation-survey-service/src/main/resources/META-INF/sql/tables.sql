@@ -12,6 +12,5 @@ create table survey_operation (
 	survey_obj VARCHAR(75) null,
 	start_date DATE null,
 	end_date DATE null,
-	status VARCHAR(75) null,
 	submitted_date DATE null
 );

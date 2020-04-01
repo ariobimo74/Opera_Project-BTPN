@@ -1,10 +1,12 @@
-<%@include file=“../init.jsp”%>
+<%@ include file="../init.jsp" %>
 
-<% String mvcPath = ParamUtil.getString(actionRequest, "mvcPath");
+<%
 
-ResultRow resultRow = (ResultRow)actionRequest.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
+String mvcPath = ParamUtil.getString(request, "mvcPath");
+ResultRow resultRow = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
+SurveyOperation surveyOperation = (SurveyOperation)resultRow.getObject();
 
-SurveyOperation surveyOperation = (SurveyOperation)row.getObject(); %>
+%>
 
 <liferay-ui:icon-menu>
     <portlet:renderURL var="editURL">
@@ -16,5 +18,5 @@ SurveyOperation surveyOperation = (SurveyOperation)row.getObject(); %>
     <portlet:actionURL name="deleteSurvey" var="deleteURL">
         <portlet:param name="id" value="<%= String.valueOf(surveyOperation.getId()) %>" />
     </portlet:actionURL>
-    <liferay-ui:icon-delete url="<%= deleteURL.toString() %>" />
+    <liferay-ui:icon-delete image="delete" message="Delete" url="<%= deleteURL.toString() %>" />
 </liferay-ui:icon-menu>

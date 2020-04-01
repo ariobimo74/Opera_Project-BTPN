@@ -35,8 +35,9 @@ public class QuestionsServiceWrapper
 
 	@Override
 	public operation.model.Questions addQuestions(
-		String question, String answer, double value,
-		org.omg.IOP.ServiceContext serviceContext) {
+			String question, String answer, double value,
+			org.omg.IOP.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _questionsService.addQuestions(
 			question, answer, value, serviceContext);

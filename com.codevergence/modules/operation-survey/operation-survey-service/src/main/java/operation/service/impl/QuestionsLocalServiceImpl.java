@@ -17,6 +17,8 @@ package operation.service.impl;
 import com.liferay.portal.aop.AopService;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.Validator;
+import operation.exception.QuestionsQuestionException;
 import operation.model.Questions;
 import operation.service.base.QuestionsLocalServiceBaseImpl;
 
@@ -49,10 +51,12 @@ public class QuestionsLocalServiceImpl extends QuestionsLocalServiceBaseImpl
 		return questionsPersistence.findAll();
 	}
 
-	public Questions addQuestions(String question, String answer, double value, ServiceContext serviceContext)
+	public Questions addQuestions(String question, String answer, double value, ServiceContext serviceContext) throws PortalException
 	{
 		long id = counterLocalService.increment();
 		Questions questions = questionsPersistence.create(id);
+
+		validation(question);
 
 		questions.setQuestion(question);
 		questions.setAnswer(answer);
@@ -64,6 +68,8 @@ public class QuestionsLocalServiceImpl extends QuestionsLocalServiceBaseImpl
 	public Questions editQuestions(long id, String question, String answer, double value, ServiceContext serviceContext) throws PortalException
 	{
 		Questions questions = questionsPersistence.findByPrimaryKey(id);
+
+		validation(question);
 
 		questions.setQuestion(question);
 		questions.setAnswer(answer);
@@ -80,5 +86,13 @@ public class QuestionsLocalServiceImpl extends QuestionsLocalServiceBaseImpl
 	public void deleteAllQuestions()
 	{
 		questionsPersistence.removeAll();
+	}
+
+	public void validation(String question) throws PortalException
+	{
+		if (Validator.isNull(question))
+		{
+			throw new QuestionsQuestionException();
+		}
 	}
 }

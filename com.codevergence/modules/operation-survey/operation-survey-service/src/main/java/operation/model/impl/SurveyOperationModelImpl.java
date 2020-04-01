@@ -76,7 +76,7 @@ public class SurveyOperationModelImpl
 		{"id", Types.BIGINT}, {"title", Types.VARCHAR},
 		{"description", Types.VARCHAR}, {"survey_obj", Types.VARCHAR},
 		{"start_date", Types.TIMESTAMP}, {"end_date", Types.TIMESTAMP},
-		{"status", Types.VARCHAR}, {"submitted_date", Types.TIMESTAMP}
+		{"submitted_date", Types.TIMESTAMP}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -89,12 +89,11 @@ public class SurveyOperationModelImpl
 		TABLE_COLUMNS_MAP.put("survey_obj", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("start_date", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("end_date", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("status", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("submitted_date", Types.TIMESTAMP);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table survey_operation (id LONG not null primary key,title VARCHAR(75) null,description VARCHAR(75) null,survey_obj VARCHAR(75) null,start_date DATE null,end_date DATE null,status VARCHAR(75) null,submitted_date DATE null)";
+		"create table survey_operation (id LONG not null primary key,title VARCHAR(75) null,description VARCHAR(75) null,survey_obj VARCHAR(75) null,start_date DATE null,end_date DATE null,submitted_date DATE null)";
 
 	public static final String TABLE_SQL_DROP = "drop table survey_operation";
 
@@ -141,7 +140,6 @@ public class SurveyOperationModelImpl
 		model.setSurveyObj(soapModel.getSurveyObj());
 		model.setStartDate(soapModel.getStartDate());
 		model.setEndDate(soapModel.getEndDate());
-		model.setStatus(soapModel.getStatus());
 		model.setSubmittedDate(soapModel.getSubmittedDate());
 
 		return model;
@@ -323,10 +321,6 @@ public class SurveyOperationModelImpl
 		attributeSetterBiConsumers.put(
 			"endDate",
 			(BiConsumer<SurveyOperation, Date>)SurveyOperation::setEndDate);
-		attributeGetterFunctions.put("status", SurveyOperation::getStatus);
-		attributeSetterBiConsumers.put(
-			"status",
-			(BiConsumer<SurveyOperation, String>)SurveyOperation::setStatus);
 		attributeGetterFunctions.put(
 			"submittedDate", SurveyOperation::getSubmittedDate);
 		attributeSetterBiConsumers.put(
@@ -435,22 +429,6 @@ public class SurveyOperationModelImpl
 
 	@JSON
 	@Override
-	public String getStatus() {
-		if (_status == null) {
-			return "";
-		}
-		else {
-			return _status;
-		}
-	}
-
-	@Override
-	public void setStatus(String status) {
-		_status = status;
-	}
-
-	@JSON
-	@Override
 	public Date getSubmittedDate() {
 		return _submittedDate;
 	}
@@ -502,7 +480,6 @@ public class SurveyOperationModelImpl
 		surveyOperationImpl.setSurveyObj(getSurveyObj());
 		surveyOperationImpl.setStartDate(getStartDate());
 		surveyOperationImpl.setEndDate(getEndDate());
-		surveyOperationImpl.setStatus(getStatus());
 		surveyOperationImpl.setSubmittedDate(getSubmittedDate());
 
 		surveyOperationImpl.resetOriginalValues();
@@ -633,14 +610,6 @@ public class SurveyOperationModelImpl
 			surveyOperationCacheModel.endDate = Long.MIN_VALUE;
 		}
 
-		surveyOperationCacheModel.status = getStatus();
-
-		String status = surveyOperationCacheModel.status;
-
-		if ((status != null) && (status.length() == 0)) {
-			surveyOperationCacheModel.status = null;
-		}
-
 		Date submittedDate = getSubmittedDate();
 
 		if (submittedDate != null) {
@@ -733,7 +702,6 @@ public class SurveyOperationModelImpl
 	private String _surveyObj;
 	private Date _startDate;
 	private Date _endDate;
-	private String _status;
 	private Date _submittedDate;
 	private long _columnBitmask;
 	private SurveyOperation _escapedModel;

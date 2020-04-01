@@ -18,6 +18,10 @@ import com.liferay.portal.aop.AopService;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.Validator;
+import operation.exception.SurveyOperationEndDateException;
+import operation.exception.SurveyOperationStartDateException;
+import operation.exception.SurveyOperationSurveyObjException;
 import operation.model.SurveyOperation;
 import operation.service.base.SurveyOperationLocalServiceBaseImpl;
 
@@ -56,43 +60,37 @@ public class SurveyOperationLocalServiceImpl
 		return surveyOperationPersistence.findByPrimaryKey(id);
 	}
 
-	public SurveyOperation addSurveyOperation(String title, String description, String surveyObj, Date startDate, Date endDate, String status, ServiceContext serviceContext)
+	public SurveyOperation addSurveyOperation(String title, String description, String surveyObj, Date startDate, Date endDate, ServiceContext serviceContext) throws PortalException
 	{
 		Date now = new Date();
 		long id = counterLocalService.increment();
 		SurveyOperation surveyOperation = surveyOperationPersistence.create(id);
 
+		validation(surveyObj, startDate, endDate);
+
 		surveyOperation.setTitle(title);
 		surveyOperation.setDescription(description);
 		surveyOperation.setSurveyObj(surveyObj);
 		surveyOperation.setStartDate(startDate);
 		surveyOperation.setEndDate(endDate);
-		surveyOperation.setStatus(status);
-
-		if (status.equals("Submitted"))
-		{
-			surveyOperation.setSubmittedDate(now);
-		}
+		surveyOperation.setSubmittedDate(now);
 
 		return surveyOperationPersistence.update(surveyOperation);
 	}
 
-	public SurveyOperation editSurveyOperation(long id, String title, String description, String surveyObj, Date startDate, Date endDate, String status, ServiceContext serviceContext) throws PortalException
+	public SurveyOperation editSurveyOperation(long id, String title, String description, String surveyObj, Date startDate, Date endDate, ServiceContext serviceContext) throws PortalException
 	{
 		Date now = new Date();
 		SurveyOperation surveyOperation = surveyOperationPersistence.findByPrimaryKey(id);
+
+		validation(surveyObj, startDate, endDate);
 
 		surveyOperation.setTitle(title);
 		surveyOperation.setDescription(description);
 		surveyOperation.setSurveyObj(surveyObj);
 		surveyOperation.setStartDate(startDate);
 		surveyOperation.setEndDate(endDate);
-		surveyOperation.setStatus(status);
-
-		if (status.equals("Submitted"))
-		{
-			surveyOperation.setSubmittedDate(now);
-		}
+		surveyOperation.setSubmittedDate(now);
 
 		return surveyOperationPersistence.update(surveyOperation);
 	}
@@ -120,5 +118,21 @@ public class SurveyOperationLocalServiceImpl
 	public int countSurveyOperationByTitle(String title)
 	{
 		return surveyOperationPersistence.countByTitle(title);
+	}
+
+	private void validation(String surveyObj, Date startDate, Date endDate) throws PortalException
+	{
+		if (Validator.isNull(surveyObj))
+		{
+			throw new SurveyOperationSurveyObjException();
+		}
+		if (Validator.isNull(startDate))
+		{
+			throw new SurveyOperationStartDateException();
+		}
+		if (Validator.isNull(endDate))
+		{
+			throw new SurveyOperationEndDateException();
+		}
 	}
 }

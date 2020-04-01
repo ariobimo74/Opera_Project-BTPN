@@ -122,10 +122,10 @@ public class SurveyOperationServiceHttp {
 	}
 
 	public static operation.model.SurveyOperation addSurveyOperation(
-		HttpPrincipal httpPrincipal, String title, String description,
-		String surveyObj, java.util.Date startDate, java.util.Date endDate,
-		String status,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+			HttpPrincipal httpPrincipal, String title, String description,
+			String surveyObj, java.util.Date startDate, java.util.Date endDate,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -134,7 +134,7 @@ public class SurveyOperationServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, title, description, surveyObj, startDate, endDate,
-				status, serviceContext);
+				serviceContext);
 
 			Object returnObj = null;
 
@@ -142,6 +142,13 @@ public class SurveyOperationServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					e);
 			}
@@ -158,7 +165,7 @@ public class SurveyOperationServiceHttp {
 	public static operation.model.SurveyOperation editSurveyOperation(
 			HttpPrincipal httpPrincipal, long id, String title,
 			String description, String surveyObj, java.util.Date startDate,
-			java.util.Date endDate, String status,
+			java.util.Date endDate,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -169,7 +176,7 @@ public class SurveyOperationServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, id, title, description, surveyObj, startDate,
-				endDate, status, serviceContext);
+				endDate, serviceContext);
 
 			Object returnObj = null;
 
@@ -352,13 +359,13 @@ public class SurveyOperationServiceHttp {
 	private static final Class<?>[] _addSurveyOperationParameterTypes2 =
 		new Class[] {
 			String.class, String.class, String.class, java.util.Date.class,
-			java.util.Date.class, String.class,
+			java.util.Date.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _editSurveyOperationParameterTypes3 =
 		new Class[] {
 			long.class, String.class, String.class, String.class,
-			java.util.Date.class, java.util.Date.class, String.class,
+			java.util.Date.class, java.util.Date.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _deleteSurveyOperationByIdParameterTypes4 =

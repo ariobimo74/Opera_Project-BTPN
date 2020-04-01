@@ -52,7 +52,7 @@ public class QuestionsServiceImpl extends QuestionsServiceBaseImpl
 		return questionsLocalService.getAllQuestions();
 	}
 
-	public Questions addQuestions(String question, String answer, double value, ServiceContext serviceContext)
+	public Questions addQuestions(String question, String answer, double value, ServiceContext serviceContext) throws PortalException
 	{
 		return questionsLocalService.addQuestions(question, answer, value, serviceContext);
 	}

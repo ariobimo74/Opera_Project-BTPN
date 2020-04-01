@@ -40,8 +40,9 @@ public class QuestionsServiceUtil {
 	 * Never modify this class directly. Add custom service methods to <code>operation.service.impl.QuestionsServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static operation.model.Questions addQuestions(
-		String question, String answer, double value,
-		org.omg.IOP.ServiceContext serviceContext) {
+			String question, String answer, double value,
+			org.omg.IOP.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().addQuestions(
 			question, answer, value, serviceContext);

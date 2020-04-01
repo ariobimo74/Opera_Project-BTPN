@@ -66,7 +66,7 @@ public class SurveyOperationCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -80,8 +80,6 @@ public class SurveyOperationCacheModel
 		sb.append(startDate);
 		sb.append(", endDate=");
 		sb.append(endDate);
-		sb.append(", status=");
-		sb.append(status);
 		sb.append(", submittedDate=");
 		sb.append(submittedDate);
 		sb.append("}");
@@ -130,13 +128,6 @@ public class SurveyOperationCacheModel
 			surveyOperationImpl.setEndDate(new Date(endDate));
 		}
 
-		if (status == null) {
-			surveyOperationImpl.setStatus("");
-		}
-		else {
-			surveyOperationImpl.setStatus(status);
-		}
-
 		if (submittedDate == Long.MIN_VALUE) {
 			surveyOperationImpl.setSubmittedDate(null);
 		}
@@ -157,7 +148,6 @@ public class SurveyOperationCacheModel
 		surveyObj = objectInput.readUTF();
 		startDate = objectInput.readLong();
 		endDate = objectInput.readLong();
-		status = objectInput.readUTF();
 		submittedDate = objectInput.readLong();
 	}
 
@@ -188,14 +178,6 @@ public class SurveyOperationCacheModel
 
 		objectOutput.writeLong(startDate);
 		objectOutput.writeLong(endDate);
-
-		if (status == null) {
-			objectOutput.writeUTF("");
-		}
-		else {
-			objectOutput.writeUTF(status);
-		}
-
 		objectOutput.writeLong(submittedDate);
 	}
 
@@ -205,7 +187,6 @@ public class SurveyOperationCacheModel
 	public String surveyObj;
 	public long startDate;
 	public long endDate;
-	public String status;
 	public long submittedDate;
 
 }

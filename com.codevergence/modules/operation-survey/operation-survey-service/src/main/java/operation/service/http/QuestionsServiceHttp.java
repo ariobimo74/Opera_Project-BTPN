@@ -85,8 +85,9 @@ public class QuestionsServiceHttp {
 	}
 
 	public static operation.model.Questions addQuestions(
-		HttpPrincipal httpPrincipal, String question, String answer,
-		double value, org.omg.IOP.ServiceContext serviceContext) {
+			HttpPrincipal httpPrincipal, String question, String answer,
+			double value, org.omg.IOP.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -102,6 +103,13 @@ public class QuestionsServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					e);
 			}

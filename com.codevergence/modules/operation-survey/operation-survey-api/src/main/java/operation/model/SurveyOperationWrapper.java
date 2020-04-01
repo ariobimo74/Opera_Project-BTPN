@@ -51,7 +51,6 @@ public class SurveyOperationWrapper
 		attributes.put("surveyObj", getSurveyObj());
 		attributes.put("startDate", getStartDate());
 		attributes.put("endDate", getEndDate());
-		attributes.put("status", getStatus());
 		attributes.put("submittedDate", getSubmittedDate());
 
 		return attributes;
@@ -93,12 +92,6 @@ public class SurveyOperationWrapper
 
 		if (endDate != null) {
 			setEndDate(endDate);
-		}
-
-		String status = (String)attributes.get("status");
-
-		if (status != null) {
-			setStatus(status);
 		}
 
 		Date submittedDate = (Date)attributes.get("submittedDate");
@@ -156,16 +149,6 @@ public class SurveyOperationWrapper
 	@Override
 	public Date getStartDate() {
 		return model.getStartDate();
-	}
-
-	/**
-	 * Returns the status of this survey operation.
-	 *
-	 * @return the status of this survey operation
-	 */
-	@Override
-	public String getStatus() {
-		return model.getStatus();
 	}
 
 	/**
@@ -251,16 +234,6 @@ public class SurveyOperationWrapper
 	@Override
 	public void setStartDate(Date startDate) {
 		model.setStartDate(startDate);
-	}
-
-	/**
-	 * Sets the status of this survey operation.
-	 *
-	 * @param status the status of this survey operation
-	 */
-	@Override
-	public void setStatus(String status) {
-		model.setStatus(status);
 	}
 
 	/**

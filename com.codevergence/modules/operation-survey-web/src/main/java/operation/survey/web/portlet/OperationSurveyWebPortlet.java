@@ -61,15 +61,15 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 		String endDate = ParamUtil.getString(actionRequest, "endDate");
 		String status = ParamUtil.getString(actionRequest, "status");
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		Date startDateFinal = simpleDateFormat.parse(startDate);
-		Date endDateFinal = simpleDateFormat.parse(endDate);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		final Date startDateFinal = simpleDateFormat.parse(startDate);
+		final Date endDateFinal = simpleDateFormat.parse(endDate);
 
 		if (id > 0)
 		{
 			try
 			{
-				surveyOperationLocalService.editSurveyOperation(id, title, description, surveyObj, startDateFinal, endDateFinal, status, serviceContext);
+				surveyOperationLocalService.editSurveyOperation(id, title, description, surveyObj, startDateFinal, endDateFinal, serviceContext);
 				actionResponse.getRenderParameters().setValue("id", Long.toString(id));
 
 				SessionMessages.add(actionRequest, "surveyAdded");
@@ -88,7 +88,7 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 		{
 			try
 			{
-				surveyOperationLocalService.addSurveyOperation(title, description, surveyObj, startDateFinal, endDateFinal, status, serviceContext);
+				surveyOperationLocalService.addSurveyOperation(title, description, surveyObj, startDateFinal, endDateFinal, serviceContext);
 				actionResponse.getRenderParameters().setValue("id", Long.toString(id));
 
 				SessionMessages.add(actionRequest, "surveyEdited");
@@ -128,21 +128,17 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 	{
 		try
 		{
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(SurveyOperation.class.getName(), renderRequest);
+//			ServiceContext serviceContext = ServiceContextFactory.getInstance(SurveyOperation.class.getName(), renderRequest);
 			long id = ParamUtil.getLong(renderRequest, "id");
 
 			List<SurveyOperation> surveyOperationList = surveyOperationLocalService.getAllSurveyOperation();
 
-			if (id == 0)
-			{
-				id = surveyOperationList.get(0).getId();
-			}
+			renderRequest.setAttribute("id", id);
 		}
 		catch (Exception e)
 		{
 			throw new PortletException(e);
 		}
-
 		super.render(renderRequest, renderResponse);
 	}
 }

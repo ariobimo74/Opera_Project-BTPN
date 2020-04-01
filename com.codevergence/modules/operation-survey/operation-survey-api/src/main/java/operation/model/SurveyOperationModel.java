@@ -143,21 +143,6 @@ public interface SurveyOperationModel extends BaseModel<SurveyOperation> {
 	public void setEndDate(Date endDate);
 
 	/**
-	 * Returns the status of this survey operation.
-	 *
-	 * @return the status of this survey operation
-	 */
-	@AutoEscape
-	public String getStatus();
-
-	/**
-	 * Sets the status of this survey operation.
-	 *
-	 * @param status the status of this survey operation
-	 */
-	public void setStatus(String status);
-
-	/**
 	 * Returns the submitted date of this survey operation.
 	 *
 	 * @return the submitted date of this survey operation

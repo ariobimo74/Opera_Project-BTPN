@@ -53,8 +53,9 @@ public class QuestionsLocalServiceUtil {
 	}
 
 	public static operation.model.Questions addQuestions(
-		String question, String answer, double value,
-		org.omg.IOP.ServiceContext serviceContext) {
+			String question, String answer, double value,
+			org.omg.IOP.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().addQuestions(
 			question, answer, value, serviceContext);
@@ -296,6 +297,12 @@ public class QuestionsLocalServiceUtil {
 		operation.model.Questions questions) {
 
 		return getService().updateQuestions(questions);
+	}
+
+	public static void validation(String question)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		getService().validation(question);
 	}
 
 	public static QuestionsLocalService getService() {
