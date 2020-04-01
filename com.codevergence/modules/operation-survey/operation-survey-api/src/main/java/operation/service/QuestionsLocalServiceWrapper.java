@@ -51,7 +51,7 @@ public class QuestionsLocalServiceWrapper
 	@Override
 	public operation.model.Questions addQuestions(
 		String question, String answer, double value,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+		org.omg.IOP.ServiceContext serviceContext) {
 
 		return _questionsLocalService.addQuestions(
 			question, answer, value, serviceContext);
@@ -211,7 +211,7 @@ public class QuestionsLocalServiceWrapper
 	@Override
 	public operation.model.Questions editQuestions(
 			long id, String question, String answer, double value,
-			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+			org.omg.IOP.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _questionsLocalService.editQuestions(
@@ -272,20 +272,6 @@ public class QuestionsLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _questionsLocalService.getQuestions(id);
-	}
-
-	@Override
-	public operation.model.Questions getQuestionsById(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _questionsLocalService.getQuestionsById(id);
-	}
-
-	@Override
-	public java.util.List<operation.model.Questions> getQuestionsByQuestion(
-		String question) {
-
-		return _questionsLocalService.getQuestionsByQuestion(question);
 	}
 
 	/**

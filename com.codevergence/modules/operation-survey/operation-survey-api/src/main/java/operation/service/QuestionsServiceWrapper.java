@@ -36,7 +36,7 @@ public class QuestionsServiceWrapper
 	@Override
 	public operation.model.Questions addQuestions(
 		String question, String answer, double value,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+		org.omg.IOP.ServiceContext serviceContext) {
 
 		return _questionsService.addQuestions(
 			question, answer, value, serviceContext);
@@ -57,7 +57,7 @@ public class QuestionsServiceWrapper
 	@Override
 	public operation.model.Questions editQuestions(
 			long id, String question, String answer, double value,
-			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+			org.omg.IOP.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _questionsService.editQuestions(
@@ -77,20 +77,6 @@ public class QuestionsServiceWrapper
 	@Override
 	public String getOSGiServiceIdentifier() {
 		return _questionsService.getOSGiServiceIdentifier();
-	}
-
-	@Override
-	public operation.model.Questions getQuestionsById(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _questionsService.getQuestionsById(id);
-	}
-
-	@Override
-	public java.util.List<operation.model.Questions> getQuestionsByQuestion(
-		String question) {
-
-		return _questionsService.getQuestionsByQuestion(question);
 	}
 
 	@Override

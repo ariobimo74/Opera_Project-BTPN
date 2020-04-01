@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 
 import java.io.Serializable;
@@ -91,19 +90,15 @@ public class QuestionsModelImpl
 
 	public static final String TABLE_SQL_DROP = "drop table questions";
 
-	public static final String ORDER_BY_JPQL =
-		" ORDER BY questions.question ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY questions.id ASC";
 
-	public static final String ORDER_BY_SQL =
-		" ORDER BY questions.question ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY questions.id ASC";
 
 	public static final String DATA_SOURCE = "liferayDataSource";
 
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 
 	public static final String TX_MANAGER = "liferayTransactionManager";
-
-	public static final long QUESTION_COLUMN_BITMASK = 1L;
 
 	public static void setEntityCacheEnabled(boolean entityCacheEnabled) {
 		_entityCacheEnabled = entityCacheEnabled;
@@ -321,17 +316,7 @@ public class QuestionsModelImpl
 
 	@Override
 	public void setQuestion(String question) {
-		_columnBitmask = -1L;
-
-		if (_originalQuestion == null) {
-			_originalQuestion = _question;
-		}
-
 		_question = question;
-	}
-
-	public String getOriginalQuestion() {
-		return GetterUtil.getString(_originalQuestion);
 	}
 
 	@JSON
@@ -359,10 +344,6 @@ public class QuestionsModelImpl
 	@Override
 	public void setValue(double value) {
 		_value = value;
-	}
-
-	public long getColumnBitmask() {
-		return _columnBitmask;
 	}
 
 	@Override
@@ -411,7 +392,15 @@ public class QuestionsModelImpl
 	public int compareTo(Questions questions) {
 		int value = 0;
 
-		value = getQuestion().compareTo(questions.getQuestion());
+		if (getId() < questions.getId()) {
+			value = -1;
+		}
+		else if (getId() > questions.getId()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		if (value != 0) {
 			return value;
@@ -459,11 +448,6 @@ public class QuestionsModelImpl
 
 	@Override
 	public void resetOriginalValues() {
-		QuestionsModelImpl questionsModelImpl = this;
-
-		questionsModelImpl._originalQuestion = questionsModelImpl._question;
-
-		questionsModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -568,10 +552,8 @@ public class QuestionsModelImpl
 
 	private long _id;
 	private String _question;
-	private String _originalQuestion;
 	private String _answer;
 	private double _value;
-	private long _columnBitmask;
 	private Questions _escapedModel;
 
 }

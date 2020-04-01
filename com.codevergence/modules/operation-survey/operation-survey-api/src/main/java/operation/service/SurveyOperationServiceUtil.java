@@ -57,9 +57,7 @@ public class SurveyOperationServiceUtil {
 		return getService().countSurveyOperationByTitle(title);
 	}
 
-	public static void deleteAllSurveyOperation()
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static void deleteAllSurveyOperation() {
 		getService().deleteAllSurveyOperation();
 	}
 

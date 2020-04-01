@@ -57,9 +57,7 @@ public class SurveyOperationServiceWrapper
 	}
 
 	@Override
-	public void deleteAllSurveyOperation()
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public void deleteAllSurveyOperation() {
 		_surveyOperationService.deleteAllSurveyOperation();
 	}
 

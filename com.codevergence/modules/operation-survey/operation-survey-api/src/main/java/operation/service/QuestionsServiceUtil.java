@@ -41,7 +41,7 @@ public class QuestionsServiceUtil {
 	 */
 	public static operation.model.Questions addQuestions(
 		String question, String answer, double value,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+		org.omg.IOP.ServiceContext serviceContext) {
 
 		return getService().addQuestions(
 			question, answer, value, serviceContext);
@@ -59,7 +59,7 @@ public class QuestionsServiceUtil {
 
 	public static operation.model.Questions editQuestions(
 			long id, String question, String answer, double value,
-			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+			org.omg.IOP.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().editQuestions(
@@ -77,18 +77,6 @@ public class QuestionsServiceUtil {
 	 */
 	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static operation.model.Questions getQuestionsById(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return getService().getQuestionsById(id);
-	}
-
-	public static java.util.List<operation.model.Questions>
-		getQuestionsByQuestion(String question) {
-
-		return getService().getQuestionsByQuestion(question);
 	}
 
 	public static QuestionsService getService() {

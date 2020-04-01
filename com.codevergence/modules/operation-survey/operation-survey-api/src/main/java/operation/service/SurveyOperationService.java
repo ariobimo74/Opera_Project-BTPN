@@ -62,7 +62,7 @@ public interface SurveyOperationService extends BaseService {
 
 	public int countSurveyOperationByTitle(String title);
 
-	public void deleteAllSurveyOperation() throws PortalException;
+	public void deleteAllSurveyOperation();
 
 	public SurveyOperation deleteSurveyOperationById(long id)
 		throws PortalException;

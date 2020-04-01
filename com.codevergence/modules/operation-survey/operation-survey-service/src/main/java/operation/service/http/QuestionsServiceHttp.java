@@ -84,52 +84,14 @@ public class QuestionsServiceHttp {
 		}
 	}
 
-	public static operation.model.Questions getQuestionsById(
-			HttpPrincipal httpPrincipal, long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		try {
-			MethodKey methodKey = new MethodKey(
-				QuestionsServiceUtil.class, "getQuestionsById",
-				_getQuestionsByIdParameterTypes1);
-
-			MethodHandler methodHandler = new MethodHandler(methodKey, id);
-
-			Object returnObj = null;
-
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
-			}
-			catch (Exception e) {
-				if (e instanceof
-						com.liferay.portal.kernel.exception.PortalException) {
-
-					throw (com.liferay.portal.kernel.exception.PortalException)
-						e;
-				}
-
-				throw new com.liferay.portal.kernel.exception.SystemException(
-					e);
-			}
-
-			return (operation.model.Questions)returnObj;
-		}
-		catch (com.liferay.portal.kernel.exception.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
-		}
-	}
-
 	public static operation.model.Questions addQuestions(
 		HttpPrincipal httpPrincipal, String question, String answer,
-		double value,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+		double value, org.omg.IOP.ServiceContext serviceContext) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				QuestionsServiceUtil.class, "addQuestions",
-				_addQuestionsParameterTypes2);
+				_addQuestionsParameterTypes1);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, question, answer, value, serviceContext);
@@ -156,13 +118,13 @@ public class QuestionsServiceHttp {
 	public static operation.model.Questions editQuestions(
 			HttpPrincipal httpPrincipal, long id, String question,
 			String answer, double value,
-			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+			org.omg.IOP.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				QuestionsServiceUtil.class, "editQuestions",
-				_editQuestionsParameterTypes3);
+				_editQuestionsParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, id, question, answer, value, serviceContext);
@@ -200,7 +162,7 @@ public class QuestionsServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				QuestionsServiceUtil.class, "deleteQuestionsById",
-				_deleteQuestionsByIdParameterTypes4);
+				_deleteQuestionsByIdParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, id);
 
@@ -234,7 +196,7 @@ public class QuestionsServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				QuestionsServiceUtil.class, "deleteAllQuestions",
-				_deleteAllQuestionsParameterTypes5);
+				_deleteAllQuestionsParameterTypes4);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey);
 
@@ -253,56 +215,22 @@ public class QuestionsServiceHttp {
 		}
 	}
 
-	public static java.util.List<operation.model.Questions>
-		getQuestionsByQuestion(HttpPrincipal httpPrincipal, String question) {
-
-		try {
-			MethodKey methodKey = new MethodKey(
-				QuestionsServiceUtil.class, "getQuestionsByQuestion",
-				_getQuestionsByQuestionParameterTypes6);
-
-			MethodHandler methodHandler = new MethodHandler(
-				methodKey, question);
-
-			Object returnObj = null;
-
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
-			}
-			catch (Exception e) {
-				throw new com.liferay.portal.kernel.exception.SystemException(
-					e);
-			}
-
-			return (java.util.List<operation.model.Questions>)returnObj;
-		}
-		catch (com.liferay.portal.kernel.exception.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
-		}
-	}
-
 	private static Log _log = LogFactoryUtil.getLog(QuestionsServiceHttp.class);
 
 	private static final Class<?>[] _getAllQuestionsParameterTypes0 =
 		new Class[] {};
-	private static final Class<?>[] _getQuestionsByIdParameterTypes1 =
-		new Class[] {long.class};
-	private static final Class<?>[] _addQuestionsParameterTypes2 = new Class[] {
+	private static final Class<?>[] _addQuestionsParameterTypes1 = new Class[] {
 		String.class, String.class, double.class,
-		com.liferay.portal.kernel.service.ServiceContext.class
+		org.omg.IOP.ServiceContext.class
 	};
-	private static final Class<?>[] _editQuestionsParameterTypes3 =
+	private static final Class<?>[] _editQuestionsParameterTypes2 =
 		new Class[] {
 			long.class, String.class, String.class, double.class,
-			com.liferay.portal.kernel.service.ServiceContext.class
+			org.omg.IOP.ServiceContext.class
 		};
-	private static final Class<?>[] _deleteQuestionsByIdParameterTypes4 =
+	private static final Class<?>[] _deleteQuestionsByIdParameterTypes3 =
 		new Class[] {long.class};
-	private static final Class<?>[] _deleteAllQuestionsParameterTypes5 =
+	private static final Class<?>[] _deleteAllQuestionsParameterTypes4 =
 		new Class[] {};
-	private static final Class<?>[] _getQuestionsByQuestionParameterTypes6 =
-		new Class[] {String.class};
 
 }

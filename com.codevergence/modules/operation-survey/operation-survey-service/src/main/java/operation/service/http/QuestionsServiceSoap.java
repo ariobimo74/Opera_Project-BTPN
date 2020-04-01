@@ -81,25 +81,9 @@ public class QuestionsServiceSoap {
 		}
 	}
 
-	public static operation.model.QuestionsSoap getQuestionsById(long id)
-		throws RemoteException {
-
-		try {
-			operation.model.Questions returnValue =
-				QuestionsServiceUtil.getQuestionsById(id);
-
-			return operation.model.QuestionsSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static operation.model.QuestionsSoap addQuestions(
 			String question, String answer, double value,
-			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+			org.omg.IOP.ServiceContext serviceContext)
 		throws RemoteException {
 
 		try {
@@ -118,7 +102,7 @@ public class QuestionsServiceSoap {
 
 	public static operation.model.QuestionsSoap editQuestions(
 			long id, String question, String answer, double value,
-			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+			org.omg.IOP.ServiceContext serviceContext)
 		throws RemoteException {
 
 		try {
@@ -154,23 +138,6 @@ public class QuestionsServiceSoap {
 	public static void deleteAllQuestions() throws RemoteException {
 		try {
 			QuestionsServiceUtil.deleteAllQuestions();
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static operation.model.QuestionsSoap[] getQuestionsByQuestion(
-			String question)
-		throws RemoteException {
-
-		try {
-			java.util.List<operation.model.Questions> returnValue =
-				QuestionsServiceUtil.getQuestionsByQuestion(question);
-
-			return operation.model.QuestionsSoap.toSoapModels(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

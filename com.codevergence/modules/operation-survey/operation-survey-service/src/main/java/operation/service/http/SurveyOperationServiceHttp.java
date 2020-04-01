@@ -234,9 +234,7 @@ public class SurveyOperationServiceHttp {
 		}
 	}
 
-	public static void deleteAllSurveyOperation(HttpPrincipal httpPrincipal)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static void deleteAllSurveyOperation(HttpPrincipal httpPrincipal) {
 		try {
 			MethodKey methodKey = new MethodKey(
 				SurveyOperationServiceUtil.class, "deleteAllSurveyOperation",
@@ -248,13 +246,6 @@ public class SurveyOperationServiceHttp {
 				TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				if (e instanceof
-						com.liferay.portal.kernel.exception.PortalException) {
-
-					throw (com.liferay.portal.kernel.exception.PortalException)
-						e;
-				}
-
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					e);
 			}

@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -36,6 +35,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import operation.model.Questions;
+
+import org.omg.IOP.ServiceContext;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -219,12 +220,6 @@ public interface QuestionsLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Questions getQuestions(long id) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Questions getQuestionsById(long id) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Questions> getQuestionsByQuestion(String question);
 
 	/**
 	 * Returns a range of all the questionses.

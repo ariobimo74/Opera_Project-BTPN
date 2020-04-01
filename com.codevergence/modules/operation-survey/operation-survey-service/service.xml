@@ -42,11 +42,7 @@
 		<column db-name="value" name="value" type="double"/>
 
 		<order by="asc">
-			<order-column name="question"/>
+			<order-column name="id"/>
 		</order>
-
-		<finder name="Question" return-type="Collection">
-			<finder-column name="question"/>
-		</finder>
 	</entity>
 </service-builder>
