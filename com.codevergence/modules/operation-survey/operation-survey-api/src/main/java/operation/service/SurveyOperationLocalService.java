@@ -120,6 +120,8 @@ public interface SurveyOperationLocalService
 	public SurveyOperation deleteSurveyOperation(
 		SurveyOperation surveyOperation);
 
+	public void deleteSurveyOperationAfterEndDate();
+
 	public SurveyOperation deleteSurveyOperationById(long id)
 		throws PortalException;
 
@@ -227,6 +229,9 @@ public interface SurveyOperationLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public SurveyOperation getSurveyOperation(long id) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SurveyOperation> getSurveyOperationBeforeEndDate();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public SurveyOperation getSurveyOperationById(long id)

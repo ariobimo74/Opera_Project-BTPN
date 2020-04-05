@@ -127,6 +127,11 @@ public class SurveyOperationLocalServiceWrapper
 	}
 
 	@Override
+	public void deleteSurveyOperationAfterEndDate() {
+		_surveyOperationLocalService.deleteSurveyOperationAfterEndDate();
+	}
+
+	@Override
 	public operation.model.SurveyOperation deleteSurveyOperationById(long id)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -293,6 +298,13 @@ public class SurveyOperationLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _surveyOperationLocalService.getSurveyOperation(id);
+	}
+
+	@Override
+	public java.util.List<operation.model.SurveyOperation>
+		getSurveyOperationBeforeEndDate() {
+
+		return _surveyOperationLocalService.getSurveyOperationBeforeEndDate();
 	}
 
 	@Override

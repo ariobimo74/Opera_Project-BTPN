@@ -74,8 +74,7 @@ public interface QuestionsLocalService
 	public Questions addQuestions(Questions questions);
 
 	public Questions addQuestions(
-			String question, String answer, double value,
-			ServiceContext serviceContext)
+			String question, ServiceContext serviceContext)
 		throws PortalException;
 
 	/**
@@ -184,8 +183,7 @@ public interface QuestionsLocalService
 		DynamicQuery dynamicQuery, Projection projection);
 
 	public Questions editQuestions(
-			long id, String question, String answer, double value,
-			ServiceContext serviceContext)
+			long id, String question, ServiceContext serviceContext)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

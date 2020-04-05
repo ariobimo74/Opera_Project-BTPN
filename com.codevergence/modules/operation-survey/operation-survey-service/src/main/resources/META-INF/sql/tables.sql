@@ -1,8 +1,17 @@
-create table questions (
+create table answers (
 	id LONG not null primary key,
-	question VARCHAR(75) null,
 	answer VARCHAR(75) null,
 	value DOUBLE
+);
+
+create table questions (
+	id LONG not null primary key,
+	question VARCHAR(75) null
+);
+
+create table survey_object (
+	id LONG not null primary key,
+	name VARCHAR(75) null
 );
 
 create table survey_operation (

@@ -31,19 +31,42 @@
 		<finder name="Title" return-type="Collection">
 			<finder-column name="title" />
 		</finder>
+		<finder name="EndDate" return-type="Collection">
+			<finder-column name="endDate" />
+		</finder>
 	</entity>
 	
 	<entity table="questions" local-service="true" name="Questions" remote-service="true" uuid="false">
 		<column db-name="id" name="id" primary="true" type="long" />
-		
 		<column db-name="question" name="question" type="String" />
-		<column db-name="answer" name="answer" type="String" />
-		<column db-name="value" name="value" type="double"/>
 
 		<order by="asc">
 			<order-column name="id"/>
 		</order>
 	</entity>
+
+	<entity table="answers" name="Answer" local-service="true" remote-service="true" uuid="false">
+		<column db-name="id" name="id" type="long" primary="true" />
+		<column db-name="answer" name="answer" type="String" />
+		<column db-name="value" name="value" type="double" />
+
+		<order by="asc">
+			<order-column name="id"/>
+		</order>
+	</entity>
+
+	<entity table="survey_object" name="SurveyObject" local-service="true" remote-service="true" uuid="false">
+		<column db-name="id" name="id" type="long" primary="true" />
+		<column db-name="name" name="name" type="String" />
+
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+		<finder name="ObjectName" return-type="Collection">
+			<finder-column name="name" />
+		</finder>
+	</entity>
+
 	<exceptions>
 		<exception>SurveyOperationSurveyObj</exception>
 		<exception>SurveyOperationStartDate</exception>

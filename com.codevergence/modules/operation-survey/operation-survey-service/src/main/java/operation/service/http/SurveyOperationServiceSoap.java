@@ -217,6 +217,37 @@ public class SurveyOperationServiceSoap {
 		}
 	}
 
+	public static operation.model.SurveyOperationSoap[]
+			getSurveyOperationBeforeEndDate()
+		throws RemoteException {
+
+		try {
+			java.util.List<operation.model.SurveyOperation> returnValue =
+				SurveyOperationServiceUtil.getSurveyOperationBeforeEndDate();
+
+			return operation.model.SurveyOperationSoap.toSoapModels(
+				returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void deleteSurveyOperationAfterEndDate()
+		throws RemoteException {
+
+		try {
+			SurveyOperationServiceUtil.deleteSurveyOperationAfterEndDate();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		SurveyOperationServiceSoap.class);
 

@@ -27,6 +27,9 @@ import operation.service.base.SurveyOperationLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -133,6 +136,52 @@ public class SurveyOperationLocalServiceImpl
 		if (Validator.isNull(endDate))
 		{
 			throw new SurveyOperationEndDateException();
+		}
+	}
+
+	public List<SurveyOperation> getSurveyOperationBeforeEndDate()
+	{
+		List<SurveyOperation> allSurveyOperation = surveyOperationPersistence.findAll();
+		List<SurveyOperation> surveyOperationBeforeEndDate = null;
+
+		Date now = new Date();
+
+		for (int i = 0; i < allSurveyOperation.size(); i++)
+		{
+			SurveyOperation surveyOperation = allSurveyOperation.get(i);
+
+			if (surveyOperation.getEndDate().after(now))
+			{
+				surveyOperationBeforeEndDate.add(surveyOperation);
+			}
+		}
+
+		return surveyOperationBeforeEndDate;
+	}
+
+	public void deleteSurveyOperationAfterEndDate()
+	{
+		Date now = new Date();
+		LocalDateTime tomorrow = LocalDateTime.from(now.toInstant()).plusDays(1);
+		Date tomorrowDate = Date.from(tomorrow.atZone(ZoneId.systemDefault()).toInstant());
+
+		List<SurveyOperation> allSurveyOperation = surveyOperationPersistence.findAll();
+
+		for (int i = 0; i < allSurveyOperation.size(); i++)
+		{
+			SurveyOperation surveyOperation = allSurveyOperation.get(i);
+
+			if (surveyOperation.getEndDate().after(tomorrowDate))
+			{
+				try
+				{
+					surveyOperationPersistence.remove(surveyOperation.getId());
+				}
+				catch (Exception e)
+				{
+					e.getCause().getMessage();
+				}
+			}
 		}
 	}
 }

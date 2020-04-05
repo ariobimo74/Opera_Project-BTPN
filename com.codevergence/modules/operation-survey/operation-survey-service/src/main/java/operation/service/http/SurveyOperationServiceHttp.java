@@ -349,6 +349,62 @@ public class SurveyOperationServiceHttp {
 		}
 	}
 
+	public static java.util.List<operation.model.SurveyOperation>
+		getSurveyOperationBeforeEndDate(HttpPrincipal httpPrincipal) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				SurveyOperationServiceUtil.class,
+				"getSurveyOperationBeforeEndDate",
+				_getSurveyOperationBeforeEndDateParameterTypes9);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (java.util.List<operation.model.SurveyOperation>)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static void deleteSurveyOperationAfterEndDate(
+		HttpPrincipal httpPrincipal) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				SurveyOperationServiceUtil.class,
+				"deleteSurveyOperationAfterEndDate",
+				_deleteSurveyOperationAfterEndDateParameterTypes10);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey);
+
+			try {
+				TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		SurveyOperationServiceHttp.class);
 
@@ -380,5 +436,9 @@ public class SurveyOperationServiceHttp {
 		_countSurveyOperationByTitleParameterTypes8 = new Class[] {
 			String.class
 		};
+	private static final Class<?>[]
+		_getSurveyOperationBeforeEndDateParameterTypes9 = new Class[] {};
+	private static final Class<?>[]
+		_deleteSurveyOperationAfterEndDateParameterTypes10 = new Class[] {};
 
 }

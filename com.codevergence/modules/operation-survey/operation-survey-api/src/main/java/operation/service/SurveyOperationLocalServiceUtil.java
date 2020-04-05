@@ -121,6 +121,10 @@ public class SurveyOperationLocalServiceUtil {
 		return getService().deleteSurveyOperation(surveyOperation);
 	}
 
+	public static void deleteSurveyOperationAfterEndDate() {
+		getService().deleteSurveyOperationAfterEndDate();
+	}
+
 	public static operation.model.SurveyOperation deleteSurveyOperationById(
 			long id)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -276,6 +280,12 @@ public class SurveyOperationLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getSurveyOperation(id);
+	}
+
+	public static java.util.List<operation.model.SurveyOperation>
+		getSurveyOperationBeforeEndDate() {
+
+		return getService().getSurveyOperationBeforeEndDate();
 	}
 
 	public static operation.model.SurveyOperation getSurveyOperationById(

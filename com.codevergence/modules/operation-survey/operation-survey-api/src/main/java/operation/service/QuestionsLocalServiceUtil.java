@@ -53,12 +53,10 @@ public class QuestionsLocalServiceUtil {
 	}
 
 	public static operation.model.Questions addQuestions(
-			String question, String answer, double value,
-			org.omg.IOP.ServiceContext serviceContext)
+			String question, org.omg.IOP.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().addQuestions(
-			question, answer, value, serviceContext);
+		return getService().addQuestions(question, serviceContext);
 	}
 
 	/**
@@ -203,12 +201,10 @@ public class QuestionsLocalServiceUtil {
 	}
 
 	public static operation.model.Questions editQuestions(
-			long id, String question, String answer, double value,
-			org.omg.IOP.ServiceContext serviceContext)
+			long id, String question, org.omg.IOP.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().editQuestions(
-			id, question, answer, value, serviceContext);
+		return getService().editQuestions(id, question, serviceContext);
 	}
 
 	public static operation.model.Questions fetchQuestions(long id) {

@@ -29,7 +29,9 @@ import javax.sql.DataSource;
 import operation.model.SurveyOperation;
 
 import operation.service.SurveyOperationService;
+import operation.service.persistence.AnswerPersistence;
 import operation.service.persistence.QuestionsPersistence;
+import operation.service.persistence.SurveyObjectPersistence;
 import operation.service.persistence.SurveyOperationPersistence;
 
 import org.osgi.service.component.annotations.Reference;
@@ -109,7 +111,13 @@ public abstract class SurveyOperationServiceBaseImpl
 	}
 
 	@Reference
+	protected AnswerPersistence answerPersistence;
+
+	@Reference
 	protected QuestionsPersistence questionsPersistence;
+
+	@Reference
+	protected SurveyObjectPersistence surveyObjectPersistence;
 
 	@Reference
 	protected operation.service.SurveyOperationLocalService

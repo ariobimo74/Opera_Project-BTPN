@@ -50,12 +50,10 @@ public class QuestionsLocalServiceWrapper
 
 	@Override
 	public operation.model.Questions addQuestions(
-			String question, String answer, double value,
-			org.omg.IOP.ServiceContext serviceContext)
+			String question, org.omg.IOP.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _questionsLocalService.addQuestions(
-			question, answer, value, serviceContext);
+		return _questionsLocalService.addQuestions(question, serviceContext);
 	}
 
 	/**
@@ -211,12 +209,11 @@ public class QuestionsLocalServiceWrapper
 
 	@Override
 	public operation.model.Questions editQuestions(
-			long id, String question, String answer, double value,
-			org.omg.IOP.ServiceContext serviceContext)
+			long id, String question, org.omg.IOP.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _questionsLocalService.editQuestions(
-			id, question, answer, value, serviceContext);
+			id, question, serviceContext);
 	}
 
 	@Override

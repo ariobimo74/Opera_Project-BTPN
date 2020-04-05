@@ -65,6 +65,8 @@ public interface SurveyOperationService extends BaseService {
 
 	public void deleteAllSurveyOperation();
 
+	public void deleteSurveyOperationAfterEndDate();
+
 	public SurveyOperation deleteSurveyOperationById(long id)
 		throws PortalException;
 
@@ -82,6 +84,9 @@ public interface SurveyOperationService extends BaseService {
 	 * @return the OSGi service identifier
 	 */
 	public String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SurveyOperation> getSurveyOperationBeforeEndDate();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public SurveyOperation getSurveyOperationById(long id)

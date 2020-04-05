@@ -62,6 +62,11 @@ public class SurveyOperationServiceWrapper
 	}
 
 	@Override
+	public void deleteSurveyOperationAfterEndDate() {
+		_surveyOperationService.deleteSurveyOperationAfterEndDate();
+	}
+
+	@Override
 	public operation.model.SurveyOperation deleteSurveyOperationById(long id)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -95,6 +100,13 @@ public class SurveyOperationServiceWrapper
 	@Override
 	public String getOSGiServiceIdentifier() {
 		return _surveyOperationService.getOSGiServiceIdentifier();
+	}
+
+	@Override
+	public java.util.List<operation.model.SurveyOperation>
+		getSurveyOperationBeforeEndDate() {
+
+		return _surveyOperationService.getSurveyOperationBeforeEndDate();
 	}
 
 	@Override

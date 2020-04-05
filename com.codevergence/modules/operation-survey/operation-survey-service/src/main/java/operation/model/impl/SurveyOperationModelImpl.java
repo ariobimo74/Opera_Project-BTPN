@@ -109,9 +109,11 @@ public class SurveyOperationModelImpl
 
 	public static final String TX_MANAGER = "liferayTransactionManager";
 
-	public static final long TITLE_COLUMN_BITMASK = 1L;
+	public static final long ENDDATE_COLUMN_BITMASK = 1L;
 
-	public static final long ID_COLUMN_BITMASK = 2L;
+	public static final long TITLE_COLUMN_BITMASK = 2L;
+
+	public static final long ID_COLUMN_BITMASK = 4L;
 
 	public static void setEntityCacheEnabled(boolean entityCacheEnabled) {
 		_entityCacheEnabled = entityCacheEnabled;
@@ -424,7 +426,17 @@ public class SurveyOperationModelImpl
 
 	@Override
 	public void setEndDate(Date endDate) {
+		_columnBitmask |= ENDDATE_COLUMN_BITMASK;
+
+		if (_originalEndDate == null) {
+			_originalEndDate = _endDate;
+		}
+
 		_endDate = endDate;
+	}
+
+	public Date getOriginalEndDate() {
+		return _originalEndDate;
 	}
 
 	@JSON
@@ -557,6 +569,9 @@ public class SurveyOperationModelImpl
 
 		surveyOperationModelImpl._originalTitle =
 			surveyOperationModelImpl._title;
+
+		surveyOperationModelImpl._originalEndDate =
+			surveyOperationModelImpl._endDate;
 
 		surveyOperationModelImpl._columnBitmask = 0;
 	}
@@ -702,6 +717,7 @@ public class SurveyOperationModelImpl
 	private String _surveyObj;
 	private Date _startDate;
 	private Date _endDate;
+	private Date _originalEndDate;
 	private Date _submittedDate;
 	private long _columnBitmask;
 	private SurveyOperation _escapedModel;

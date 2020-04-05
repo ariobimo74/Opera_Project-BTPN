@@ -46,8 +46,6 @@ public class QuestionsWrapper
 
 		attributes.put("id", getId());
 		attributes.put("question", getQuestion());
-		attributes.put("answer", getAnswer());
-		attributes.put("value", getValue());
 
 		return attributes;
 	}
@@ -65,28 +63,6 @@ public class QuestionsWrapper
 		if (question != null) {
 			setQuestion(question);
 		}
-
-		String answer = (String)attributes.get("answer");
-
-		if (answer != null) {
-			setAnswer(answer);
-		}
-
-		Double value = (Double)attributes.get("value");
-
-		if (value != null) {
-			setValue(value);
-		}
-	}
-
-	/**
-	 * Returns the answer of this questions.
-	 *
-	 * @return the answer of this questions
-	 */
-	@Override
-	public String getAnswer() {
-		return model.getAnswer();
 	}
 
 	/**
@@ -119,29 +95,9 @@ public class QuestionsWrapper
 		return model.getQuestion();
 	}
 
-	/**
-	 * Returns the value of this questions.
-	 *
-	 * @return the value of this questions
-	 */
-	@Override
-	public double getValue() {
-		return model.getValue();
-	}
-
 	@Override
 	public void persist() {
 		model.persist();
-	}
-
-	/**
-	 * Sets the answer of this questions.
-	 *
-	 * @param answer the answer of this questions
-	 */
-	@Override
-	public void setAnswer(String answer) {
-		model.setAnswer(answer);
 	}
 
 	/**
@@ -172,16 +128,6 @@ public class QuestionsWrapper
 	@Override
 	public void setQuestion(String question) {
 		model.setQuestion(question);
-	}
-
-	/**
-	 * Sets the value of this questions.
-	 *
-	 * @param value the value of this questions
-	 */
-	@Override
-	public void setValue(double value) {
-		model.setValue(value);
 	}
 
 	@Override

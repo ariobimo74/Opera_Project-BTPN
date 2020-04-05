@@ -71,8 +71,7 @@ public class QuestionsModelImpl
 	public static final String TABLE_NAME = "questions";
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"id", Types.BIGINT}, {"question", Types.VARCHAR},
-		{"answer", Types.VARCHAR}, {"value", Types.DOUBLE}
+		{"id", Types.BIGINT}, {"question", Types.VARCHAR}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -81,12 +80,10 @@ public class QuestionsModelImpl
 	static {
 		TABLE_COLUMNS_MAP.put("id", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("question", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("answer", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("value", Types.DOUBLE);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table questions (id LONG not null primary key,question VARCHAR(75) null,answer VARCHAR(75) null,value DOUBLE)";
+		"create table questions (id LONG not null primary key,question VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table questions";
 
@@ -123,8 +120,6 @@ public class QuestionsModelImpl
 
 		model.setId(soapModel.getId());
 		model.setQuestion(soapModel.getQuestion());
-		model.setAnswer(soapModel.getAnswer());
-		model.setValue(soapModel.getValue());
 
 		return model;
 	}
@@ -279,12 +274,6 @@ public class QuestionsModelImpl
 		attributeGetterFunctions.put("question", Questions::getQuestion);
 		attributeSetterBiConsumers.put(
 			"question", (BiConsumer<Questions, String>)Questions::setQuestion);
-		attributeGetterFunctions.put("answer", Questions::getAnswer);
-		attributeSetterBiConsumers.put(
-			"answer", (BiConsumer<Questions, String>)Questions::setAnswer);
-		attributeGetterFunctions.put("value", Questions::getValue);
-		attributeSetterBiConsumers.put(
-			"value", (BiConsumer<Questions, Double>)Questions::setValue);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -317,33 +306,6 @@ public class QuestionsModelImpl
 	@Override
 	public void setQuestion(String question) {
 		_question = question;
-	}
-
-	@JSON
-	@Override
-	public String getAnswer() {
-		if (_answer == null) {
-			return "";
-		}
-		else {
-			return _answer;
-		}
-	}
-
-	@Override
-	public void setAnswer(String answer) {
-		_answer = answer;
-	}
-
-	@JSON
-	@Override
-	public double getValue() {
-		return _value;
-	}
-
-	@Override
-	public void setValue(double value) {
-		_value = value;
 	}
 
 	@Override
@@ -380,8 +342,6 @@ public class QuestionsModelImpl
 
 		questionsImpl.setId(getId());
 		questionsImpl.setQuestion(getQuestion());
-		questionsImpl.setAnswer(getAnswer());
-		questionsImpl.setValue(getValue());
 
 		questionsImpl.resetOriginalValues();
 
@@ -464,16 +424,6 @@ public class QuestionsModelImpl
 			questionsCacheModel.question = null;
 		}
 
-		questionsCacheModel.answer = getAnswer();
-
-		String answer = questionsCacheModel.answer;
-
-		if ((answer != null) && (answer.length() == 0)) {
-			questionsCacheModel.answer = null;
-		}
-
-		questionsCacheModel.value = getValue();
-
 		return questionsCacheModel;
 	}
 
@@ -552,8 +502,6 @@ public class QuestionsModelImpl
 
 	private long _id;
 	private String _question;
-	private String _answer;
-	private double _value;
 	private Questions _escapedModel;
 
 }

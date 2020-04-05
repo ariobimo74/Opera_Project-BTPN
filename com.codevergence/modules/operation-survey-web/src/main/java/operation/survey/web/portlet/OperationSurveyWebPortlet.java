@@ -1,23 +1,23 @@
 package operation.survey.web.portlet;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import operation.model.SurveyObject;
 import operation.model.SurveyOperation;
+import operation.service.SurveyObjectLocalService;
+import operation.service.SurveyObjectLocalServiceUtil;
 import operation.service.SurveyOperationLocalService;
 import operation.survey.web.constants.OperationSurveyWebPortletKeys;
-
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-
-import javax.portlet.*;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import javax.portlet.*;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,6 +49,9 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 	@Reference
 	SurveyOperationLocalService surveyOperationLocalService;
 
+	@Reference
+	SurveyObjectLocalService surveyObjectLocalService;
+
 	public void addSurvey(ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException, ParseException
 	{
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(SurveyOperation.class.getName(), actionRequest);
@@ -59,7 +62,6 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 		String surveyObj = ParamUtil.getString(actionRequest, "surveyObj");
 		String startDate = ParamUtil.getString(actionRequest, "startDate");
 		String endDate = ParamUtil.getString(actionRequest, "endDate");
-		String status = ParamUtil.getString(actionRequest, "status");
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		final Date startDateFinal = simpleDateFormat.parse(startDate);
@@ -107,7 +109,7 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 
 	public void deleteSurvey(ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException
 	{
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(SurveyOperation.class.getName(), actionRequest);
+//		ServiceContext serviceContext = ServiceContextFactory.getInstance(SurveyOperation.class.getName(), actionRequest);
 
 		long id = ParamUtil.getLong(actionRequest, "id");
 
@@ -140,5 +142,15 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 			throw new PortletException(e);
 		}
 		super.render(renderRequest, renderResponse);
+	}
+
+	public void test()
+	{
+		List<SurveyObject> surveyObjectList = SurveyObjectLocalServiceUtil.getAllSurveyObjext();
+		for (SurveyObject surveyObject : surveyObjectList)
+		{
+			surveyObject.getName();
+			System.out.println(surveyObject.getName());
+		}
 	}
 }

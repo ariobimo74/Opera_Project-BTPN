@@ -61,6 +61,10 @@ public class SurveyOperationServiceUtil {
 		getService().deleteAllSurveyOperation();
 	}
 
+	public static void deleteSurveyOperationAfterEndDate() {
+		getService().deleteSurveyOperationAfterEndDate();
+	}
+
 	public static operation.model.SurveyOperation deleteSurveyOperationById(
 			long id)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -92,6 +96,12 @@ public class SurveyOperationServiceUtil {
 	 */
 	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static java.util.List<operation.model.SurveyOperation>
+		getSurveyOperationBeforeEndDate() {
+
+		return getService().getSurveyOperationBeforeEndDate();
 	}
 
 	public static operation.model.SurveyOperation getSurveyOperationById(

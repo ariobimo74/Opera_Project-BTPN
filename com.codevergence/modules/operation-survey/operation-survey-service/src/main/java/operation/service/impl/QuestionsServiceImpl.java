@@ -54,12 +54,12 @@ public class QuestionsServiceImpl extends QuestionsServiceBaseImpl
 
 	public Questions addQuestions(String question, String answer, double value, ServiceContext serviceContext) throws PortalException
 	{
-		return questionsLocalService.addQuestions(question, answer, value, serviceContext);
+		return questionsLocalService.addQuestions(question, serviceContext);
 	}
 
 	public Questions editQuestions(long id, String question, String answer, double value, ServiceContext serviceContext) throws PortalException
 	{
-		return questionsLocalService.editQuestions(id, question, answer, value, serviceContext);
+		return questionsLocalService.editQuestions(id, question, serviceContext);
 	}
 
 	public Questions deleteQuestionsById(long id) throws PortalException

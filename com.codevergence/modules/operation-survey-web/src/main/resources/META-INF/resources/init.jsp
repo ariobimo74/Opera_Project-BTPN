@@ -10,7 +10,9 @@
 <%@ taglib uri="http://liferay.com/tld/security" prefix="liferay-security" %>
 
 <%@ page import="operation.service.SurveyOperationLocalServiceUtil"%>
+<%@ page import="operation.service.SurveyObjectLocalServiceUtil" %>
 <%@ page import="operation.model.SurveyOperation" %>
+<%@ page import="operation.model.SurveyObject" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>

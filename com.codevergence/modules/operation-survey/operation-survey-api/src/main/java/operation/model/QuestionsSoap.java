@@ -35,8 +35,6 @@ public class QuestionsSoap implements Serializable {
 
 		soapModel.setId(model.getId());
 		soapModel.setQuestion(model.getQuestion());
-		soapModel.setAnswer(model.getAnswer());
-		soapModel.setValue(model.getValue());
 
 		return soapModel;
 	}
@@ -106,25 +104,7 @@ public class QuestionsSoap implements Serializable {
 		_question = question;
 	}
 
-	public String getAnswer() {
-		return _answer;
-	}
-
-	public void setAnswer(String answer) {
-		_answer = answer;
-	}
-
-	public double getValue() {
-		return _value;
-	}
-
-	public void setValue(double value) {
-		_value = value;
-	}
-
 	private long _id;
 	private String _question;
-	private String _answer;
-	private double _value;
 
 }

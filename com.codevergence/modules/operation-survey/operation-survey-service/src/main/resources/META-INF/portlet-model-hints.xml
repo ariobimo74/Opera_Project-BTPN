@@ -1,11 +1,18 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="operation.model.Answer">
+		<field name="id" type="long" />
+		<field name="answer" type="String" />
+		<field name="value" type="double" />
+	</model>
 	<model name="operation.model.Questions">
 		<field name="id" type="long" />
 		<field name="question" type="String" />
-		<field name="answer" type="String" />
-		<field name="value" type="double" />
+	</model>
+	<model name="operation.model.SurveyObject">
+		<field name="id" type="long" />
+		<field name="name" type="String" />
 	</model>
 	<model name="operation.model.SurveyOperation">
 		<field name="id" type="long" />

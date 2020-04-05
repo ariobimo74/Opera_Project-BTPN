@@ -92,4 +92,14 @@ public class SurveyOperationServiceImpl extends SurveyOperationServiceBaseImpl
 	{
 		return surveyOperationLocalService.countSurveyOperationByTitle(title);
 	}
+
+	public List<SurveyOperation> getSurveyOperationBeforeEndDate()
+	{
+		return surveyOperationLocalService.getSurveyOperationBeforeEndDate();
+	}
+
+	public void deleteSurveyOperationAfterEndDate()
+	{
+		surveyOperationLocalService.deleteSurveyOperationAfterEndDate();
+	}
 }
