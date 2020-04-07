@@ -46,7 +46,7 @@ import javax.sql.DataSource;
 import operation.model.SurveyOperation;
 
 import operation.service.SurveyOperationLocalService;
-import operation.service.persistence.AnswerPersistence;
+import operation.service.persistence.AnswersPersistence;
 import operation.service.persistence.QuestionsPersistence;
 import operation.service.persistence.SurveyObjectPersistence;
 import operation.service.persistence.SurveyOperationPersistence;
@@ -391,7 +391,7 @@ public abstract class SurveyOperationLocalServiceBaseImpl
 	}
 
 	@Reference
-	protected AnswerPersistence answerPersistence;
+	protected AnswersPersistence answersPersistence;
 
 	@Reference
 	protected QuestionsPersistence questionsPersistence;

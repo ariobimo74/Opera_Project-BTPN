@@ -24,19 +24,20 @@ import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * <p>
- * This class is a wrapper for {@link Answer}.
+ * This class is a wrapper for {@link Answers}.
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see Answer
+ * @see Answers
  * @generated
  */
 @ProviderType
-public class AnswerWrapper
-	extends BaseModelWrapper<Answer> implements Answer, ModelWrapper<Answer> {
+public class AnswersWrapper
+	extends BaseModelWrapper<Answers>
+	implements Answers, ModelWrapper<Answers> {
 
-	public AnswerWrapper(Answer answer) {
-		super(answer);
+	public AnswersWrapper(Answers answers) {
+		super(answers);
 	}
 
 	@Override
@@ -72,9 +73,9 @@ public class AnswerWrapper
 	}
 
 	/**
-	 * Returns the answer of this answer.
+	 * Returns the answer of this answers.
 	 *
-	 * @return the answer of this answer
+	 * @return the answer of this answers
 	 */
 	@Override
 	public String getAnswer() {
@@ -82,9 +83,9 @@ public class AnswerWrapper
 	}
 
 	/**
-	 * Returns the ID of this answer.
+	 * Returns the ID of this answers.
 	 *
-	 * @return the ID of this answer
+	 * @return the ID of this answers
 	 */
 	@Override
 	public long getId() {
@@ -92,9 +93,9 @@ public class AnswerWrapper
 	}
 
 	/**
-	 * Returns the primary key of this answer.
+	 * Returns the primary key of this answers.
 	 *
-	 * @return the primary key of this answer
+	 * @return the primary key of this answers
 	 */
 	@Override
 	public long getPrimaryKey() {
@@ -102,9 +103,9 @@ public class AnswerWrapper
 	}
 
 	/**
-	 * Returns the value of this answer.
+	 * Returns the value of this answers.
 	 *
-	 * @return the value of this answer
+	 * @return the value of this answers
 	 */
 	@Override
 	public double getValue() {
@@ -117,9 +118,9 @@ public class AnswerWrapper
 	}
 
 	/**
-	 * Sets the answer of this answer.
+	 * Sets the answer of this answers.
 	 *
-	 * @param answer the answer of this answer
+	 * @param answer the answer of this answers
 	 */
 	@Override
 	public void setAnswer(String answer) {
@@ -127,9 +128,9 @@ public class AnswerWrapper
 	}
 
 	/**
-	 * Sets the ID of this answer.
+	 * Sets the ID of this answers.
 	 *
-	 * @param id the ID of this answer
+	 * @param id the ID of this answers
 	 */
 	@Override
 	public void setId(long id) {
@@ -137,9 +138,9 @@ public class AnswerWrapper
 	}
 
 	/**
-	 * Sets the primary key of this answer.
+	 * Sets the primary key of this answers.
 	 *
-	 * @param primaryKey the primary key of this answer
+	 * @param primaryKey the primary key of this answers
 	 */
 	@Override
 	public void setPrimaryKey(long primaryKey) {
@@ -147,9 +148,9 @@ public class AnswerWrapper
 	}
 
 	/**
-	 * Sets the value of this answer.
+	 * Sets the value of this answers.
 	 *
-	 * @param value the value of this answer
+	 * @param value the value of this answers
 	 */
 	@Override
 	public void setValue(double value) {
@@ -157,8 +158,8 @@ public class AnswerWrapper
 	}
 
 	@Override
-	protected AnswerWrapper wrap(Answer answer) {
-		return new AnswerWrapper(answer);
+	protected AnswersWrapper wrap(Answers answers) {
+		return new AnswersWrapper(answers);
 	}
 
 }

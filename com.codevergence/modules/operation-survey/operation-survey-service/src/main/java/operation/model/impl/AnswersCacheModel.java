@@ -23,18 +23,18 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import operation.model.Answer;
+import operation.model.Answers;
 
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * The cache model class for representing Answer in entity cache.
+ * The cache model class for representing Answers in entity cache.
  *
  * @author Brian Wing Shun Chan
  * @generated
  */
 @ProviderType
-public class AnswerCacheModel implements CacheModel<Answer>, Externalizable {
+public class AnswersCacheModel implements CacheModel<Answers>, Externalizable {
 
 	@Override
 	public boolean equals(Object obj) {
@@ -42,13 +42,13 @@ public class AnswerCacheModel implements CacheModel<Answer>, Externalizable {
 			return true;
 		}
 
-		if (!(obj instanceof AnswerCacheModel)) {
+		if (!(obj instanceof AnswersCacheModel)) {
 			return false;
 		}
 
-		AnswerCacheModel answerCacheModel = (AnswerCacheModel)obj;
+		AnswersCacheModel answersCacheModel = (AnswersCacheModel)obj;
 
-		if (id == answerCacheModel.id) {
+		if (id == answersCacheModel.id) {
 			return true;
 		}
 
@@ -76,23 +76,23 @@ public class AnswerCacheModel implements CacheModel<Answer>, Externalizable {
 	}
 
 	@Override
-	public Answer toEntityModel() {
-		AnswerImpl answerImpl = new AnswerImpl();
+	public Answers toEntityModel() {
+		AnswersImpl answersImpl = new AnswersImpl();
 
-		answerImpl.setId(id);
+		answersImpl.setId(id);
 
 		if (answer == null) {
-			answerImpl.setAnswer("");
+			answersImpl.setAnswer("");
 		}
 		else {
-			answerImpl.setAnswer(answer);
+			answersImpl.setAnswer(answer);
 		}
 
-		answerImpl.setValue(value);
+		answersImpl.setValue(value);
 
-		answerImpl.resetOriginalValues();
+		answersImpl.resetOriginalValues();
 
-		return answerImpl;
+		return answersImpl;
 	}
 
 	@Override

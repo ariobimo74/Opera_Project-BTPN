@@ -15,26 +15,26 @@ package operation.exception;
 
 import org.osgi.annotation.versioning.ProviderType;
 
-import com.liferay.portal.kernel.exception.NoSuchModelException;
+import com.liferay.portal.kernel.exception.PortalException;
 
 /**
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class NoSuchAnswerException extends NoSuchModelException {
+public class AnswersValueException extends PortalException {
 
-	public NoSuchAnswerException() {
+	public AnswersValueException() {
 	}
 
-	public NoSuchAnswerException(String msg) {
+	public AnswersValueException(String msg) {
 		super(msg);
 	}
 
-	public NoSuchAnswerException(String msg, Throwable cause) {
+	public AnswersValueException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NoSuchAnswerException(Throwable cause) {
+	public AnswersValueException(Throwable cause) {
 		super(cause);
 	}
 

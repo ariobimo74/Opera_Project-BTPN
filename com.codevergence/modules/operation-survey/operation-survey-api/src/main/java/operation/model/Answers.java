@@ -21,27 +21,27 @@ import com.liferay.portal.kernel.util.Accessor;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * The extended model interface for the Answer service. Represents a row in the &quot;answers&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Answers service. Represents a row in the &quot;answers&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
- * @see AnswerModel
+ * @see AnswersModel
  * @generated
  */
-@ImplementationClassName("operation.model.impl.AnswerImpl")
+@ImplementationClassName("operation.model.impl.AnswersImpl")
 @ProviderType
-public interface Answer extends AnswerModel, PersistedModel {
+public interface Answers extends AnswersModel, PersistedModel {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to <code>operation.model.impl.AnswerImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>operation.model.impl.AnswersImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<Answer, Long> ID_ACCESSOR =
-		new Accessor<Answer, Long>() {
+	public static final Accessor<Answers, Long> ID_ACCESSOR =
+		new Accessor<Answers, Long>() {
 
 			@Override
-			public Long get(Answer answer) {
-				return answer.getId();
+			public Long get(Answers answers) {
+				return answers.getId();
 			}
 
 			@Override
@@ -50,8 +50,8 @@ public interface Answer extends AnswerModel, PersistedModel {
 			}
 
 			@Override
-			public Class<Answer> getTypeClass() {
-				return Answer.class;
+			public Class<Answers> getTypeClass() {
+				return Answers.class;
 			}
 
 		};

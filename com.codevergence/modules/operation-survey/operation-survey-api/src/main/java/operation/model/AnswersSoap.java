@@ -22,16 +22,16 @@ import java.util.List;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * This class is used by SOAP remote services, specifically {@link operation.service.http.AnswerServiceSoap}.
+ * This class is used by SOAP remote services, specifically {@link operation.service.http.AnswersServiceSoap}.
  *
  * @author Brian Wing Shun Chan
  * @generated
  */
 @ProviderType
-public class AnswerSoap implements Serializable {
+public class AnswersSoap implements Serializable {
 
-	public static AnswerSoap toSoapModel(Answer model) {
-		AnswerSoap soapModel = new AnswerSoap();
+	public static AnswersSoap toSoapModel(Answers model) {
+		AnswersSoap soapModel = new AnswersSoap();
 
 		soapModel.setId(model.getId());
 		soapModel.setAnswer(model.getAnswer());
@@ -40,8 +40,8 @@ public class AnswerSoap implements Serializable {
 		return soapModel;
 	}
 
-	public static AnswerSoap[] toSoapModels(Answer[] models) {
-		AnswerSoap[] soapModels = new AnswerSoap[models.length];
+	public static AnswersSoap[] toSoapModels(Answers[] models) {
+		AnswersSoap[] soapModels = new AnswersSoap[models.length];
 
 		for (int i = 0; i < models.length; i++) {
 			soapModels[i] = toSoapModel(models[i]);
@@ -50,14 +50,14 @@ public class AnswerSoap implements Serializable {
 		return soapModels;
 	}
 
-	public static AnswerSoap[][] toSoapModels(Answer[][] models) {
-		AnswerSoap[][] soapModels = null;
+	public static AnswersSoap[][] toSoapModels(Answers[][] models) {
+		AnswersSoap[][] soapModels = null;
 
 		if (models.length > 0) {
-			soapModels = new AnswerSoap[models.length][models[0].length];
+			soapModels = new AnswersSoap[models.length][models[0].length];
 		}
 		else {
-			soapModels = new AnswerSoap[0][0];
+			soapModels = new AnswersSoap[0][0];
 		}
 
 		for (int i = 0; i < models.length; i++) {
@@ -67,17 +67,18 @@ public class AnswerSoap implements Serializable {
 		return soapModels;
 	}
 
-	public static AnswerSoap[] toSoapModels(List<Answer> models) {
-		List<AnswerSoap> soapModels = new ArrayList<AnswerSoap>(models.size());
+	public static AnswersSoap[] toSoapModels(List<Answers> models) {
+		List<AnswersSoap> soapModels = new ArrayList<AnswersSoap>(
+			models.size());
 
-		for (Answer model : models) {
+		for (Answers model : models) {
 			soapModels.add(toSoapModel(model));
 		}
 
-		return soapModels.toArray(new AnswerSoap[soapModels.size()]);
+		return soapModels.toArray(new AnswersSoap[soapModels.size()]);
 	}
 
-	public AnswerSoap() {
+	public AnswersSoap() {
 	}
 
 	public long getPrimaryKey() {

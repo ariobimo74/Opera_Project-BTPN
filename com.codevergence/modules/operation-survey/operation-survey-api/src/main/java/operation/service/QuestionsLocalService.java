@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -35,8 +36,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import operation.model.Questions;
-
-import org.omg.IOP.ServiceContext;
 
 import org.osgi.annotation.versioning.ProviderType;
 

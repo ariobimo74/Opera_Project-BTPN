@@ -37,13 +37,13 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import operation.exception.NoSuchAnswerException;
+import operation.exception.NoSuchAnswersException;
 
-import operation.model.Answer;
-import operation.model.impl.AnswerImpl;
-import operation.model.impl.AnswerModelImpl;
+import operation.model.Answers;
+import operation.model.impl.AnswersImpl;
+import operation.model.impl.AnswersModelImpl;
 
-import operation.service.persistence.AnswerPersistence;
+import operation.service.persistence.AnswersPersistence;
 import operation.service.persistence.impl.constants.SurveyOperationPersistenceConstants;
 
 import org.osgi.annotation.versioning.ProviderType;
@@ -53,7 +53,7 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * The persistence implementation for the answer service.
+ * The persistence implementation for the answers service.
  *
  * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
@@ -62,18 +62,18 @@ import org.osgi.service.component.annotations.Reference;
  * @author Brian Wing Shun Chan
  * @generated
  */
-@Component(service = AnswerPersistence.class)
+@Component(service = AnswersPersistence.class)
 @ProviderType
-public class AnswerPersistenceImpl
-	extends BasePersistenceImpl<Answer> implements AnswerPersistence {
+public class AnswersPersistenceImpl
+	extends BasePersistenceImpl<Answers> implements AnswersPersistence {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Always use <code>AnswerUtil</code> to access the answer persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
+	 * Never modify or reference this class directly. Always use <code>AnswersUtil</code> to access the answers persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static final String FINDER_CLASS_NAME_ENTITY =
-		AnswerImpl.class.getName();
+		AnswersImpl.class.getName();
 
 	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
 		FINDER_CLASS_NAME_ENTITY + ".List1";
@@ -85,25 +85,11 @@ public class AnswerPersistenceImpl
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
 
-	public AnswerPersistenceImpl() {
-		setModelClass(Answer.class);
+	public AnswersPersistenceImpl() {
+		setModelClass(Answers.class);
 
-		setModelImplClass(AnswerImpl.class);
+		setModelImplClass(AnswersImpl.class);
 		setModelPKClass(long.class);
-	}
-
-	/**
-	 * Caches the answer in the entity cache if it is enabled.
-	 *
-	 * @param answer the answer
-	 */
-	@Override
-	public void cacheResult(Answer answer) {
-		entityCache.putResult(
-			entityCacheEnabled, AnswerImpl.class, answer.getPrimaryKey(),
-			answer);
-
-		answer.resetOriginalValues();
 	}
 
 	/**
@@ -112,22 +98,36 @@ public class AnswerPersistenceImpl
 	 * @param answers the answers
 	 */
 	@Override
-	public void cacheResult(List<Answer> answers) {
-		for (Answer answer : answers) {
-			if (entityCache.getResult(
-					entityCacheEnabled, AnswerImpl.class,
-					answer.getPrimaryKey()) == null) {
+	public void cacheResult(Answers answers) {
+		entityCache.putResult(
+			entityCacheEnabled, AnswersImpl.class, answers.getPrimaryKey(),
+			answers);
 
-				cacheResult(answer);
+		answers.resetOriginalValues();
+	}
+
+	/**
+	 * Caches the answerses in the entity cache if it is enabled.
+	 *
+	 * @param answerses the answerses
+	 */
+	@Override
+	public void cacheResult(List<Answers> answerses) {
+		for (Answers answers : answerses) {
+			if (entityCache.getResult(
+					entityCacheEnabled, AnswersImpl.class,
+					answers.getPrimaryKey()) == null) {
+
+				cacheResult(answers);
 			}
 			else {
-				answer.resetOriginalValues();
+				answers.resetOriginalValues();
 			}
 		}
 	}
 
 	/**
-	 * Clears the cache for all answers.
+	 * Clears the cache for all answerses.
 	 *
 	 * <p>
 	 * The <code>EntityCache</code> and <code>FinderCache</code> are both cleared by this method.
@@ -135,7 +135,7 @@ public class AnswerPersistenceImpl
 	 */
 	@Override
 	public void clearCache() {
-		entityCache.clearCache(AnswerImpl.class);
+		entityCache.clearCache(AnswersImpl.class);
 
 		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -143,88 +143,91 @@ public class AnswerPersistenceImpl
 	}
 
 	/**
-	 * Clears the cache for the answer.
+	 * Clears the cache for the answers.
 	 *
 	 * <p>
 	 * The <code>EntityCache</code> and <code>FinderCache</code> are both cleared by this method.
 	 * </p>
 	 */
 	@Override
-	public void clearCache(Answer answer) {
+	public void clearCache(Answers answers) {
 		entityCache.removeResult(
-			entityCacheEnabled, AnswerImpl.class, answer.getPrimaryKey());
+			entityCacheEnabled, AnswersImpl.class, answers.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@Override
-	public void clearCache(List<Answer> answers) {
+	public void clearCache(List<Answers> answerses) {
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		for (Answer answer : answers) {
+		for (Answers answers : answerses) {
 			entityCache.removeResult(
-				entityCacheEnabled, AnswerImpl.class, answer.getPrimaryKey());
+				entityCacheEnabled, AnswersImpl.class, answers.getPrimaryKey());
 		}
 	}
 
 	/**
-	 * Creates a new answer with the primary key. Does not add the answer to the database.
+	 * Creates a new answers with the primary key. Does not add the answers to the database.
 	 *
-	 * @param id the primary key for the new answer
-	 * @return the new answer
+	 * @param id the primary key for the new answers
+	 * @return the new answers
 	 */
 	@Override
-	public Answer create(long id) {
-		Answer answer = new AnswerImpl();
+	public Answers create(long id) {
+		Answers answers = new AnswersImpl();
 
-		answer.setNew(true);
-		answer.setPrimaryKey(id);
+		answers.setNew(true);
+		answers.setPrimaryKey(id);
 
-		return answer;
+		return answers;
 	}
 
 	/**
-	 * Removes the answer with the primary key from the database. Also notifies the appropriate model listeners.
+	 * Removes the answers with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param id the primary key of the answer
-	 * @return the answer that was removed
-	 * @throws NoSuchAnswerException if a answer with the primary key could not be found
+	 * @param id the primary key of the answers
+	 * @return the answers that was removed
+	 * @throws NoSuchAnswersException if a answers with the primary key could not be found
 	 */
 	@Override
-	public Answer remove(long id) throws NoSuchAnswerException {
+	public Answers remove(long id) throws NoSuchAnswersException {
 		return remove((Serializable)id);
 	}
 
 	/**
-	 * Removes the answer with the primary key from the database. Also notifies the appropriate model listeners.
+	 * Removes the answers with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the answer
-	 * @return the answer that was removed
-	 * @throws NoSuchAnswerException if a answer with the primary key could not be found
+	 * @param primaryKey the primary key of the answers
+	 * @return the answers that was removed
+	 * @throws NoSuchAnswersException if a answers with the primary key could not be found
 	 */
 	@Override
-	public Answer remove(Serializable primaryKey) throws NoSuchAnswerException {
+	public Answers remove(Serializable primaryKey)
+		throws NoSuchAnswersException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Answer answer = (Answer)session.get(AnswerImpl.class, primaryKey);
+			Answers answers = (Answers)session.get(
+				AnswersImpl.class, primaryKey);
 
-			if (answer == null) {
+			if (answers == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchAnswerException(
+				throw new NoSuchAnswersException(
 					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			return remove(answer);
+			return remove(answers);
 		}
-		catch (NoSuchAnswerException nsee) {
+		catch (NoSuchAnswersException nsee) {
 			throw nsee;
 		}
 		catch (Exception e) {
@@ -236,19 +239,19 @@ public class AnswerPersistenceImpl
 	}
 
 	@Override
-	protected Answer removeImpl(Answer answer) {
+	protected Answers removeImpl(Answers answers) {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			if (!session.contains(answer)) {
-				answer = (Answer)session.get(
-					AnswerImpl.class, answer.getPrimaryKeyObj());
+			if (!session.contains(answers)) {
+				answers = (Answers)session.get(
+					AnswersImpl.class, answers.getPrimaryKeyObj());
 			}
 
-			if (answer != null) {
-				session.delete(answer);
+			if (answers != null) {
+				session.delete(answers);
 			}
 		}
 		catch (Exception e) {
@@ -258,29 +261,29 @@ public class AnswerPersistenceImpl
 			closeSession(session);
 		}
 
-		if (answer != null) {
-			clearCache(answer);
+		if (answers != null) {
+			clearCache(answers);
 		}
 
-		return answer;
+		return answers;
 	}
 
 	@Override
-	public Answer updateImpl(Answer answer) {
-		boolean isNew = answer.isNew();
+	public Answers updateImpl(Answers answers) {
+		boolean isNew = answers.isNew();
 
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			if (answer.isNew()) {
-				session.save(answer);
+			if (answers.isNew()) {
+				session.save(answers);
 
-				answer.setNew(false);
+				answers.setNew(false);
 			}
 			else {
-				answer = (Answer)session.merge(answer);
+				answers = (Answers)session.merge(answers);
 			}
 		}
 		catch (Exception e) {
@@ -299,126 +302,126 @@ public class AnswerPersistenceImpl
 		}
 
 		entityCache.putResult(
-			entityCacheEnabled, AnswerImpl.class, answer.getPrimaryKey(),
-			answer, false);
+			entityCacheEnabled, AnswersImpl.class, answers.getPrimaryKey(),
+			answers, false);
 
-		answer.resetOriginalValues();
+		answers.resetOriginalValues();
 
-		return answer;
+		return answers;
 	}
 
 	/**
-	 * Returns the answer with the primary key or throws a <code>com.liferay.portal.kernel.exception.NoSuchModelException</code> if it could not be found.
+	 * Returns the answers with the primary key or throws a <code>com.liferay.portal.kernel.exception.NoSuchModelException</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the answer
-	 * @return the answer
-	 * @throws NoSuchAnswerException if a answer with the primary key could not be found
+	 * @param primaryKey the primary key of the answers
+	 * @return the answers
+	 * @throws NoSuchAnswersException if a answers with the primary key could not be found
 	 */
 	@Override
-	public Answer findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchAnswerException {
+	public Answers findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchAnswersException {
 
-		Answer answer = fetchByPrimaryKey(primaryKey);
+		Answers answers = fetchByPrimaryKey(primaryKey);
 
-		if (answer == null) {
+		if (answers == null) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchAnswerException(
+			throw new NoSuchAnswersException(
 				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
-		return answer;
+		return answers;
 	}
 
 	/**
-	 * Returns the answer with the primary key or throws a <code>NoSuchAnswerException</code> if it could not be found.
+	 * Returns the answers with the primary key or throws a <code>NoSuchAnswersException</code> if it could not be found.
 	 *
-	 * @param id the primary key of the answer
-	 * @return the answer
-	 * @throws NoSuchAnswerException if a answer with the primary key could not be found
+	 * @param id the primary key of the answers
+	 * @return the answers
+	 * @throws NoSuchAnswersException if a answers with the primary key could not be found
 	 */
 	@Override
-	public Answer findByPrimaryKey(long id) throws NoSuchAnswerException {
+	public Answers findByPrimaryKey(long id) throws NoSuchAnswersException {
 		return findByPrimaryKey((Serializable)id);
 	}
 
 	/**
-	 * Returns the answer with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the answers with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param id the primary key of the answer
-	 * @return the answer, or <code>null</code> if a answer with the primary key could not be found
+	 * @param id the primary key of the answers
+	 * @return the answers, or <code>null</code> if a answers with the primary key could not be found
 	 */
 	@Override
-	public Answer fetchByPrimaryKey(long id) {
+	public Answers fetchByPrimaryKey(long id) {
 		return fetchByPrimaryKey((Serializable)id);
 	}
 
 	/**
-	 * Returns all the answers.
+	 * Returns all the answerses.
 	 *
-	 * @return the answers
+	 * @return the answerses
 	 */
 	@Override
-	public List<Answer> findAll() {
+	public List<Answers> findAll() {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the answers.
+	 * Returns a range of all the answerses.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AnswerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AnswersModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of answers
-	 * @param end the upper bound of the range of answers (not inclusive)
-	 * @return the range of answers
+	 * @param start the lower bound of the range of answerses
+	 * @param end the upper bound of the range of answerses (not inclusive)
+	 * @return the range of answerses
 	 */
 	@Override
-	public List<Answer> findAll(int start, int end) {
+	public List<Answers> findAll(int start, int end) {
 		return findAll(start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the answers.
+	 * Returns an ordered range of all the answerses.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AnswerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AnswersModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findAll(int, int, OrderByComparator)}
-	 * @param start the lower bound of the range of answers
-	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @param start the lower bound of the range of answerses
+	 * @param end the upper bound of the range of answerses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of answers
+	 * @return the ordered range of answerses
 	 */
 	@Deprecated
 	@Override
-	public List<Answer> findAll(
-		int start, int end, OrderByComparator<Answer> orderByComparator,
+	public List<Answers> findAll(
+		int start, int end, OrderByComparator<Answers> orderByComparator,
 		boolean useFinderCache) {
 
 		return findAll(start, end, orderByComparator);
 	}
 
 	/**
-	 * Returns an ordered range of all the answers.
+	 * Returns an ordered range of all the answerses.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AnswerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>AnswersModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of answers
-	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @param start the lower bound of the range of answerses
+	 * @param end the upper bound of the range of answerses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of answers
+	 * @return the ordered range of answerses
 	 */
 	@Override
-	public List<Answer> findAll(
-		int start, int end, OrderByComparator<Answer> orderByComparator) {
+	public List<Answers> findAll(
+		int start, int end, OrderByComparator<Answers> orderByComparator) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -436,7 +439,7 @@ public class AnswerPersistenceImpl
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
-		List<Answer> list = (List<Answer>)finderCache.getResult(
+		List<Answers> list = (List<Answers>)finderCache.getResult(
 			finderPath, finderArgs, this);
 
 		if (list == null) {
@@ -447,7 +450,7 @@ public class AnswerPersistenceImpl
 				query = new StringBundler(
 					2 + (orderByComparator.getOrderByFields().length * 2));
 
-				query.append(_SQL_SELECT_ANSWER);
+				query.append(_SQL_SELECT_ANSWERS);
 
 				appendOrderByComparator(
 					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
@@ -455,10 +458,10 @@ public class AnswerPersistenceImpl
 				sql = query.toString();
 			}
 			else {
-				sql = _SQL_SELECT_ANSWER;
+				sql = _SQL_SELECT_ANSWERS;
 
 				if (pagination) {
-					sql = sql.concat(AnswerModelImpl.ORDER_BY_JPQL);
+					sql = sql.concat(AnswersModelImpl.ORDER_BY_JPQL);
 				}
 			}
 
@@ -470,7 +473,7 @@ public class AnswerPersistenceImpl
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<Answer>)QueryUtil.list(
+					list = (List<Answers>)QueryUtil.list(
 						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
@@ -478,7 +481,7 @@ public class AnswerPersistenceImpl
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<Answer>)QueryUtil.list(
+					list = (List<Answers>)QueryUtil.list(
 						q, getDialect(), start, end);
 				}
 
@@ -500,20 +503,20 @@ public class AnswerPersistenceImpl
 	}
 
 	/**
-	 * Removes all the answers from the database.
+	 * Removes all the answerses from the database.
 	 *
 	 */
 	@Override
 	public void removeAll() {
-		for (Answer answer : findAll()) {
-			remove(answer);
+		for (Answers answers : findAll()) {
+			remove(answers);
 		}
 	}
 
 	/**
-	 * Returns the number of answers.
+	 * Returns the number of answerses.
 	 *
-	 * @return the number of answers
+	 * @return the number of answerses
 	 */
 	@Override
 	public int countAll() {
@@ -526,7 +529,7 @@ public class AnswerPersistenceImpl
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(_SQL_COUNT_ANSWER);
+				Query q = session.createQuery(_SQL_COUNT_ANSWERS);
 
 				count = (Long)q.uniqueResult();
 
@@ -559,28 +562,28 @@ public class AnswerPersistenceImpl
 
 	@Override
 	protected String getSelectSQL() {
-		return _SQL_SELECT_ANSWER;
+		return _SQL_SELECT_ANSWERS;
 	}
 
 	@Override
 	protected Map<String, Integer> getTableColumnsMap() {
-		return AnswerModelImpl.TABLE_COLUMNS_MAP;
+		return AnswersModelImpl.TABLE_COLUMNS_MAP;
 	}
 
 	/**
-	 * Initializes the answer persistence.
+	 * Initializes the answers persistence.
 	 */
 	@Activate
 	public void activate() {
-		AnswerModelImpl.setEntityCacheEnabled(entityCacheEnabled);
-		AnswerModelImpl.setFinderCacheEnabled(finderCacheEnabled);
+		AnswersModelImpl.setEntityCacheEnabled(entityCacheEnabled);
+		AnswersModelImpl.setFinderCacheEnabled(finderCacheEnabled);
 
 		_finderPathWithPaginationFindAll = new FinderPath(
-			entityCacheEnabled, finderCacheEnabled, AnswerImpl.class,
+			entityCacheEnabled, finderCacheEnabled, AnswersImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 
 		_finderPathWithoutPaginationFindAll = new FinderPath(
-			entityCacheEnabled, finderCacheEnabled, AnswerImpl.class,
+			entityCacheEnabled, finderCacheEnabled, AnswersImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
 			new String[0]);
 
@@ -592,7 +595,7 @@ public class AnswerPersistenceImpl
 
 	@Deactivate
 	public void deactivate() {
-		entityCache.removeCache(AnswerImpl.class.getName());
+		entityCache.removeCache(AnswersImpl.class.getName());
 		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
@@ -608,7 +611,7 @@ public class AnswerPersistenceImpl
 
 		_columnBitmaskEnabled = GetterUtil.getBoolean(
 			configuration.get(
-				"value.object.column.bitmask.enabled.operation.model.Answer"),
+				"value.object.column.bitmask.enabled.operation.model.Answers"),
 			true);
 	}
 
@@ -638,19 +641,19 @@ public class AnswerPersistenceImpl
 	@Reference
 	protected FinderCache finderCache;
 
-	private static final String _SQL_SELECT_ANSWER =
-		"SELECT answer FROM Answer answer";
+	private static final String _SQL_SELECT_ANSWERS =
+		"SELECT answers FROM Answers answers";
 
-	private static final String _SQL_COUNT_ANSWER =
-		"SELECT COUNT(answer) FROM Answer answer";
+	private static final String _SQL_COUNT_ANSWERS =
+		"SELECT COUNT(answers) FROM Answers answers";
 
-	private static final String _ORDER_BY_ENTITY_ALIAS = "answer.";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "answers.";
 
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
-		"No Answer exists with the primary key ";
+		"No Answers exists with the primary key ";
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		AnswerPersistenceImpl.class);
+		AnswersPersistenceImpl.class);
 
 	static {
 		try {

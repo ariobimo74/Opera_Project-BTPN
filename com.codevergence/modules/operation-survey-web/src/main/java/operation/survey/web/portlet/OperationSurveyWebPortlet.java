@@ -8,9 +8,11 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import operation.model.Questions;
 import operation.model.SurveyObject;
 import operation.model.SurveyOperation;
-import operation.service.SurveyObjectLocalService;
+import operation.service.QuestionsLocalService;
+import operation.service.QuestionsLocalServiceUtil;
 import operation.service.SurveyObjectLocalServiceUtil;
 import operation.service.SurveyOperationLocalService;
 import operation.survey.web.constants.OperationSurveyWebPortletKeys;
@@ -50,7 +52,7 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 	SurveyOperationLocalService surveyOperationLocalService;
 
 	@Reference
-	SurveyObjectLocalService surveyObjectLocalService;
+	QuestionsLocalService questionsLocalService;
 
 	public void addSurvey(ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException, ParseException
 	{
@@ -74,7 +76,7 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 				surveyOperationLocalService.editSurveyOperation(id, title, description, surveyObj, startDateFinal, endDateFinal, serviceContext);
 				actionResponse.getRenderParameters().setValue("id", Long.toString(id));
 
-				SessionMessages.add(actionRequest, "surveyAdded");
+				SessionMessages.add(actionRequest, "surveyEdited");
 			}
 			catch (Exception e)
 			{
@@ -93,7 +95,7 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 				surveyOperationLocalService.addSurveyOperation(title, description, surveyObj, startDateFinal, endDateFinal, serviceContext);
 				actionResponse.getRenderParameters().setValue("id", Long.toString(id));
 
-				SessionMessages.add(actionRequest, "surveyEdited");
+				SessionMessages.add(actionRequest, "surveyAdded");
 			}
 			catch (Exception e)
 			{
@@ -116,12 +118,79 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 		try
 		{
 			surveyOperationLocalService.deleteSurveyOperationById(id);
+			actionRequest.getContextPath();
 		}
 		catch (Exception e)
 		{
 			System.out.println(e);
 
-			Logger.getLogger(OperationSurveyWebPortlet.class.getName()).log(Level.SEVERE, null, e);
+			Logger.getLogger(OperationSurveyWebPortlet.class.getName()).log(Level.SEVERE, "deleteFailed", e);
+		}
+	}
+
+	public void addQuestions(ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException, ParseException
+	{
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(Questions.class.getName(), actionRequest);
+
+		long id = ParamUtil.getLong(actionRequest, "id");
+		String question = ParamUtil.getString(actionRequest, "question");
+
+		if (id > 0)
+		{
+			try
+			{
+				questionsLocalService.editQuestions(id, question, serviceContext);
+				actionResponse.getRenderParameters().setValue("id", Long.toString(id));
+
+				SessionMessages.add(actionRequest, "questionEdited");
+			}
+			catch (Exception e)
+			{
+				System.out.println(e);
+
+				PortalUtil.copyRequestParameters(actionRequest, actionResponse);
+				actionResponse.getRenderParameters().setValue("mvcPath", "/opeartion-survey/edit-question.jsp");
+
+				SessionErrors.add(actionRequest, e.getClass().getName());
+			}
+		}
+		else
+		{
+			try
+			{
+				questionsLocalService.addQuestions(question, serviceContext);
+				actionResponse.getRenderParameters().setValue("id", Long.toString(id));
+
+				SessionMessages.add(actionRequest, "questionAdded");
+			}
+			catch (Exception e)
+			{
+				System.out.println(e);
+
+				PortalUtil.copyRequestParameters(actionRequest, actionResponse);
+				actionResponse.getRenderParameters().setValue("mvcPath", "/operation-survey/edit-question.jsp");
+
+				SessionErrors.add(actionRequest, e.getClass().getName());
+			}
+		}
+	}
+
+	public void deleteQuestions(ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException
+	{
+		//		ServiceContext serviceContext = ServiceContextFactory.getInstance(SurveyOperation.class.getName(), actionRequest);
+
+		long id = ParamUtil.getLong(actionRequest, "id");
+
+		try
+		{
+			questionsLocalService.deleteQuestionsById(id);
+			actionRequest.getContextPath();
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+
+			Logger.getLogger(OperationSurveyWebPortlet.class.getName()).log(Level.SEVERE, "deleteFailed", e);
 		}
 	}
 
@@ -152,5 +221,14 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 			surveyObject.getName();
 			System.out.println(surveyObject.getName());
 		}
+
+		QuestionsLocalServiceUtil.getQuestionsesCount();
+		QuestionsLocalServiceUtil.getAllQuestions();
+
+		Questions questions = null;
+		SurveyOperation surveyOperation = null;
+		SurveyObject surveyObject = null;
+
+		SimpleDateFormat simpleDateFormat;
 	}
 }

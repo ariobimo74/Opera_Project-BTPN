@@ -20,55 +20,59 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
- * Provides the remote service utility for Questions. This utility wraps
- * <code>operation.service.impl.QuestionsServiceImpl</code> and is an
+ * Provides the remote service utility for Answers. This utility wraps
+ * <code>operation.service.impl.AnswersServiceImpl</code> and is an
  * access point for service operations in application layer code running on a
  * remote server. Methods of this service are expected to have security checks
  * based on the propagated JAAS credentials because this service can be
  * accessed remotely.
  *
  * @author Brian Wing Shun Chan
- * @see QuestionsService
+ * @see AnswersService
  * @generated
  */
 @ProviderType
-public class QuestionsServiceUtil {
+public class AnswersServiceUtil {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to <code>operation.service.impl.QuestionsServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to <code>operation.service.impl.AnswersServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static operation.model.Questions addQuestions(
-			String question, String answer, double value,
+	public static operation.model.Answers addAnswers(
+			String answer, long value,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().addQuestions(
-			question, answer, value, serviceContext);
+		return getService().addAnswers(answer, value, serviceContext);
 	}
 
-	public static void deleteAllQuestions() {
-		getService().deleteAllQuestions();
+	public static void deleteAllAnswers() {
+		getService().deleteAllAnswers();
 	}
 
-	public static operation.model.Questions deleteQuestionsById(long id)
+	public static operation.model.Answers deleteAnswersById(long id)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().deleteQuestionsById(id);
+		return getService().deleteAnswersById(id);
 	}
 
-	public static operation.model.Questions editQuestions(
-			long id, String question, String answer, double value,
+	public static operation.model.Answers editAnswers(
+			long id, String answer, double value,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().editQuestions(
-			id, question, answer, value, serviceContext);
+		return getService().editAnswers(id, answer, value, serviceContext);
 	}
 
-	public static java.util.List<operation.model.Questions> getAllQuestions() {
-		return getService().getAllQuestions();
+	public static java.util.List<operation.model.Answers> getAllAnswers() {
+		return getService().getAllAnswers();
+	}
+
+	public static operation.model.Answers getAnswersById(long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().getAnswersById(id);
 	}
 
 	/**
@@ -80,19 +84,19 @@ public class QuestionsServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static QuestionsService getService() {
+	public static AnswersService getService() {
 		return _serviceTracker.getService();
 	}
 
-	private static ServiceTracker<QuestionsService, QuestionsService>
+	private static ServiceTracker<AnswersService, AnswersService>
 		_serviceTracker;
 
 	static {
-		Bundle bundle = FrameworkUtil.getBundle(QuestionsService.class);
+		Bundle bundle = FrameworkUtil.getBundle(AnswersService.class);
 
-		ServiceTracker<QuestionsService, QuestionsService> serviceTracker =
-			new ServiceTracker<QuestionsService, QuestionsService>(
-				bundle.getBundleContext(), QuestionsService.class, null);
+		ServiceTracker<AnswersService, AnswersService> serviceTracker =
+			new ServiceTracker<AnswersService, AnswersService>(
+				bundle.getBundleContext(), AnswersService.class, null);
 
 		serviceTracker.open();
 

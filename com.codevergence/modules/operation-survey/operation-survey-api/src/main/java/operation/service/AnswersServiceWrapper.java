@@ -19,55 +19,60 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * Provides a wrapper for {@link QuestionsService}.
+ * Provides a wrapper for {@link AnswersService}.
  *
  * @author Brian Wing Shun Chan
- * @see QuestionsService
+ * @see AnswersService
  * @generated
  */
 @ProviderType
-public class QuestionsServiceWrapper
-	implements QuestionsService, ServiceWrapper<QuestionsService> {
+public class AnswersServiceWrapper
+	implements AnswersService, ServiceWrapper<AnswersService> {
 
-	public QuestionsServiceWrapper(QuestionsService questionsService) {
-		_questionsService = questionsService;
+	public AnswersServiceWrapper(AnswersService answersService) {
+		_answersService = answersService;
 	}
 
 	@Override
-	public operation.model.Questions addQuestions(
-			String question, String answer, double value,
+	public operation.model.Answers addAnswers(
+			String answer, long value,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _questionsService.addQuestions(
-			question, answer, value, serviceContext);
+		return _answersService.addAnswers(answer, value, serviceContext);
 	}
 
 	@Override
-	public void deleteAllQuestions() {
-		_questionsService.deleteAllQuestions();
+	public void deleteAllAnswers() {
+		_answersService.deleteAllAnswers();
 	}
 
 	@Override
-	public operation.model.Questions deleteQuestionsById(long id)
+	public operation.model.Answers deleteAnswersById(long id)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _questionsService.deleteQuestionsById(id);
+		return _answersService.deleteAnswersById(id);
 	}
 
 	@Override
-	public operation.model.Questions editQuestions(
-			long id, String question, String answer, double value,
+	public operation.model.Answers editAnswers(
+			long id, String answer, double value,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _questionsService.editQuestions(
-			id, question, answer, value, serviceContext);
+		return _answersService.editAnswers(id, answer, value, serviceContext);
 	}
 
 	@Override
-	public java.util.List<operation.model.Questions> getAllQuestions() {
-		return _questionsService.getAllQuestions();
+	public java.util.List<operation.model.Answers> getAllAnswers() {
+		return _answersService.getAllAnswers();
+	}
+
+	@Override
+	public operation.model.Answers getAnswersById(long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _answersService.getAnswersById(id);
 	}
 
 	/**
@@ -77,19 +82,19 @@ public class QuestionsServiceWrapper
 	 */
 	@Override
 	public String getOSGiServiceIdentifier() {
-		return _questionsService.getOSGiServiceIdentifier();
+		return _answersService.getOSGiServiceIdentifier();
 	}
 
 	@Override
-	public QuestionsService getWrappedService() {
-		return _questionsService;
+	public AnswersService getWrappedService() {
+		return _answersService;
 	}
 
 	@Override
-	public void setWrappedService(QuestionsService questionsService) {
-		_questionsService = questionsService;
+	public void setWrappedService(AnswersService answersService) {
+		_answersService = answersService;
 	}
 
-	private QuestionsService _questionsService;
+	private AnswersService _answersService;
 
 }

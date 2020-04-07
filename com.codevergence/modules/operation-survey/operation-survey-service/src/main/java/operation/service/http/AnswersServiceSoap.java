@@ -19,13 +19,13 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.rmi.RemoteException;
 
-import operation.service.QuestionsServiceUtil;
+import operation.service.AnswersServiceUtil;
 
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Provides the SOAP utility for the
- * <code>QuestionsServiceUtil</code> service
+ * <code>AnswersServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -34,10 +34,10 @@ import org.osgi.annotation.versioning.ProviderType;
  * ServiceBuilder follows certain rules in translating the methods. For example,
  * if the method in the service utility returns a <code>java.util.List</code>,
  * that is translated to an array of
- * <code>operation.model.QuestionsSoap</code>. If the method in the
+ * <code>operation.model.AnswersSoap</code>. If the method in the
  * service utility returns a
- * <code>operation.model.Questions</code>, that is translated to a
- * <code>operation.model.QuestionsSoap</code>. Methods that SOAP
+ * <code>operation.model.Answers</code>, that is translated to a
+ * <code>operation.model.AnswersSoap</code>. Methods that SOAP
  * cannot safely wire are skipped.
  * </p>
  *
@@ -59,20 +59,20 @@ import org.osgi.annotation.versioning.ProviderType;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see QuestionsServiceHttp
+ * @see AnswersServiceHttp
  * @generated
  */
 @ProviderType
-public class QuestionsServiceSoap {
+public class AnswersServiceSoap {
 
-	public static operation.model.QuestionsSoap[] getAllQuestions()
+	public static operation.model.AnswersSoap[] getAllAnswers()
 		throws RemoteException {
 
 		try {
-			java.util.List<operation.model.Questions> returnValue =
-				QuestionsServiceUtil.getAllQuestions();
+			java.util.List<operation.model.Answers> returnValue =
+				AnswersServiceUtil.getAllAnswers();
 
-			return operation.model.QuestionsSoap.toSoapModels(returnValue);
+			return operation.model.AnswersSoap.toSoapModels(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -81,17 +81,32 @@ public class QuestionsServiceSoap {
 		}
 	}
 
-	public static operation.model.QuestionsSoap addQuestions(
-			String question, String answer, double value,
+	public static operation.model.AnswersSoap getAnswersById(long id)
+		throws RemoteException {
+
+		try {
+			operation.model.Answers returnValue =
+				AnswersServiceUtil.getAnswersById(id);
+
+			return operation.model.AnswersSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static operation.model.AnswersSoap addAnswers(
+			String answer, long value,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 
 		try {
-			operation.model.Questions returnValue =
-				QuestionsServiceUtil.addQuestions(
-					question, answer, value, serviceContext);
+			operation.model.Answers returnValue = AnswersServiceUtil.addAnswers(
+				answer, value, serviceContext);
 
-			return operation.model.QuestionsSoap.toSoapModel(returnValue);
+			return operation.model.AnswersSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -100,17 +115,17 @@ public class QuestionsServiceSoap {
 		}
 	}
 
-	public static operation.model.QuestionsSoap editQuestions(
-			long id, String question, String answer, double value,
+	public static operation.model.AnswersSoap editAnswers(
+			long id, String answer, double value,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 
 		try {
-			operation.model.Questions returnValue =
-				QuestionsServiceUtil.editQuestions(
-					id, question, answer, value, serviceContext);
+			operation.model.Answers returnValue =
+				AnswersServiceUtil.editAnswers(
+					id, answer, value, serviceContext);
 
-			return operation.model.QuestionsSoap.toSoapModel(returnValue);
+			return operation.model.AnswersSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -119,14 +134,14 @@ public class QuestionsServiceSoap {
 		}
 	}
 
-	public static operation.model.QuestionsSoap deleteQuestionsById(long id)
+	public static operation.model.AnswersSoap deleteAnswersById(long id)
 		throws RemoteException {
 
 		try {
-			operation.model.Questions returnValue =
-				QuestionsServiceUtil.deleteQuestionsById(id);
+			operation.model.Answers returnValue =
+				AnswersServiceUtil.deleteAnswersById(id);
 
-			return operation.model.QuestionsSoap.toSoapModel(returnValue);
+			return operation.model.AnswersSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -135,9 +150,9 @@ public class QuestionsServiceSoap {
 		}
 	}
 
-	public static void deleteAllQuestions() throws RemoteException {
+	public static void deleteAllAnswers() throws RemoteException {
 		try {
-			QuestionsServiceUtil.deleteAllQuestions();
+			AnswersServiceUtil.deleteAllAnswers();
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -146,6 +161,6 @@ public class QuestionsServiceSoap {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(QuestionsServiceSoap.class);
+	private static Log _log = LogFactoryUtil.getLog(AnswersServiceSoap.class);
 
 }

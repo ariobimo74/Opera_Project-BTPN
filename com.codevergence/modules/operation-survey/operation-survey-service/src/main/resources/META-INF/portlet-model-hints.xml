@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <model-hints>
-	<model name="operation.model.Answer">
+	<model name="operation.model.Answers">
 		<field name="id" type="long" />
 		<field name="answer" type="String" />
 		<field name="value" type="double" />

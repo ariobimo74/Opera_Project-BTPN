@@ -17,12 +17,12 @@ package operation.service.impl;
 import com.liferay.portal.aop.AopService;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.Validator;
 import operation.exception.QuestionsQuestionException;
 import operation.model.Questions;
 import operation.service.base.QuestionsLocalServiceBaseImpl;
 
-import org.omg.IOP.ServiceContext;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;

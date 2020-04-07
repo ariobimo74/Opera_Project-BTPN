@@ -11,29 +11,31 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
-package operation.model.impl;
+package operation.exception;
 
 import org.osgi.annotation.versioning.ProviderType;
 
+import com.liferay.portal.kernel.exception.PortalException;
+
 /**
- * The extended model implementation for the Answer service. Represents a row in the &quot;answers&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>operation.model.Answer</code> interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class AnswerImpl extends AnswerBaseImpl {
+public class AnswersAnswerException extends PortalException {
 
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a answer model instance should use the {@link operation.model.Answer} interface instead.
-	 */
-	public AnswerImpl() {
+	public AnswersAnswerException() {
+	}
+
+	public AnswersAnswerException(String msg) {
+		super(msg);
+	}
+
+	public AnswersAnswerException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public AnswersAnswerException(Throwable cause) {
+		super(cause);
 	}
 
 }

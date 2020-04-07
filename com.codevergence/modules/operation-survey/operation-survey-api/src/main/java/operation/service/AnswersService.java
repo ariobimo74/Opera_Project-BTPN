@@ -19,18 +19,24 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+
+import java.util.List;
+
+import operation.model.Answers;
 
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * Provides the remote service interface for Answer. Methods of this
+ * Provides the remote service interface for Answers. Methods of this
  * service are expected to have security checks based on the propagated JAAS
  * credentials because this service can be accessed remotely.
  *
  * @author Brian Wing Shun Chan
- * @see AnswerServiceUtil
+ * @see AnswersServiceUtil
  * @generated
  */
 @AccessControlled
@@ -40,13 +46,30 @@ import org.osgi.annotation.versioning.ProviderType;
 	isolation = Isolation.PORTAL,
 	rollbackFor = {PortalException.class, SystemException.class}
 )
-public interface AnswerService extends BaseService {
+public interface AnswersService extends BaseService {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link AnswerServiceUtil} to access the answer remote service. Add custom service methods to <code>operation.service.impl.AnswerServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link AnswersServiceUtil} to access the answers remote service. Add custom service methods to <code>operation.service.impl.AnswersServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public Answers addAnswers(
+			String answer, long value, ServiceContext serviceContext)
+		throws PortalException;
+
+	public void deleteAllAnswers();
+
+	public Answers deleteAnswersById(long id) throws PortalException;
+
+	public Answers editAnswers(
+			long id, String answer, double value, ServiceContext serviceContext)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Answers> getAllAnswers();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Answers getAnswersById(long id) throws PortalException;
 
 	/**
 	 * Returns the OSGi service identifier.

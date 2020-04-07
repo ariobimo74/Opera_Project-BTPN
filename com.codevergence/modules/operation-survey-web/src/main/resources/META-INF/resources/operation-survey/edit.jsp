@@ -18,15 +18,15 @@ if (id > 0)
 
 <aui:form action="<%= addSurveyURL %>" name="<portlet:namespace />fm">
 
-<aui:model-context bean="<%= surveyOperation %>" model="<%= SurveyOperation.class %>" />
+	<aui:model-context bean="<%= surveyOperation %>" model="<%= SurveyOperation.class %>" />
 
 	<aui:fieldset>
 	    <aui:input name="id" type="hidden" />
 		<aui:input name="title" label="Judul Survey" />
 		<aui:input name="description" label="Catatan" type="textarea" resizable="true" />
-		<aui:select name="surveyObj" label="Survey Object" required= "true" showRequiredLabel="true" showEmptyOption="true"	>
+		<aui:select name="surveyObj" label="Survey Object" required= "true" showRequiredLabel="true" >
 			<%
-			List<SurveyObject> surveyObjectList = SurveyObjectLocalServiceUtil.getAllSurveyObjext();
+				List<SurveyObject> surveyObjectList = SurveyObjectLocalServiceUtil.getAllSurveyObjext();
 				for (SurveyObject surveyObject : surveyObjectList)
 				{
 			%>
@@ -34,13 +34,9 @@ if (id > 0)
 			<%
 				}
 			%>
-			<!-- 
-		    <aui:option value="IT Development">IT Development</aui:option>
-            <aui:option value="Quality Assurance">Quality Assurance</aui:option>
-			 -->
         </aui:select>
-		<aui:input name="startDate" label="Tanggal Mulai Survey" required= "true" showRequiredLabel="true" />
-		<aui:input name="endDate" label="Tanggal Berakhir Survey" required= "true" showRequiredLabel="true" />
+		<aui:input name="startDate" label="Tanggal Mulai Survey" required="true" showRequiredLabel="true" />
+		<aui:input name="endDate" label="Tanggal Berakhir Survey" required="true" showRequiredLabel="true" />
 	</aui:fieldset>
 
 	<aui:button-row>

@@ -53,7 +53,8 @@ public class QuestionsLocalServiceUtil {
 	}
 
 	public static operation.model.Questions addQuestions(
-			String question, org.omg.IOP.ServiceContext serviceContext)
+			String question,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().addQuestions(question, serviceContext);
@@ -201,7 +202,8 @@ public class QuestionsLocalServiceUtil {
 	}
 
 	public static operation.model.Questions editQuestions(
-			long id, String question, org.omg.IOP.ServiceContext serviceContext)
+			long id, String question,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().editQuestions(id, question, serviceContext);

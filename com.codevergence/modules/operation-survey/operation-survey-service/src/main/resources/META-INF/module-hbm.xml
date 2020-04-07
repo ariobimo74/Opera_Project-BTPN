@@ -2,11 +2,11 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="false" default-lazy="false">
-	<import class="operation.model.Answer" />
+	<import class="operation.model.Answers" />
 	<import class="operation.model.Questions" />
 	<import class="operation.model.SurveyObject" />
 	<import class="operation.model.SurveyOperation" />
-	<class name="operation.model.impl.AnswerImpl" table="answers">
+	<class name="operation.model.impl.AnswersImpl" table="answers">
 		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="id" type="long">
 			<generator class="assigned" />
 		</id>

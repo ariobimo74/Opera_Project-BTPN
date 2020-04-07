@@ -15,60 +15,63 @@
 package operation.service.impl;
 
 import com.liferay.portal.aop.AopService;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
-import operation.model.Questions;
-import operation.service.base.QuestionsServiceBaseImpl;
-
+import operation.model.Answers;
+import operation.service.base.AnswersServiceBaseImpl;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
 
 /**
- * The implementation of the questions remote service.
+ * The implementation of the answers remote service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>operation.service.QuestionsService</code> interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>operation.service.AnswersService</code> interface.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see QuestionsServiceBaseImpl
+ * @see AnswersServiceBaseImpl
  */
 @Component(
 	property = {
 		"json.web.service.context.name=surveyoperation",
-		"json.web.service.context.path=Questions"
+		"json.web.service.context.path=Answers"
 	},
 	service = AopService.class
 )
-public class QuestionsServiceImpl extends QuestionsServiceBaseImpl
+public class AnswersServiceImpl extends AnswersServiceBaseImpl
 {
-	public List<Questions> getAllQuestions()
+	public List<Answers> getAllAnswers()
 	{
-		return questionsLocalService.getAllQuestions();
+		return answersLocalService.getAllAnswers();
 	}
 
-	public Questions addQuestions(String question, String answer, double value, ServiceContext serviceContext) throws PortalException
+	public Answers getAnswersById(long id) throws PortalException
 	{
-		return questionsLocalService.addQuestions(question, serviceContext);
+		return answersLocalService.getAnswersById(id);
 	}
 
-	public Questions editQuestions(long id, String question, String answer, double value, ServiceContext serviceContext) throws PortalException
+	public Answers addAnswers(String answer, long value, ServiceContext serviceContext) throws PortalException
 	{
-		return questionsLocalService.editQuestions(id, question, serviceContext);
+		return answersLocalService.addAnswers(answer, value, serviceContext);
 	}
 
-	public Questions deleteQuestionsById(long id) throws PortalException
+	public Answers editAnswers(long id, String answer, double value, ServiceContext serviceContext) throws PortalException
 	{
-		return questionsLocalService.deleteQuestionsById(id);
+		return answersLocalService.editAnswers(id, answer, value, serviceContext);
 	}
 
-	public void deleteAllQuestions()
+	public Answers deleteAnswersById(long id) throws PortalException
 	{
-		questionsLocalService.deleteAllQuestions();
+		return answersLocalService.deleteAnswersById(id);
+	}
+
+	public void deleteAllAnswers()
+	{
+		answersLocalService.deleteAllAnswers();
 	}
 }
