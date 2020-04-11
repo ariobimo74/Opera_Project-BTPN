@@ -9,56 +9,23 @@
 %>
 
 
-<!-- View Data Survey -->
+<!-- UI Tabs View -->
 
-<aui:button-row cssClass="guestbook-buttons">
+<liferay-ui:tabs
+    names='<%= "Survey Operation, Questions, Responden" %>'
+    param="tabs2"
+    refresh="<%= false %>"
+    type="tabs nav-tabs-default">
 
-    <portlet:renderURL var="addSurveyURL">
-        <portlet:param name="mvcPath" value="/operation-survey/edit.jsp" />
-    </portlet:renderURL>
+    <liferay-ui:section>
+            <%@ include file="/operation-survey/view-survey-operation.jsp" %>
+        </liferay-ui:section>
 
-    <aui:button onClick="<%=addSurveyURL.toString()%>" value="Add Survey"></aui:button>
+    <liferay-ui:section>
+        <%@ include file="/operation-survey/view-question.jsp" %>
+    </liferay-ui:section>
 
-</aui:button-row>
-
-<liferay-ui:search-container total="<%= SurveyOperationLocalServiceUtil.getSurveyOperationsCount() %>">
-    <liferay-ui:search-container-results results="<%=SurveyOperationLocalServiceUtil.getAllSurveyOperation()%>" />
-
-    <liferay-ui:search-container-row className="operation.model.SurveyOperation" modelVar="surveyOperation">
-        <liferay-ui:search-container-column-text property="title" />
-        <liferay-ui:search-container-column-text property="surveyObj" />
-        <liferay-ui:search-container-column-text property="startDate" value="<%= simpleDateFormat.format(surveyOperation.getStartDate()) %>" />
-        <liferay-ui:search-container-column-text property="endDate" value="<%= simpleDateFormat.format(surveyOperation.getEndDate()) %>" />
-        <liferay-ui:search-container-column-text property="submittedDate" value="<%= simpleDateFormat.format(surveyOperation.getSubmittedDate()) %>" />
-        <liferay-ui:search-container-column-jsp align="right" path="/operation-survey/action.jsp" />
-    </liferay-ui:search-container-row>
-    <liferay-ui:search-iterator />
-</liferay-ui:search-container>
-
-
-<!-- View Data Questions -->
-
-<p>
-    <br/>
-    <b><liferay-ui:message key="questions.message"/></b>
-</p>
-
-<aui:button-row cssClass="guestbook-buttons">
-
-    <portlet:renderURL var="addQuestionsURL">
-        <portlet:param name="mvcPath" value="/operation-survey/edit-question.jsp" />
-    </portlet:renderURL>
-
-    <aui:button onClick="<%= addQuestionsURL.toString() %>" value="Add Questions"></aui:button>
-
-</aui:button-row>
-
-<liferay-ui:search-container total="<%= QuestionsLocalServiceUtil.getQuestionsesCount() %>">
-    <liferay-ui:search-container-results results="<%= QuestionsLocalServiceUtil.getAllQuestions() %>" />
-
-    <liferay-ui:search-container-row className="operation.model.Questions" modelVar="questions">
-        <liferay-ui:search-container-column-text property="question" />
-        <liferay-ui:search-container-column-jsp align="right" path="/operation-survey/action-question.jsp" />
-    </liferay-ui:search-container-row>
-    <liferay-ui:search-iterator />
-</liferay-ui:search-container>
+    <liferay-ui:section>
+            <%@ include file="/operation-survey/view-responden.jsp" %>
+        </liferay-ui:section>
+</liferay-ui:tabs>

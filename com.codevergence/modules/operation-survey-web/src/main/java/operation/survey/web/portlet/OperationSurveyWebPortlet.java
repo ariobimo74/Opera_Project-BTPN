@@ -8,13 +8,11 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import operation.model.Answers;
 import operation.model.Questions;
 import operation.model.SurveyObject;
 import operation.model.SurveyOperation;
-import operation.service.QuestionsLocalService;
-import operation.service.QuestionsLocalServiceUtil;
-import operation.service.SurveyObjectLocalServiceUtil;
-import operation.service.SurveyOperationLocalService;
+import operation.service.*;
 import operation.survey.web.constants.OperationSurveyWebPortletKeys;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -34,7 +32,7 @@ import java.util.logging.Logger;
 @Component(
 	immediate = true,
 	property = {
-		"com.liferay.portlet.display-category=Codevergence",
+		"com.liferay.portlet.display-category=Administration",
 		"com.liferay.portlet.header-portlet-css=/css/main.css",
 		"com.liferay.portlet.instanceable=true",
 		"javax.portlet.display-name=Operation Survey",
@@ -42,17 +40,20 @@ import java.util.logging.Logger;
 		"javax.portlet.init-param.view-template=/operation-survey/view.jsp",
 		"javax.portlet.name=" + OperationSurveyWebPortletKeys.OPERATIONSURVEYWEB,
 		"javax.portlet.resource-bundle=content.Language",
-		"javax.portlet.security-role-ref=power-user,user"
+		"javax.portlet.security-role-ref=administrator"
 	},
 	service = Portlet.class
 )
 public class OperationSurveyWebPortlet extends MVCPortlet
 {
 	@Reference
-	SurveyOperationLocalService surveyOperationLocalService;
+	private SurveyOperationLocalService surveyOperationLocalService;
 
 	@Reference
-	QuestionsLocalService questionsLocalService;
+	private QuestionsLocalService questionsLocalService;
+
+	@Reference
+	private AnswersLocalService answersLocalService;
 
 	public void addSurvey(ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException, ParseException
 	{
@@ -194,6 +195,69 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 		}
 	}
 
+	public void addAnswers(ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException, ParseException
+	{
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(Answers.class.getName(), actionRequest);
+
+		long id = ParamUtil.getLong(actionRequest, "id");
+		String answer = ParamUtil.getString(actionRequest, "answer");
+		double value = ParamUtil.getDouble(actionRequest, "value");
+
+		if (id > 0)
+		{
+			try
+			{
+				answersLocalService.editAnswers(id, answer, value, serviceContext);
+				actionResponse.getRenderParameters().setValue("id", Long.toString(id));
+
+				SessionMessages.add(actionRequest, "answerEdited");
+			}
+			catch (Exception e)
+			{
+				System.out.println(e);
+
+				PortalUtil.copyRequestParameters(actionRequest, actionResponse);
+				actionResponse.getRenderParameters().setValue("mvcPath", "/operation-survey/edit-answer.jsp");
+			}
+		}
+		else
+		{
+			try
+			{
+				answersLocalService.addAnswers(answer, value, serviceContext);
+				actionResponse.getRenderParameters().setValue("id", Long.toString(id));
+
+				SessionMessages.add(actionRequest ,"answerAdded");
+			}
+			catch (Exception e)
+			{
+				System.out.println(e);
+
+				PortalUtil.copyRequestParameters(actionRequest, actionResponse);
+				actionResponse.getRenderParameters().setValue("mvcPath", "/operation-survey/edit-answer.jsp");
+			}
+		}
+	}
+
+	public void deleteAnswers(ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException, ParseException
+	{
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(Answers.class.getName(), actionRequest);
+
+		long id = ParamUtil.getLong(actionRequest, "id");
+
+		try
+		{
+			answersLocalService.deleteAnswersById(id);
+			actionRequest.getContextPath();
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+
+			Logger.getLogger(OperationSurveyWebPortlet.class.getName()).log(Level.SEVERE, "deleteFailed", e);
+		}
+	}
+
 	@Override
 	public void render(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException
 	{
@@ -229,6 +293,10 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 		SurveyOperation surveyOperation = null;
 		SurveyObject surveyObject = null;
 
-		SimpleDateFormat simpleDateFormat;
+		AnswersLocalServiceUtil.getAnswersesCount();
+		AnswersLocalServiceUtil.getAllAnswers();
+
+		Answers answers = null;
+		long id123 = answers.getId();
 	}
 }
