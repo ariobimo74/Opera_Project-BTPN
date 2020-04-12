@@ -2,6 +2,8 @@ package operation.survey.web.portlet;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.SearchContextFactory;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -18,9 +20,11 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import javax.portlet.*;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -298,5 +302,33 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 
 		Answers answers = null;
 		long id123 = answers.getId();
+
+		int x = 0;
+		for (int i = 0; i < SurveyOperationLocalServiceUtil.getSurveyOperationsCount(); i++)
+		{
+			x += i;
+			String y = Integer.toString(x);
+		}
+		Integer.toString(x+=1);
+
+		ActionRequest actionRequest = null;
+		String keywords = null;
+		SearchContext searchContext = SearchContextFactory.getInstance((HttpServletRequest) actionRequest);
+		searchContext.setKeywords(keywords);
+
+		List<SurveyOperation> surveyOperationList = SurveyOperationLocalServiceUtil.getSurveyOperationByTitle(keywords);
+
+		List<SurveyOperation> surveyOperations = SurveyOperationLocalServiceUtil.getAllSurveyOperation();
+		List<SurveyOperation> surveyOperationSearch = new ArrayList<SurveyOperation>();
+
+		for (int i = 0; i < surveyOperations.size(); i++)
+		{
+			if (surveyOperations.get(i).getTitle().toLowerCase().contains(keywords.toLowerCase()))
+			{
+				surveyOperationSearch.add(surveyOperations.get(i));
+			}
+		}
+
+		surveyOperationSearch.size();
 	}
 }

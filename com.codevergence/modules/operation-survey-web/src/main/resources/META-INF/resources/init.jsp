@@ -28,8 +28,13 @@
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 
 <%@ page import="com.liferay.petra.string.StringPool" %>
+
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.ArrayList" %>
+
+<%@ page import="com.liferay.portal.kernel.search.SearchContext" %>
+<%@ page import="com.liferay.portal.kernel.search.SearchContextFactory" %>
 
 <liferay-theme:defineObjects />
 

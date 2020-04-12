@@ -5,6 +5,28 @@
 </p>
 
 
+<!-- Survey Operation Search Bar -->
+
+<portlet:renderURL var="searchURL">
+    <portlet:param name="mvcPath" value="/operation-survey/search-survey-operation.jsp" />
+</portlet:renderURL>
+
+<aui:form action="<%= searchURL %>" name="fm">
+
+    <div class="row">
+        <div class="col-md-8">
+            <aui:input inlineLabel="left" type="text" label="" name="keyword"
+                placeholder="Search Survey by Title" size="256" />
+        </div>
+
+        <div class="col-md-4">
+            <aui:button type="submit" value="search" />
+        </div>
+    </div>
+
+ </aui:form>
+
+
 <!-- View Data Survey -->
 
 <aui:button-row cssClass="guestbook-buttons">
@@ -20,7 +42,9 @@
 <liferay-ui:search-container total="<%= SurveyOperationLocalServiceUtil.getSurveyOperationsCount() %>">
     <liferay-ui:search-container-results results="<%=SurveyOperationLocalServiceUtil.getAllSurveyOperation()%>" />
 
+    <% int k = 0; %>
     <liferay-ui:search-container-row className="operation.model.SurveyOperation" modelVar="surveyOperation">
+        <liferay-ui:search-container-column-text name="No" value="<%= Integer.toString(k += 1 ) %>" />
         <liferay-ui:search-container-column-text property="title" />
         <liferay-ui:search-container-column-text property="surveyObj" />
         <liferay-ui:search-container-column-text name="startDate" value="<%= simpleDateFormat.format(surveyOperation.getStartDate()) %>" />

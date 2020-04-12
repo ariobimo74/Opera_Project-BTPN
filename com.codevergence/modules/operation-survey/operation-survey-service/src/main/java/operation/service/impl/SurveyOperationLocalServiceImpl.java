@@ -15,7 +15,6 @@
 package operation.service.impl;
 
 import com.liferay.portal.aop.AopService;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.Validator;
@@ -24,12 +23,10 @@ import operation.exception.SurveyOperationStartDateException;
 import operation.exception.SurveyOperationSurveyObjException;
 import operation.model.SurveyOperation;
 import operation.service.base.SurveyOperationLocalServiceBaseImpl;
-
 import org.osgi.service.component.annotations.Component;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
