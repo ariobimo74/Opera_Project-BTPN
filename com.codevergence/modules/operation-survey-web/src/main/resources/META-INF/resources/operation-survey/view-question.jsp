@@ -2,6 +2,10 @@
 
 <!-- View Data Questions -->
 
+<liferay-ui:success key="questionAdded" message="question-added" />
+<liferay-ui:success key="questionEdited" message="question-edited" />
+<liferay-ui:success key="questionDeleted" message="question-deleted" />
+
 <p>
     <br/>
     <b><liferay-ui:message key="questions.message"/></b>
@@ -31,6 +35,10 @@
 
 
 <!-- View Data Answers -->
+
+<liferay-ui:success key="answerAdded" message="answer-added" />
+<liferay-ui:success key="answerEdited" message="answer-edited" />
+<liferay-ui:success key="answerDeleted" message="answer-deleted" />
 
 <p>
     <br/>

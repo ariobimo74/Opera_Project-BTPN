@@ -7,6 +7,10 @@
 
 <!-- Survey Operation Search Bar -->
 
+<liferay-ui:success key="surveyAdded" message="survey-added"/>
+<liferay-ui:success key="surveyEdited" message="survey-edited" />
+<liferay-ui:success key="surveyDeleted" message="survey-deleted" />
+
 <portlet:renderURL var="searchURL">
     <portlet:param name="mvcPath" value="/operation-survey/search-survey-operation.jsp" />
 </portlet:renderURL>

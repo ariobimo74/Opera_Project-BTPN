@@ -124,12 +124,15 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 		{
 			surveyOperationLocalService.deleteSurveyOperationById(id);
 			actionRequest.getContextPath();
+
+			SessionMessages.add(actionRequest, "surveyDeleted");
 		}
 		catch (Exception e)
 		{
 			System.out.println(e);
 
 			Logger.getLogger(OperationSurveyWebPortlet.class.getName()).log(Level.SEVERE, "deleteFailed", e);
+			SessionErrors.add(actionRequest, e.getClass().getName());
 		}
 	}
 
@@ -190,12 +193,15 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 		{
 			questionsLocalService.deleteQuestionsById(id);
 			actionRequest.getContextPath();
+
+			SessionMessages.add(actionRequest, "questionDeleted");
 		}
 		catch (Exception e)
 		{
 			System.out.println(e);
 
 			Logger.getLogger(OperationSurveyWebPortlet.class.getName()).log(Level.SEVERE, "deleteFailed", e);
+			SessionErrors.add(actionRequest, e.getClass().getName());
 		}
 	}
 
@@ -253,14 +259,19 @@ public class OperationSurveyWebPortlet extends MVCPortlet
 		{
 			answersLocalService.deleteAnswersById(id);
 			actionRequest.getContextPath();
+
+			SessionMessages.add(actionRequest, "answerDeleted");
 		}
 		catch (Exception e)
 		{
 			System.out.println(e);
 
 			Logger.getLogger(OperationSurveyWebPortlet.class.getName()).log(Level.SEVERE, "deleteFailed", e);
+			SessionErrors.add(actionRequest,  e.getClass().getName());
 		}
 	}
+
+
 
 	@Override
 	public void render(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException
