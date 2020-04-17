@@ -1,0 +1,10 @@
+Bundle-Name: operation-survey-api
+Bundle-SymbolicName: com.btpn.opera.operationsurvey.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.btpn.opera.operationsurvey.exception,\
+	com.btpn.opera.operationsurvey.model,\
+	com.btpn.opera.operationsurvey.service,\
+	com.btpn.opera.operationsurvey.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../operation-survey-service/service.xml

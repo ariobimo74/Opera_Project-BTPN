@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.btpn.opera.operationsurvey.model.Questions">
+		<field name="id" type="long" />
+		<field name="question" type="String" />
+		<field name="answer" type="String" />
+		<field name="surveyOperationId" type="long" />
+	</model>
+	<model name="com.btpn.opera.operationsurvey.model.Responden">
+		<field name="id" type="long" />
+		<field name="nik" type="String" />
+		<field name="fullName" type="String" />
+		<field name="lob" type="String" />
+		<field name="division" type="String" />
+		<field name="surveyoperationId" type="long" />
+		<field name="totalValue" type="double" />
+		<field name="answerRecord" type="String" />
+		<field name="submittedDate" type="Date" />
+		<field name="notes" type="String" />
+	</model>
+	<model name="com.btpn.opera.operationsurvey.model.SurveyObject">
+		<field name="id" type="long" />
+		<field name="name" type="String" />
+	</model>
+	<model name="com.btpn.opera.operationsurvey.model.SurveyOperation">
+		<field name="id" type="long" />
+		<field name="title" type="String" />
+		<field name="description" type="String" />
+		<field name="surveyObjectId" type="long" />
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="submittedDate" type="Date" />
+		<field name="createdDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+	</model>
+</model-hints>

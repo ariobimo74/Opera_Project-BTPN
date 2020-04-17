@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_2_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="com.btpn.opera.operationsurvey">
+	<namespace>OperationSurvey</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+	<entity table="survey_operation" local-service="true" name="SurveyOperation" remote-service="true" uuid="false">
+
+		<!-- PK fields -->
+
+		<column db-name="id" name="id" primary="true" type="long" />
+
+		<!-- Audit fields -->
+
+		<column db-name="title" name="title" type="String" />
+		<column db-name="description" name="description" type="String" />
+		<column db-name="survey_object_id" name="surveyObjectId" type="long" />
+		<column db-name="start_date" name="startDate" type="Date" />
+		<column db-name="end_date" name="endDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column db-name="submitted_date" name="submittedDate" type="Date" />
+		<column db-name="created_date" name="createdDate" type="Date" />
+		<column db-name="created_by" name="createdBy" type="long" />
+		<column db-name="modified_date" name="modifiedDate" type="Date" />
+		<column db-name="modified_by" name="modifiedBy" type="long" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="title" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="Title" return-type="Collection">
+			<finder-column name="title" />
+		</finder>
+	</entity>
+
+	<entity table="survey_object" name="SurveyObject" local-service="true" remote-service="true" uuid="false">
+		<column db-name="id" name="id" type="long" primary="true" />
+		<column db-name="name" name="name" type="String" />
+	</entity>
+
+	<entity table="questions" name="Questions" local-service="true" remote-service="true" uuid="false">
+		<column db-name="id" name="id" type="long" primary="true" />
+		<column db-name="question" name="question" type="String" />
+		<column db-name="answer" name="answer" type="String" />
+		<column db-name="survey_operation_id" name="surveyOperationId" type="long" />
+	</entity>
+
+	<entity table="responden" name="Responden" local-service="true" remote-service="true" uuid="false">
+		<column db-name="id" name="id" type="long" primary="true" />
+		<column db-name="nik" name="nik" type="String" />
+		<column db-name="full_name" name="fullName" type="String" />
+		<column db-name="lob" name="lob" type="String" />
+		<column db-name="division" name="division" type="String" />
+		<column db-name="survey_operation_id" name="surveyoperationId" type="long" />
+		<column db-name="total_value" name="totalValue" type="double" />
+		<column db-name="answer_record" name="answerRecord" type="String" />
+		<column db-name="submitted_date" name="submittedDate" type="Date" />
+		<column db-name="notes" name="notes" type="String" />
+	</entity>
+
+	<exceptions>
+		<exception>SurveyObject</exception>
+		<exception>StartDate</exception>
+		<exception>EndDate</exception>
+	</exceptions>
+</service-builder>

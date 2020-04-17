@@ -1,4 +1,0 @@
-Bundle-Name: operation-survey-web
-Bundle-SymbolicName: operation.survey.web
-Bundle-Version: 1.0.0
-Export-Package: operation.survey.web.constants

@@ -1,0 +1,1 @@
+create index IX_B4D7C000 on survey_operation (title[$COLUMN_LENGTH:75$]);
