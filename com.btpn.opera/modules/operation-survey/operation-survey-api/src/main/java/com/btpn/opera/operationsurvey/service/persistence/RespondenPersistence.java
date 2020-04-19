@@ -43,6 +43,54 @@ public interface RespondenPersistence extends BasePersistence<Responden> {
 	 */
 
 	/**
+	 * Returns the responden where surveyOperationId = &#63; or throws a <code>NoSuchRespondenException</code> if it could not be found.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @return the matching responden
+	 * @throws NoSuchRespondenException if a matching responden could not be found
+	 */
+	public Responden findBysurveyOperationID(long surveyOperationId)
+		throws NoSuchRespondenException;
+
+	/**
+	 * Returns the responden where surveyOperationId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchBysurveyOperationID(long)}
+	 * @param surveyOperationId the survey operation ID
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the matching responden, or <code>null</code> if a matching responden could not be found
+	 */
+	@Deprecated
+	public Responden fetchBysurveyOperationID(
+		long surveyOperationId, boolean useFinderCache);
+
+	/**
+	 * Returns the responden where surveyOperationId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the matching responden, or <code>null</code> if a matching responden could not be found
+	 */
+	public Responden fetchBysurveyOperationID(long surveyOperationId);
+
+	/**
+	 * Removes the responden where surveyOperationId = &#63; from the database.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @return the responden that was removed
+	 */
+	public Responden removeBysurveyOperationID(long surveyOperationId)
+		throws NoSuchRespondenException;
+
+	/**
+	 * Returns the number of respondens where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @return the number of matching respondens
+	 */
+	public int countBysurveyOperationID(long surveyOperationId);
+
+	/**
 	 * Caches the responden in the entity cache if it is enabled.
 	 *
 	 * @param responden the responden

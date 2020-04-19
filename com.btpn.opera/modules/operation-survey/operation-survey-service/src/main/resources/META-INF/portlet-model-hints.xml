@@ -13,7 +13,7 @@
 		<field name="fullName" type="String" />
 		<field name="lob" type="String" />
 		<field name="division" type="String" />
-		<field name="surveyoperationId" type="long" />
+		<field name="surveyOperationId" type="long" />
 		<field name="totalValue" type="double" />
 		<field name="answerRecord" type="String" />
 		<field name="submittedDate" type="Date" />

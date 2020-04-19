@@ -77,8 +77,8 @@ public class RespondenCacheModel
 		sb.append(lob);
 		sb.append(", division=");
 		sb.append(division);
-		sb.append(", surveyoperationId=");
-		sb.append(surveyoperationId);
+		sb.append(", surveyOperationId=");
+		sb.append(surveyOperationId);
 		sb.append(", totalValue=");
 		sb.append(totalValue);
 		sb.append(", answerRecord=");
@@ -126,7 +126,7 @@ public class RespondenCacheModel
 			respondenImpl.setDivision(division);
 		}
 
-		respondenImpl.setSurveyoperationId(surveyoperationId);
+		respondenImpl.setSurveyOperationId(surveyOperationId);
 		respondenImpl.setTotalValue(totalValue);
 
 		if (answerRecord == null) {
@@ -163,7 +163,7 @@ public class RespondenCacheModel
 		lob = objectInput.readUTF();
 		division = objectInput.readUTF();
 
-		surveyoperationId = objectInput.readLong();
+		surveyOperationId = objectInput.readLong();
 
 		totalValue = objectInput.readDouble();
 		answerRecord = objectInput.readUTF();
@@ -203,7 +203,7 @@ public class RespondenCacheModel
 			objectOutput.writeUTF(division);
 		}
 
-		objectOutput.writeLong(surveyoperationId);
+		objectOutput.writeLong(surveyOperationId);
 
 		objectOutput.writeDouble(totalValue);
 
@@ -229,7 +229,7 @@ public class RespondenCacheModel
 	public String fullName;
 	public String lob;
 	public String division;
-	public long surveyoperationId;
+	public long surveyOperationId;
 	public double totalValue;
 	public String answerRecord;
 	public long submittedDate;

@@ -14,11 +14,16 @@
 
 package com.btpn.opera.operationsurvey.service.impl;
 
+import com.btpn.opera.operationsurvey.model.Questions;
 import com.btpn.opera.operationsurvey.service.base.QuestionsServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
 import org.osgi.service.component.annotations.Component;
+
+import java.util.List;
 
 /**
  * The implementation of the questions remote service.
@@ -47,4 +52,39 @@ public class QuestionsServiceImpl extends QuestionsServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use <code>com.btpn.opera.operationsurvey.service.QuestionsServiceUtil</code> to access the questions remote service.
 	 */
+
+	public List<Questions> getAllQuestions()
+	{
+		return questionsLocalService.getAllQuestions();
+	}
+
+	public Questions getQuestionsById(long id) throws PortalException
+	{
+		return questionsLocalService.getQuestionsById(id);
+	}
+
+	public List<Questions> getQuestionsBySurveyOperationId(long surveyOperationId)
+	{
+		return questionsLocalService.getQuestionsBySurveyOperationId(surveyOperationId);
+	}
+
+	public Questions addQuestions(String question, String answer, long surveyOperationId, ServiceContext serviceContext)
+	{
+		return questionsLocalService.addQuestions(question, answer, surveyOperationId, serviceContext);
+	}
+
+	public Questions editQuestions(long id, String question, String answer, long surveyOperationId, ServiceContext serviceContext) throws PortalException
+	{
+		return questionsLocalService.editQuestions(id, question, answer, surveyOperationId, serviceContext);
+	}
+
+	public Questions deleteQuestionsById(long id) throws PortalException
+	{
+		return questionsLocalService.deleteQuestionsById(id);
+	}
+
+	public void deleteQuestionsByOperationSurveyId(long surveyOperationId)
+	{
+		questionsLocalService.deleteAllQuestionsBySurveyOperationId(surveyOperationId);
+	}
 }

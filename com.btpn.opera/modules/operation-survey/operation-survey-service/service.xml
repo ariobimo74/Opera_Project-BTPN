@@ -49,6 +49,10 @@
 		<column db-name="question" name="question" type="String" />
 		<column db-name="answer" name="answer" type="String" />
 		<column db-name="survey_operation_id" name="surveyOperationId" type="long" />
+
+		<finder name="SurveyOperationId" return-type="Collection">
+			<finder-column name="surveyOperationId" />
+		</finder>
 	</entity>
 
 	<entity table="responden" name="Responden" local-service="true" remote-service="true" uuid="false">
@@ -57,11 +61,15 @@
 		<column db-name="full_name" name="fullName" type="String" />
 		<column db-name="lob" name="lob" type="String" />
 		<column db-name="division" name="division" type="String" />
-		<column db-name="survey_operation_id" name="surveyoperationId" type="long" />
+		<column db-name="survey_operation_id" name="surveyOperationId" type="long" />
 		<column db-name="total_value" name="totalValue" type="double" />
 		<column db-name="answer_record" name="answerRecord" type="String" />
 		<column db-name="submitted_date" name="submittedDate" type="Date" />
 		<column db-name="notes" name="notes" type="String" />
+
+		<finder name="surveyOperationID" return-type="">
+			<finder-column name="surveyOperationId" />
+		</finder>
 	</entity>
 
 	<exceptions>

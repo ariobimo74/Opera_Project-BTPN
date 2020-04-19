@@ -127,6 +127,70 @@ public class RespondenUtil {
 	}
 
 	/**
+	 * Returns the responden where surveyOperationId = &#63; or throws a <code>NoSuchRespondenException</code> if it could not be found.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @return the matching responden
+	 * @throws NoSuchRespondenException if a matching responden could not be found
+	 */
+	public static Responden findBysurveyOperationID(long surveyOperationId)
+		throws com.btpn.opera.operationsurvey.exception.
+			NoSuchRespondenException {
+
+		return getPersistence().findBysurveyOperationID(surveyOperationId);
+	}
+
+	/**
+	 * Returns the responden where surveyOperationId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchBysurveyOperationID(long)}
+	 * @param surveyOperationId the survey operation ID
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the matching responden, or <code>null</code> if a matching responden could not be found
+	 */
+	@Deprecated
+	public static Responden fetchBysurveyOperationID(
+		long surveyOperationId, boolean useFinderCache) {
+
+		return getPersistence().fetchBysurveyOperationID(
+			surveyOperationId, useFinderCache);
+	}
+
+	/**
+	 * Returns the responden where surveyOperationId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the matching responden, or <code>null</code> if a matching responden could not be found
+	 */
+	public static Responden fetchBysurveyOperationID(long surveyOperationId) {
+		return getPersistence().fetchBysurveyOperationID(surveyOperationId);
+	}
+
+	/**
+	 * Removes the responden where surveyOperationId = &#63; from the database.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @return the responden that was removed
+	 */
+	public static Responden removeBysurveyOperationID(long surveyOperationId)
+		throws com.btpn.opera.operationsurvey.exception.
+			NoSuchRespondenException {
+
+		return getPersistence().removeBysurveyOperationID(surveyOperationId);
+	}
+
+	/**
+	 * Returns the number of respondens where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @return the number of matching respondens
+	 */
+	public static int countBysurveyOperationID(long surveyOperationId) {
+		return getPersistence().countBysurveyOperationID(surveyOperationId);
+	}
+
+	/**
 	 * Caches the responden in the entity cache if it is enabled.
 	 *
 	 * @param responden the responden

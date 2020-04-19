@@ -52,6 +52,14 @@ public class QuestionsLocalServiceUtil {
 		return getService().addQuestions(questions);
 	}
 
+	public static com.btpn.opera.operationsurvey.model.Questions addQuestions(
+		String question, String answer, long surveyOperationId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+
+		return getService().addQuestions(
+			question, answer, surveyOperationId, serviceContext);
+	}
+
 	/**
 	 * Creates a new questions with the primary key. Does not add the questions to the database.
 	 *
@@ -62,6 +70,12 @@ public class QuestionsLocalServiceUtil {
 		createQuestions(long id) {
 
 		return getService().createQuestions(id);
+	}
+
+	public static void deleteAllQuestionsBySurveyOperationId(
+		long surveyOperationId) {
+
+		getService().deleteAllQuestionsBySurveyOperationId(surveyOperationId);
 	}
 
 	/**
@@ -100,6 +114,13 @@ public class QuestionsLocalServiceUtil {
 			com.btpn.opera.operationsurvey.model.Questions questions) {
 
 		return getService().deleteQuestions(questions);
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Questions
+			deleteQuestionsById(long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().deleteQuestionsById(id);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
@@ -187,6 +208,15 @@ public class QuestionsLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
+	public static com.btpn.opera.operationsurvey.model.Questions editQuestions(
+			long id, String question, String answer, long surveyOperationId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().editQuestions(
+			id, question, answer, surveyOperationId, serviceContext);
+	}
+
 	public static com.btpn.opera.operationsurvey.model.Questions fetchQuestions(
 		long id) {
 
@@ -197,6 +227,12 @@ public class QuestionsLocalServiceUtil {
 		getActionableDynamicQuery() {
 
 		return getService().getActionableDynamicQuery();
+	}
+
+	public static java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getAllQuestions() {
+
+		return getService().getAllQuestions();
 	}
 
 	public static
@@ -234,6 +270,19 @@ public class QuestionsLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getQuestions(id);
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Questions
+			getQuestionsById(long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().getQuestionsById(id);
+	}
+
+	public static java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getQuestionsBySurveyOperationId(long surveyOperationId) {
+
+		return getService().getQuestionsBySurveyOperationId(surveyOperationId);
 	}
 
 	/**

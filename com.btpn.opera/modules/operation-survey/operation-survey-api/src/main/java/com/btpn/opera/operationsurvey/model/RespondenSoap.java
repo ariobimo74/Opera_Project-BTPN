@@ -39,7 +39,7 @@ public class RespondenSoap implements Serializable {
 		soapModel.setFullName(model.getFullName());
 		soapModel.setLob(model.getLob());
 		soapModel.setDivision(model.getDivision());
-		soapModel.setSurveyoperationId(model.getSurveyoperationId());
+		soapModel.setSurveyOperationId(model.getSurveyOperationId());
 		soapModel.setTotalValue(model.getTotalValue());
 		soapModel.setAnswerRecord(model.getAnswerRecord());
 		soapModel.setSubmittedDate(model.getSubmittedDate());
@@ -137,12 +137,12 @@ public class RespondenSoap implements Serializable {
 		_division = division;
 	}
 
-	public long getSurveyoperationId() {
-		return _surveyoperationId;
+	public long getSurveyOperationId() {
+		return _surveyOperationId;
 	}
 
-	public void setSurveyoperationId(long surveyoperationId) {
-		_surveyoperationId = surveyoperationId;
+	public void setSurveyOperationId(long surveyOperationId) {
+		_surveyOperationId = surveyOperationId;
 	}
 
 	public double getTotalValue() {
@@ -182,7 +182,7 @@ public class RespondenSoap implements Serializable {
 	private String _fullName;
 	private String _lob;
 	private String _division;
-	private long _surveyoperationId;
+	private long _surveyOperationId;
 	private double _totalValue;
 	private String _answerRecord;
 	private Date _submittedDate;

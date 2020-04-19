@@ -14,15 +14,24 @@
 
 package com.btpn.opera.operationsurvey.service.http;
 
+import com.btpn.opera.operationsurvey.service.QuestionsServiceUtil;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.security.auth.HttpPrincipal;
+import com.liferay.portal.kernel.service.http.TunnelUtil;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Provides the HTTP utility for the
- * <code>com.btpn.opera.operationsurvey.service.QuestionsServiceUtil</code> service
+ * <code>QuestionsServiceUtil</code> service
  * utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it requires an additional
- * <code>com.liferay.portal.kernel.security.auth.HttpPrincipal</code> parameter.
+ * <code>HttpPrincipal</code> parameter.
  *
  * <p>
  * The benefits of using the HTTP utility is that it is fast and allows for
@@ -45,4 +54,267 @@ import org.osgi.annotation.versioning.ProviderType;
  */
 @ProviderType
 public class QuestionsServiceHttp {
+
+	public static java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getAllQuestions(HttpPrincipal httpPrincipal) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				QuestionsServiceUtil.class, "getAllQuestions",
+				_getAllQuestionsParameterTypes0);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (java.util.List
+				<com.btpn.opera.operationsurvey.model.Questions>)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Questions
+			getQuestionsById(HttpPrincipal httpPrincipal, long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				QuestionsServiceUtil.class, "getQuestionsById",
+				_getQuestionsByIdParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, id);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (com.btpn.opera.operationsurvey.model.Questions)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getQuestionsBySurveyOperationId(
+			HttpPrincipal httpPrincipal, long surveyOperationId) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				QuestionsServiceUtil.class, "getQuestionsBySurveyOperationId",
+				_getQuestionsBySurveyOperationIdParameterTypes2);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, surveyOperationId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (java.util.List
+				<com.btpn.opera.operationsurvey.model.Questions>)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Questions addQuestions(
+		HttpPrincipal httpPrincipal, String question, String answer,
+		long surveyOperationId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				QuestionsServiceUtil.class, "addQuestions",
+				_addQuestionsParameterTypes3);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, question, answer, surveyOperationId, serviceContext);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (com.btpn.opera.operationsurvey.model.Questions)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Questions editQuestions(
+			HttpPrincipal httpPrincipal, long id, String question,
+			String answer, long surveyOperationId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				QuestionsServiceUtil.class, "editQuestions",
+				_editQuestionsParameterTypes4);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, id, question, answer, surveyOperationId,
+				serviceContext);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (com.btpn.opera.operationsurvey.model.Questions)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Questions
+			deleteQuestionsById(HttpPrincipal httpPrincipal, long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				QuestionsServiceUtil.class, "deleteQuestionsById",
+				_deleteQuestionsByIdParameterTypes5);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, id);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (com.btpn.opera.operationsurvey.model.Questions)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static void deleteQuestionsByOperationSurveyId(
+		HttpPrincipal httpPrincipal, long surveyOperationId) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				QuestionsServiceUtil.class,
+				"deleteQuestionsByOperationSurveyId",
+				_deleteQuestionsByOperationSurveyIdParameterTypes6);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, surveyOperationId);
+
+			try {
+				TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(QuestionsServiceHttp.class);
+
+	private static final Class<?>[] _getAllQuestionsParameterTypes0 =
+		new Class[] {};
+	private static final Class<?>[] _getQuestionsByIdParameterTypes1 =
+		new Class[] {long.class};
+	private static final Class<?>[]
+		_getQuestionsBySurveyOperationIdParameterTypes2 = new Class[] {
+			long.class
+		};
+	private static final Class<?>[] _addQuestionsParameterTypes3 = new Class[] {
+		String.class, String.class, long.class,
+		com.liferay.portal.kernel.service.ServiceContext.class
+	};
+	private static final Class<?>[] _editQuestionsParameterTypes4 =
+		new Class[] {
+			long.class, String.class, String.class, long.class,
+			com.liferay.portal.kernel.service.ServiceContext.class
+		};
+	private static final Class<?>[] _deleteQuestionsByIdParameterTypes5 =
+		new Class[] {long.class};
+	private static final Class<?>[]
+		_deleteQuestionsByOperationSurveyIdParameterTypes6 = new Class[] {
+			long.class
+		};
+
 }

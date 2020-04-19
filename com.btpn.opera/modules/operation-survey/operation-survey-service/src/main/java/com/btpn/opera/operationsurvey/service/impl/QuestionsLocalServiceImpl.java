@@ -14,11 +14,16 @@
 
 package com.btpn.opera.operationsurvey.service.impl;
 
+import com.btpn.opera.operationsurvey.model.Questions;
 import com.btpn.opera.operationsurvey.service.base.QuestionsLocalServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
 import org.osgi.service.component.annotations.Component;
+
+import java.util.List;
 
 /**
  * The implementation of the questions local service.
@@ -44,4 +49,52 @@ public class QuestionsLocalServiceImpl extends QuestionsLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Use <code>com.btpn.opera.operationsurvey.service.QuestionsLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.btpn.opera.operationsurvey.service.QuestionsLocalServiceUtil</code>.
 	 */
+
+	public List<Questions> getAllQuestions()
+	{
+		return questionsPersistence.findAll();
+	}
+
+	public Questions getQuestionsById(long id) throws PortalException
+	{
+		return questionsPersistence.findByPrimaryKey(id);
+	}
+
+	public List<Questions> getQuestionsBySurveyOperationId(long surveyOperationId)
+	{
+		return questionsPersistence.findBySurveyOperationId(surveyOperationId);
+	}
+
+	public Questions addQuestions(String question, String answer, long surveyOperationId, ServiceContext serviceContext)
+	{
+		long id = counterLocalService.increment();
+		Questions questions = questionsPersistence.create(id);
+
+		questions.setQuestion(question);
+		questions.setAnswer(answer);
+		questions.setSurveyOperationId(surveyOperationId);
+
+		return questionsPersistence.update(questions);
+	}
+
+	public Questions editQuestions(long id, String question, String answer, long surveyOperationId, ServiceContext serviceContext) throws PortalException
+	{
+		Questions questions = questionsPersistence.findByPrimaryKey(id);
+
+		questions.setQuestion(question);
+		questions.setAnswer(answer);
+		questions.setSurveyOperationId(surveyOperationId);
+
+		return questionsPersistence.update(questions);
+	}
+
+	public Questions deleteQuestionsById(long id) throws PortalException
+	{
+		return questionsPersistence.remove(id);
+	}
+
+	public void deleteAllQuestionsBySurveyOperationId(long surveyOperationId)
+	{
+		questionsPersistence.removeBySurveyOperationId(surveyOperationId);
+	}
 }

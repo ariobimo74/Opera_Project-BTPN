@@ -48,6 +48,15 @@ public class QuestionsLocalServiceWrapper
 		return _questionsLocalService.addQuestions(questions);
 	}
 
+	@Override
+	public com.btpn.opera.operationsurvey.model.Questions addQuestions(
+		String question, String answer, long surveyOperationId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+
+		return _questionsLocalService.addQuestions(
+			question, answer, surveyOperationId, serviceContext);
+	}
+
 	/**
 	 * Creates a new questions with the primary key. Does not add the questions to the database.
 	 *
@@ -59,6 +68,12 @@ public class QuestionsLocalServiceWrapper
 		long id) {
 
 		return _questionsLocalService.createQuestions(id);
+	}
+
+	@Override
+	public void deleteAllQuestionsBySurveyOperationId(long surveyOperationId) {
+		_questionsLocalService.deleteAllQuestionsBySurveyOperationId(
+			surveyOperationId);
 	}
 
 	/**
@@ -98,6 +113,14 @@ public class QuestionsLocalServiceWrapper
 		com.btpn.opera.operationsurvey.model.Questions questions) {
 
 		return _questionsLocalService.deleteQuestions(questions);
+	}
+
+	@Override
+	public com.btpn.opera.operationsurvey.model.Questions deleteQuestionsById(
+			long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _questionsLocalService.deleteQuestionsById(id);
 	}
 
 	@Override
@@ -191,6 +214,16 @@ public class QuestionsLocalServiceWrapper
 	}
 
 	@Override
+	public com.btpn.opera.operationsurvey.model.Questions editQuestions(
+			long id, String question, String answer, long surveyOperationId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _questionsLocalService.editQuestions(
+			id, question, answer, surveyOperationId, serviceContext);
+	}
+
+	@Override
 	public com.btpn.opera.operationsurvey.model.Questions fetchQuestions(
 		long id) {
 
@@ -202,6 +235,13 @@ public class QuestionsLocalServiceWrapper
 		getActionableDynamicQuery() {
 
 		return _questionsLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getAllQuestions() {
+
+		return _questionsLocalService.getAllQuestions();
 	}
 
 	@Override
@@ -241,6 +281,22 @@ public class QuestionsLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _questionsLocalService.getQuestions(id);
+	}
+
+	@Override
+	public com.btpn.opera.operationsurvey.model.Questions getQuestionsById(
+			long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _questionsLocalService.getQuestionsById(id);
+	}
+
+	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getQuestionsBySurveyOperationId(long surveyOperationId) {
+
+		return _questionsLocalService.getQuestionsBySurveyOperationId(
+			surveyOperationId);
 	}
 
 	/**

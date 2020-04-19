@@ -50,7 +50,7 @@ public class RespondenWrapper
 		attributes.put("fullName", getFullName());
 		attributes.put("lob", getLob());
 		attributes.put("division", getDivision());
-		attributes.put("surveyoperationId", getSurveyoperationId());
+		attributes.put("surveyOperationId", getSurveyOperationId());
 		attributes.put("totalValue", getTotalValue());
 		attributes.put("answerRecord", getAnswerRecord());
 		attributes.put("submittedDate", getSubmittedDate());
@@ -91,10 +91,10 @@ public class RespondenWrapper
 			setDivision(division);
 		}
 
-		Long surveyoperationId = (Long)attributes.get("surveyoperationId");
+		Long surveyOperationId = (Long)attributes.get("surveyOperationId");
 
-		if (surveyoperationId != null) {
-			setSurveyoperationId(surveyoperationId);
+		if (surveyOperationId != null) {
+			setSurveyOperationId(surveyOperationId);
 		}
 
 		Double totalValue = (Double)attributes.get("totalValue");
@@ -213,13 +213,13 @@ public class RespondenWrapper
 	}
 
 	/**
-	 * Returns the surveyoperation ID of this responden.
+	 * Returns the survey operation ID of this responden.
 	 *
-	 * @return the surveyoperation ID of this responden
+	 * @return the survey operation ID of this responden
 	 */
 	@Override
-	public long getSurveyoperationId() {
-		return model.getSurveyoperationId();
+	public long getSurveyOperationId() {
+		return model.getSurveyOperationId();
 	}
 
 	/**
@@ -328,13 +328,13 @@ public class RespondenWrapper
 	}
 
 	/**
-	 * Sets the surveyoperation ID of this responden.
+	 * Sets the survey operation ID of this responden.
 	 *
-	 * @param surveyoperationId the surveyoperation ID of this responden
+	 * @param surveyOperationId the survey operation ID of this responden
 	 */
 	@Override
-	public void setSurveyoperationId(long surveyoperationId) {
-		model.setSurveyoperationId(surveyoperationId);
+	public void setSurveyOperationId(long surveyOperationId) {
+		model.setSurveyOperationId(surveyOperationId);
 	}
 
 	/**

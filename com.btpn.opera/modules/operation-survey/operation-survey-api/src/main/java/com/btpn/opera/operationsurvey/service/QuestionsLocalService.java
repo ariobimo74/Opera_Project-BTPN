@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -71,6 +72,10 @@ public interface QuestionsLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Questions addQuestions(Questions questions);
 
+	public Questions addQuestions(
+		String question, String answer, long surveyOperationId,
+		ServiceContext serviceContext);
+
 	/**
 	 * Creates a new questions with the primary key. Does not add the questions to the database.
 	 *
@@ -79,6 +84,8 @@ public interface QuestionsLocalService
 	 */
 	@Transactional(enabled = false)
 	public Questions createQuestions(long id);
+
+	public void deleteAllQuestionsBySurveyOperationId(long surveyOperationId);
 
 	/**
 	 * @throws PortalException
@@ -105,6 +112,8 @@ public interface QuestionsLocalService
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	public Questions deleteQuestions(Questions questions);
+
+	public Questions deleteQuestionsById(long id) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public DynamicQuery dynamicQuery();
@@ -172,11 +181,19 @@ public interface QuestionsLocalService
 	public long dynamicQueryCount(
 		DynamicQuery dynamicQuery, Projection projection);
 
+	public Questions editQuestions(
+			long id, String question, String answer, long surveyOperationId,
+			ServiceContext serviceContext)
+		throws PortalException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Questions fetchQuestions(long id);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Questions> getAllQuestions();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
@@ -202,6 +219,13 @@ public interface QuestionsLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Questions getQuestions(long id) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Questions getQuestionsById(long id) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Questions> getQuestionsBySurveyOperationId(
+		long surveyOperationId);
 
 	/**
 	 * Returns a range of all the questionses.

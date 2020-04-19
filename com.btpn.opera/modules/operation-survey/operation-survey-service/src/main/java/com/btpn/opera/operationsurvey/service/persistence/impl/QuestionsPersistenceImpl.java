@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.SessionFactory;
@@ -35,9 +36,12 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -85,6 +89,519 @@ public class QuestionsPersistenceImpl
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
+	private FinderPath _finderPathWithPaginationFindBySurveyOperationId;
+	private FinderPath _finderPathWithoutPaginationFindBySurveyOperationId;
+	private FinderPath _finderPathCountBySurveyOperationId;
+
+	/**
+	 * Returns all the questionses where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @return the matching questionses
+	 */
+	@Override
+	public List<Questions> findBySurveyOperationId(long surveyOperationId) {
+		return findBySurveyOperationId(
+			surveyOperationId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the questionses where surveyOperationId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>QuestionsModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param start the lower bound of the range of questionses
+	 * @param end the upper bound of the range of questionses (not inclusive)
+	 * @return the range of matching questionses
+	 */
+	@Override
+	public List<Questions> findBySurveyOperationId(
+		long surveyOperationId, int start, int end) {
+
+		return findBySurveyOperationId(surveyOperationId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the questionses where surveyOperationId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>QuestionsModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findBySurveyOperationId(long, int, int, OrderByComparator)}
+	 * @param surveyOperationId the survey operation ID
+	 * @param start the lower bound of the range of questionses
+	 * @param end the upper bound of the range of questionses (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching questionses
+	 */
+	@Deprecated
+	@Override
+	public List<Questions> findBySurveyOperationId(
+		long surveyOperationId, int start, int end,
+		OrderByComparator<Questions> orderByComparator,
+		boolean useFinderCache) {
+
+		return findBySurveyOperationId(
+			surveyOperationId, start, end, orderByComparator);
+	}
+
+	/**
+	 * Returns an ordered range of all the questionses where surveyOperationId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>QuestionsModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param start the lower bound of the range of questionses
+	 * @param end the upper bound of the range of questionses (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching questionses
+	 */
+	@Override
+	public List<Questions> findBySurveyOperationId(
+		long surveyOperationId, int start, int end,
+		OrderByComparator<Questions> orderByComparator) {
+
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+			(orderByComparator == null)) {
+
+			pagination = false;
+			finderPath = _finderPathWithoutPaginationFindBySurveyOperationId;
+			finderArgs = new Object[] {surveyOperationId};
+		}
+		else {
+			finderPath = _finderPathWithPaginationFindBySurveyOperationId;
+			finderArgs = new Object[] {
+				surveyOperationId, start, end, orderByComparator
+			};
+		}
+
+		List<Questions> list = (List<Questions>)finderCache.getResult(
+			finderPath, finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Questions questions : list) {
+				if ((surveyOperationId != questions.getSurveyOperationId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_QUESTIONS_WHERE);
+
+			query.append(_FINDER_COLUMN_SURVEYOPERATIONID_SURVEYOPERATIONID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
+			}
+			else if (pagination) {
+				query.append(QuestionsModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(surveyOperationId);
+
+				if (!pagination) {
+					list = (List<Questions>)QueryUtil.list(
+						q, getDialect(), start, end, false);
+
+					Collections.sort(list);
+
+					list = Collections.unmodifiableList(list);
+				}
+				else {
+					list = (List<Questions>)QueryUtil.list(
+						q, getDialect(), start, end);
+				}
+
+				cacheResult(list);
+
+				finderCache.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first questions in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching questions
+	 * @throws NoSuchQuestionsException if a matching questions could not be found
+	 */
+	@Override
+	public Questions findBySurveyOperationId_First(
+			long surveyOperationId,
+			OrderByComparator<Questions> orderByComparator)
+		throws NoSuchQuestionsException {
+
+		Questions questions = fetchBySurveyOperationId_First(
+			surveyOperationId, orderByComparator);
+
+		if (questions != null) {
+			return questions;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("surveyOperationId=");
+		msg.append(surveyOperationId);
+
+		msg.append("}");
+
+		throw new NoSuchQuestionsException(msg.toString());
+	}
+
+	/**
+	 * Returns the first questions in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching questions, or <code>null</code> if a matching questions could not be found
+	 */
+	@Override
+	public Questions fetchBySurveyOperationId_First(
+		long surveyOperationId,
+		OrderByComparator<Questions> orderByComparator) {
+
+		List<Questions> list = findBySurveyOperationId(
+			surveyOperationId, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last questions in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching questions
+	 * @throws NoSuchQuestionsException if a matching questions could not be found
+	 */
+	@Override
+	public Questions findBySurveyOperationId_Last(
+			long surveyOperationId,
+			OrderByComparator<Questions> orderByComparator)
+		throws NoSuchQuestionsException {
+
+		Questions questions = fetchBySurveyOperationId_Last(
+			surveyOperationId, orderByComparator);
+
+		if (questions != null) {
+			return questions;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("surveyOperationId=");
+		msg.append(surveyOperationId);
+
+		msg.append("}");
+
+		throw new NoSuchQuestionsException(msg.toString());
+	}
+
+	/**
+	 * Returns the last questions in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching questions, or <code>null</code> if a matching questions could not be found
+	 */
+	@Override
+	public Questions fetchBySurveyOperationId_Last(
+		long surveyOperationId,
+		OrderByComparator<Questions> orderByComparator) {
+
+		int count = countBySurveyOperationId(surveyOperationId);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<Questions> list = findBySurveyOperationId(
+			surveyOperationId, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the questionses before and after the current questions in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param id the primary key of the current questions
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next questions
+	 * @throws NoSuchQuestionsException if a questions with the primary key could not be found
+	 */
+	@Override
+	public Questions[] findBySurveyOperationId_PrevAndNext(
+			long id, long surveyOperationId,
+			OrderByComparator<Questions> orderByComparator)
+		throws NoSuchQuestionsException {
+
+		Questions questions = findByPrimaryKey(id);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Questions[] array = new QuestionsImpl[3];
+
+			array[0] = getBySurveyOperationId_PrevAndNext(
+				session, questions, surveyOperationId, orderByComparator, true);
+
+			array[1] = questions;
+
+			array[2] = getBySurveyOperationId_PrevAndNext(
+				session, questions, surveyOperationId, orderByComparator,
+				false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Questions getBySurveyOperationId_PrevAndNext(
+		Session session, Questions questions, long surveyOperationId,
+		OrderByComparator<Questions> orderByComparator, boolean previous) {
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_QUESTIONS_WHERE);
+
+		query.append(_FINDER_COLUMN_SURVEYOPERATIONID_SURVEYOPERATIONID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(QuestionsModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(surveyOperationId);
+
+		if (orderByComparator != null) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(questions)) {
+
+				qPos.add(orderByConditionValue);
+			}
+		}
+
+		List<Questions> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the questionses where surveyOperationId = &#63; from the database.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 */
+	@Override
+	public void removeBySurveyOperationId(long surveyOperationId) {
+		for (Questions questions :
+				findBySurveyOperationId(
+					surveyOperationId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
+			remove(questions);
+		}
+	}
+
+	/**
+	 * Returns the number of questionses where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @return the number of matching questionses
+	 */
+	@Override
+	public int countBySurveyOperationId(long surveyOperationId) {
+		FinderPath finderPath = _finderPathCountBySurveyOperationId;
+
+		Object[] finderArgs = new Object[] {surveyOperationId};
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_QUESTIONS_WHERE);
+
+			query.append(_FINDER_COLUMN_SURVEYOPERATIONID_SURVEYOPERATIONID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(surveyOperationId);
+
+				count = (Long)q.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String
+		_FINDER_COLUMN_SURVEYOPERATIONID_SURVEYOPERATIONID_2 =
+			"questions.surveyOperationId = ?";
 
 	public QuestionsPersistenceImpl() {
 		setModelClass(Questions.class);
@@ -280,6 +797,24 @@ public class QuestionsPersistenceImpl
 	public Questions updateImpl(Questions questions) {
 		boolean isNew = questions.isNew();
 
+		if (!(questions instanceof QuestionsModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(questions.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(questions);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in questions proxy " +
+						invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom Questions implementation " +
+					questions.getClass());
+		}
+
+		QuestionsModelImpl questionsModelImpl = (QuestionsModelImpl)questions;
+
 		Session session = null;
 
 		try {
@@ -303,10 +838,43 @@ public class QuestionsPersistenceImpl
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (!_columnBitmaskEnabled) {
+			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+		else if (isNew) {
+			Object[] args = new Object[] {
+				questionsModelImpl.getSurveyOperationId()
+			};
+
+			finderCache.removeResult(_finderPathCountBySurveyOperationId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindBySurveyOperationId, args);
+
 			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
 			finderCache.removeResult(
 				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((questionsModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindBySurveyOperationId.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					questionsModelImpl.getOriginalSurveyOperationId()
+				};
+
+				finderCache.removeResult(
+					_finderPathCountBySurveyOperationId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindBySurveyOperationId, args);
+
+				args = new Object[] {questionsModelImpl.getSurveyOperationId()};
+
+				finderCache.removeResult(
+					_finderPathCountBySurveyOperationId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindBySurveyOperationId, args);
+			}
 		}
 
 		entityCache.putResult(
@@ -604,6 +1172,25 @@ public class QuestionsPersistenceImpl
 			entityCacheEnabled, finderCacheEnabled, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
 			new String[0]);
+
+		_finderPathWithPaginationFindBySurveyOperationId = new FinderPath(
+			entityCacheEnabled, finderCacheEnabled, QuestionsImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findBySurveyOperationId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindBySurveyOperationId = new FinderPath(
+			entityCacheEnabled, finderCacheEnabled, QuestionsImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findBySurveyOperationId", new String[] {Long.class.getName()},
+			QuestionsModelImpl.SURVEYOPERATIONID_COLUMN_BITMASK);
+
+		_finderPathCountBySurveyOperationId = new FinderPath(
+			entityCacheEnabled, finderCacheEnabled, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countBySurveyOperationId", new String[] {Long.class.getName()});
 	}
 
 	@Deactivate
@@ -657,13 +1244,22 @@ public class QuestionsPersistenceImpl
 	private static final String _SQL_SELECT_QUESTIONS =
 		"SELECT questions FROM Questions questions";
 
+	private static final String _SQL_SELECT_QUESTIONS_WHERE =
+		"SELECT questions FROM Questions questions WHERE ";
+
 	private static final String _SQL_COUNT_QUESTIONS =
 		"SELECT COUNT(questions) FROM Questions questions";
+
+	private static final String _SQL_COUNT_QUESTIONS_WHERE =
+		"SELECT COUNT(questions) FROM Questions questions WHERE ";
 
 	private static final String _ORDER_BY_ENTITY_ALIAS = "questions.";
 
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
 		"No Questions exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No Questions exists with the key {";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		QuestionsPersistenceImpl.class);

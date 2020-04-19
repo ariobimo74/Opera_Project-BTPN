@@ -110,6 +110,10 @@ public class RespondenModelImpl
 
 	public static final String TX_MANAGER = "liferayTransactionManager";
 
+	public static final long SURVEYOPERATIONID_COLUMN_BITMASK = 1L;
+
+	public static final long ID_COLUMN_BITMASK = 2L;
+
 	public static void setEntityCacheEnabled(boolean entityCacheEnabled) {
 		_entityCacheEnabled = entityCacheEnabled;
 	}
@@ -136,7 +140,7 @@ public class RespondenModelImpl
 		model.setFullName(soapModel.getFullName());
 		model.setLob(soapModel.getLob());
 		model.setDivision(soapModel.getDivision());
-		model.setSurveyoperationId(soapModel.getSurveyoperationId());
+		model.setSurveyOperationId(soapModel.getSurveyOperationId());
 		model.setTotalValue(soapModel.getTotalValue());
 		model.setAnswerRecord(soapModel.getAnswerRecord());
 		model.setSubmittedDate(soapModel.getSubmittedDate());
@@ -305,10 +309,10 @@ public class RespondenModelImpl
 		attributeSetterBiConsumers.put(
 			"division", (BiConsumer<Responden, String>)Responden::setDivision);
 		attributeGetterFunctions.put(
-			"surveyoperationId", Responden::getSurveyoperationId);
+			"surveyOperationId", Responden::getSurveyOperationId);
 		attributeSetterBiConsumers.put(
-			"surveyoperationId",
-			(BiConsumer<Responden, Long>)Responden::setSurveyoperationId);
+			"surveyOperationId",
+			(BiConsumer<Responden, Long>)Responden::setSurveyOperationId);
 		attributeGetterFunctions.put("totalValue", Responden::getTotalValue);
 		attributeSetterBiConsumers.put(
 			"totalValue",
@@ -410,13 +414,25 @@ public class RespondenModelImpl
 
 	@JSON
 	@Override
-	public long getSurveyoperationId() {
-		return _surveyoperationId;
+	public long getSurveyOperationId() {
+		return _surveyOperationId;
 	}
 
 	@Override
-	public void setSurveyoperationId(long surveyoperationId) {
-		_surveyoperationId = surveyoperationId;
+	public void setSurveyOperationId(long surveyOperationId) {
+		_columnBitmask |= SURVEYOPERATIONID_COLUMN_BITMASK;
+
+		if (!_setOriginalSurveyOperationId) {
+			_setOriginalSurveyOperationId = true;
+
+			_originalSurveyOperationId = _surveyOperationId;
+		}
+
+		_surveyOperationId = surveyOperationId;
+	}
+
+	public long getOriginalSurveyOperationId() {
+		return _originalSurveyOperationId;
 	}
 
 	@JSON
@@ -473,6 +489,10 @@ public class RespondenModelImpl
 		_notes = notes;
 	}
 
+	public long getColumnBitmask() {
+		return _columnBitmask;
+	}
+
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(
@@ -510,7 +530,7 @@ public class RespondenModelImpl
 		respondenImpl.setFullName(getFullName());
 		respondenImpl.setLob(getLob());
 		respondenImpl.setDivision(getDivision());
-		respondenImpl.setSurveyoperationId(getSurveyoperationId());
+		respondenImpl.setSurveyOperationId(getSurveyOperationId());
 		respondenImpl.setTotalValue(getTotalValue());
 		respondenImpl.setAnswerRecord(getAnswerRecord());
 		respondenImpl.setSubmittedDate(getSubmittedDate());
@@ -575,6 +595,14 @@ public class RespondenModelImpl
 
 	@Override
 	public void resetOriginalValues() {
+		RespondenModelImpl respondenModelImpl = this;
+
+		respondenModelImpl._originalSurveyOperationId =
+			respondenModelImpl._surveyOperationId;
+
+		respondenModelImpl._setOriginalSurveyOperationId = false;
+
+		respondenModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -615,7 +643,7 @@ public class RespondenModelImpl
 			respondenCacheModel.division = null;
 		}
 
-		respondenCacheModel.surveyoperationId = getSurveyoperationId();
+		respondenCacheModel.surveyOperationId = getSurveyOperationId();
 
 		respondenCacheModel.totalValue = getTotalValue();
 
@@ -725,11 +753,14 @@ public class RespondenModelImpl
 	private String _fullName;
 	private String _lob;
 	private String _division;
-	private long _surveyoperationId;
+	private long _surveyOperationId;
+	private long _originalSurveyOperationId;
+	private boolean _setOriginalSurveyOperationId;
 	private double _totalValue;
 	private String _answerRecord;
 	private Date _submittedDate;
 	private String _notes;
+	private long _columnBitmask;
 	private Responden _escapedModel;
 
 }

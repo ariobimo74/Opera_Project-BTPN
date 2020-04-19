@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.SessionFactory;
@@ -35,9 +36,13 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -85,6 +90,213 @@ public class RespondenPersistenceImpl
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
+	private FinderPath _finderPathFetchBysurveyOperationID;
+	private FinderPath _finderPathCountBysurveyOperationID;
+
+	/**
+	 * Returns the responden where surveyOperationId = &#63; or throws a <code>NoSuchRespondenException</code> if it could not be found.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @return the matching responden
+	 * @throws NoSuchRespondenException if a matching responden could not be found
+	 */
+	@Override
+	public Responden findBysurveyOperationID(long surveyOperationId)
+		throws NoSuchRespondenException {
+
+		Responden responden = fetchBysurveyOperationID(surveyOperationId);
+
+		if (responden == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("surveyOperationId=");
+			msg.append(surveyOperationId);
+
+			msg.append("}");
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
+			}
+
+			throw new NoSuchRespondenException(msg.toString());
+		}
+
+		return responden;
+	}
+
+	/**
+	 * Returns the responden where surveyOperationId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchBysurveyOperationID(long)}
+	 * @param surveyOperationId the survey operation ID
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the matching responden, or <code>null</code> if a matching responden could not be found
+	 */
+	@Deprecated
+	@Override
+	public Responden fetchBysurveyOperationID(
+		long surveyOperationId, boolean useFinderCache) {
+
+		return fetchBysurveyOperationID(surveyOperationId);
+	}
+
+	/**
+	 * Returns the responden where surveyOperationId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the matching responden, or <code>null</code> if a matching responden could not be found
+	 */
+	@Override
+	public Responden fetchBysurveyOperationID(long surveyOperationId) {
+		Object[] finderArgs = new Object[] {surveyOperationId};
+
+		Object result = finderCache.getResult(
+			_finderPathFetchBysurveyOperationID, finderArgs, this);
+
+		if (result instanceof Responden) {
+			Responden responden = (Responden)result;
+
+			if ((surveyOperationId != responden.getSurveyOperationId())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_RESPONDEN_WHERE);
+
+			query.append(_FINDER_COLUMN_SURVEYOPERATIONID_SURVEYOPERATIONID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(surveyOperationId);
+
+				List<Responden> list = q.list();
+
+				if (list.isEmpty()) {
+					finderCache.putResult(
+						_finderPathFetchBysurveyOperationID, finderArgs, list);
+				}
+				else {
+					if (list.size() > 1) {
+						Collections.sort(list, Collections.reverseOrder());
+
+						if (_log.isWarnEnabled()) {
+							_log.warn(
+								"RespondenPersistenceImpl.fetchBysurveyOperationID(long, boolean) with parameters (" +
+									StringUtil.merge(finderArgs) +
+										") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+						}
+					}
+
+					Responden responden = list.get(0);
+
+					result = responden;
+
+					cacheResult(responden);
+				}
+			}
+			catch (Exception e) {
+				finderCache.removeResult(
+					_finderPathFetchBysurveyOperationID, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Responden)result;
+		}
+	}
+
+	/**
+	 * Removes the responden where surveyOperationId = &#63; from the database.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @return the responden that was removed
+	 */
+	@Override
+	public Responden removeBysurveyOperationID(long surveyOperationId)
+		throws NoSuchRespondenException {
+
+		Responden responden = findBysurveyOperationID(surveyOperationId);
+
+		return remove(responden);
+	}
+
+	/**
+	 * Returns the number of respondens where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @return the number of matching respondens
+	 */
+	@Override
+	public int countBysurveyOperationID(long surveyOperationId) {
+		FinderPath finderPath = _finderPathCountBysurveyOperationID;
+
+		Object[] finderArgs = new Object[] {surveyOperationId};
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_RESPONDEN_WHERE);
+
+			query.append(_FINDER_COLUMN_SURVEYOPERATIONID_SURVEYOPERATIONID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(surveyOperationId);
+
+				count = (Long)q.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String
+		_FINDER_COLUMN_SURVEYOPERATIONID_SURVEYOPERATIONID_2 =
+			"responden.surveyOperationId = ?";
 
 	public RespondenPersistenceImpl() {
 		setModelClass(Responden.class);
@@ -95,7 +307,7 @@ public class RespondenPersistenceImpl
 		Map<String, String> dbColumnNames = new HashMap<String, String>();
 
 		dbColumnNames.put("fullName", "full_name");
-		dbColumnNames.put("surveyoperationId", "survey_operation_id");
+		dbColumnNames.put("surveyOperationId", "survey_operation_id");
 		dbColumnNames.put("totalValue", "total_value");
 		dbColumnNames.put("answerRecord", "answer_record");
 		dbColumnNames.put("submittedDate", "submitted_date");
@@ -113,6 +325,10 @@ public class RespondenPersistenceImpl
 		entityCache.putResult(
 			entityCacheEnabled, RespondenImpl.class, responden.getPrimaryKey(),
 			responden);
+
+		finderCache.putResult(
+			_finderPathFetchBysurveyOperationID,
+			new Object[] {responden.getSurveyOperationId()}, responden);
 
 		responden.resetOriginalValues();
 	}
@@ -167,6 +383,8 @@ public class RespondenPersistenceImpl
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache((RespondenModelImpl)responden, true);
 	}
 
 	@Override
@@ -178,6 +396,46 @@ public class RespondenPersistenceImpl
 			entityCache.removeResult(
 				entityCacheEnabled, RespondenImpl.class,
 				responden.getPrimaryKey());
+
+			clearUniqueFindersCache((RespondenModelImpl)responden, true);
+		}
+	}
+
+	protected void cacheUniqueFindersCache(
+		RespondenModelImpl respondenModelImpl) {
+
+		Object[] args = new Object[] {
+			respondenModelImpl.getSurveyOperationId()
+		};
+
+		finderCache.putResult(
+			_finderPathCountBysurveyOperationID, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchBysurveyOperationID, args, respondenModelImpl,
+			false);
+	}
+
+	protected void clearUniqueFindersCache(
+		RespondenModelImpl respondenModelImpl, boolean clearCurrent) {
+
+		if (clearCurrent) {
+			Object[] args = new Object[] {
+				respondenModelImpl.getSurveyOperationId()
+			};
+
+			finderCache.removeResult(_finderPathCountBysurveyOperationID, args);
+			finderCache.removeResult(_finderPathFetchBysurveyOperationID, args);
+		}
+
+		if ((respondenModelImpl.getColumnBitmask() &
+			 _finderPathFetchBysurveyOperationID.getColumnBitmask()) != 0) {
+
+			Object[] args = new Object[] {
+				respondenModelImpl.getOriginalSurveyOperationId()
+			};
+
+			finderCache.removeResult(_finderPathCountBysurveyOperationID, args);
+			finderCache.removeResult(_finderPathFetchBysurveyOperationID, args);
 		}
 	}
 
@@ -284,6 +542,24 @@ public class RespondenPersistenceImpl
 	public Responden updateImpl(Responden responden) {
 		boolean isNew = responden.isNew();
 
+		if (!(responden instanceof RespondenModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(responden.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(responden);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in responden proxy " +
+						invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom Responden implementation " +
+					responden.getClass());
+		}
+
+		RespondenModelImpl respondenModelImpl = (RespondenModelImpl)responden;
+
 		Session session = null;
 
 		try {
@@ -307,7 +583,10 @@ public class RespondenPersistenceImpl
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (!_columnBitmaskEnabled) {
+			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+		else if (isNew) {
 			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
 			finderCache.removeResult(
 				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
@@ -316,6 +595,9 @@ public class RespondenPersistenceImpl
 		entityCache.putResult(
 			entityCacheEnabled, RespondenImpl.class, responden.getPrimaryKey(),
 			responden, false);
+
+		clearUniqueFindersCache(respondenModelImpl, false);
+		cacheUniqueFindersCache(respondenModelImpl);
 
 		responden.resetOriginalValues();
 
@@ -608,6 +890,17 @@ public class RespondenPersistenceImpl
 			entityCacheEnabled, finderCacheEnabled, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
 			new String[0]);
+
+		_finderPathFetchBysurveyOperationID = new FinderPath(
+			entityCacheEnabled, finderCacheEnabled, RespondenImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchBysurveyOperationID",
+			new String[] {Long.class.getName()},
+			RespondenModelImpl.SURVEYOPERATIONID_COLUMN_BITMASK);
+
+		_finderPathCountBysurveyOperationID = new FinderPath(
+			entityCacheEnabled, finderCacheEnabled, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countBysurveyOperationID", new String[] {Long.class.getName()});
 	}
 
 	@Deactivate
@@ -661,20 +954,29 @@ public class RespondenPersistenceImpl
 	private static final String _SQL_SELECT_RESPONDEN =
 		"SELECT responden FROM Responden responden";
 
+	private static final String _SQL_SELECT_RESPONDEN_WHERE =
+		"SELECT responden FROM Responden responden WHERE ";
+
 	private static final String _SQL_COUNT_RESPONDEN =
 		"SELECT COUNT(responden) FROM Responden responden";
+
+	private static final String _SQL_COUNT_RESPONDEN_WHERE =
+		"SELECT COUNT(responden) FROM Responden responden WHERE ";
 
 	private static final String _ORDER_BY_ENTITY_ALIAS = "responden.";
 
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
 		"No Responden exists with the primary key ";
 
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No Responden exists with the key {";
+
 	private static final Log _log = LogFactoryUtil.getLog(
 		RespondenPersistenceImpl.class);
 
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(
 		new String[] {
-			"fullName", "surveyoperationId", "totalValue", "answerRecord",
+			"fullName", "surveyOperationId", "totalValue", "answerRecord",
 			"submittedDate"
 		});
 

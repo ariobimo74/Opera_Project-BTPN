@@ -130,18 +130,18 @@ public interface RespondenModel extends BaseModel<Responden> {
 	public void setDivision(String division);
 
 	/**
-	 * Returns the surveyoperation ID of this responden.
+	 * Returns the survey operation ID of this responden.
 	 *
-	 * @return the surveyoperation ID of this responden
+	 * @return the survey operation ID of this responden
 	 */
-	public long getSurveyoperationId();
+	public long getSurveyOperationId();
 
 	/**
-	 * Sets the surveyoperation ID of this responden.
+	 * Sets the survey operation ID of this responden.
 	 *
-	 * @param surveyoperationId the surveyoperation ID of this responden
+	 * @param surveyOperationId the survey operation ID of this responden
 	 */
-	public void setSurveyoperationId(long surveyoperationId);
+	public void setSurveyOperationId(long surveyOperationId);
 
 	/**
 	 * Returns the total value of this responden.

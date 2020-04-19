@@ -100,6 +100,10 @@ public class QuestionsModelImpl
 
 	public static final String TX_MANAGER = "liferayTransactionManager";
 
+	public static final long SURVEYOPERATIONID_COLUMN_BITMASK = 1L;
+
+	public static final long ID_COLUMN_BITMASK = 2L;
+
 	public static void setEntityCacheEnabled(boolean entityCacheEnabled) {
 		_entityCacheEnabled = entityCacheEnabled;
 	}
@@ -345,7 +349,23 @@ public class QuestionsModelImpl
 
 	@Override
 	public void setSurveyOperationId(long surveyOperationId) {
+		_columnBitmask |= SURVEYOPERATIONID_COLUMN_BITMASK;
+
+		if (!_setOriginalSurveyOperationId) {
+			_setOriginalSurveyOperationId = true;
+
+			_originalSurveyOperationId = _surveyOperationId;
+		}
+
 		_surveyOperationId = surveyOperationId;
+	}
+
+	public long getOriginalSurveyOperationId() {
+		return _originalSurveyOperationId;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -444,6 +464,14 @@ public class QuestionsModelImpl
 
 	@Override
 	public void resetOriginalValues() {
+		QuestionsModelImpl questionsModelImpl = this;
+
+		questionsModelImpl._originalSurveyOperationId =
+			questionsModelImpl._surveyOperationId;
+
+		questionsModelImpl._setOriginalSurveyOperationId = false;
+
+		questionsModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -550,6 +578,9 @@ public class QuestionsModelImpl
 	private String _question;
 	private String _answer;
 	private long _surveyOperationId;
+	private long _originalSurveyOperationId;
+	private boolean _setOriginalSurveyOperationId;
+	private long _columnBitmask;
 	private Questions _escapedModel;
 
 }

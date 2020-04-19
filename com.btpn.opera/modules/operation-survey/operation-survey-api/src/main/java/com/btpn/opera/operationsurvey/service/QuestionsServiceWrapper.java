@@ -33,6 +33,45 @@ public class QuestionsServiceWrapper
 		_questionsService = questionsService;
 	}
 
+	@Override
+	public com.btpn.opera.operationsurvey.model.Questions addQuestions(
+		String question, String answer, long surveyOperationId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+
+		return _questionsService.addQuestions(
+			question, answer, surveyOperationId, serviceContext);
+	}
+
+	@Override
+	public com.btpn.opera.operationsurvey.model.Questions deleteQuestionsById(
+			long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _questionsService.deleteQuestionsById(id);
+	}
+
+	@Override
+	public void deleteQuestionsByOperationSurveyId(long surveyOperationId) {
+		_questionsService.deleteQuestionsByOperationSurveyId(surveyOperationId);
+	}
+
+	@Override
+	public com.btpn.opera.operationsurvey.model.Questions editQuestions(
+			long id, String question, String answer, long surveyOperationId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _questionsService.editQuestions(
+			id, question, answer, surveyOperationId, serviceContext);
+	}
+
+	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getAllQuestions() {
+
+		return _questionsService.getAllQuestions();
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
@@ -41,6 +80,22 @@ public class QuestionsServiceWrapper
 	@Override
 	public String getOSGiServiceIdentifier() {
 		return _questionsService.getOSGiServiceIdentifier();
+	}
+
+	@Override
+	public com.btpn.opera.operationsurvey.model.Questions getQuestionsById(
+			long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _questionsService.getQuestionsById(id);
+	}
+
+	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getQuestionsBySurveyOperationId(long surveyOperationId) {
+
+		return _questionsService.getQuestionsBySurveyOperationId(
+			surveyOperationId);
 	}
 
 	@Override

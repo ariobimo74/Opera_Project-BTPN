@@ -14,11 +14,18 @@
 
 package com.btpn.opera.operationsurvey.service.http;
 
+import com.btpn.opera.operationsurvey.service.QuestionsServiceUtil;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.rmi.RemoteException;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Provides the SOAP utility for the
- * <code>com.btpn.opera.operationsurvey.service.QuestionsServiceUtil</code> service
+ * <code>QuestionsServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -57,4 +64,138 @@ import org.osgi.annotation.versioning.ProviderType;
  */
 @ProviderType
 public class QuestionsServiceSoap {
+
+	public static com.btpn.opera.operationsurvey.model.QuestionsSoap[]
+			getAllQuestions()
+		throws RemoteException {
+
+		try {
+			java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+				returnValue = QuestionsServiceUtil.getAllQuestions();
+
+			return com.btpn.opera.operationsurvey.model.QuestionsSoap.
+				toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.btpn.opera.operationsurvey.model.QuestionsSoap
+			getQuestionsById(long id)
+		throws RemoteException {
+
+		try {
+			com.btpn.opera.operationsurvey.model.Questions returnValue =
+				QuestionsServiceUtil.getQuestionsById(id);
+
+			return com.btpn.opera.operationsurvey.model.QuestionsSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.btpn.opera.operationsurvey.model.QuestionsSoap[]
+			getQuestionsBySurveyOperationId(long surveyOperationId)
+		throws RemoteException {
+
+		try {
+			java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+				returnValue =
+					QuestionsServiceUtil.getQuestionsBySurveyOperationId(
+						surveyOperationId);
+
+			return com.btpn.opera.operationsurvey.model.QuestionsSoap.
+				toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.btpn.opera.operationsurvey.model.QuestionsSoap
+			addQuestions(
+				String question, String answer, long surveyOperationId,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			com.btpn.opera.operationsurvey.model.Questions returnValue =
+				QuestionsServiceUtil.addQuestions(
+					question, answer, surveyOperationId, serviceContext);
+
+			return com.btpn.opera.operationsurvey.model.QuestionsSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.btpn.opera.operationsurvey.model.QuestionsSoap
+			editQuestions(
+				long id, String question, String answer, long surveyOperationId,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			com.btpn.opera.operationsurvey.model.Questions returnValue =
+				QuestionsServiceUtil.editQuestions(
+					id, question, answer, surveyOperationId, serviceContext);
+
+			return com.btpn.opera.operationsurvey.model.QuestionsSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.btpn.opera.operationsurvey.model.QuestionsSoap
+			deleteQuestionsById(long id)
+		throws RemoteException {
+
+		try {
+			com.btpn.opera.operationsurvey.model.Questions returnValue =
+				QuestionsServiceUtil.deleteQuestionsById(id);
+
+			return com.btpn.opera.operationsurvey.model.QuestionsSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void deleteQuestionsByOperationSurveyId(
+			long surveyOperationId)
+		throws RemoteException {
+
+		try {
+			QuestionsServiceUtil.deleteQuestionsByOperationSurveyId(
+				surveyOperationId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(QuestionsServiceSoap.class);
+
 }
