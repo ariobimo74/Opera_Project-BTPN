@@ -196,6 +196,26 @@ public class QuestionsServiceSoap {
 		}
 	}
 
+	public static com.btpn.opera.operationsurvey.model.QuestionsSoap[]
+			getQuestionsBySurveyOperationIdQuery(long surveyOperationId)
+		throws RemoteException {
+
+		try {
+			java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+				returnValue =
+					QuestionsServiceUtil.getQuestionsBySurveyOperationIdQuery(
+						surveyOperationId);
+
+			return com.btpn.opera.operationsurvey.model.QuestionsSoap.
+				toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(QuestionsServiceSoap.class);
 
 }

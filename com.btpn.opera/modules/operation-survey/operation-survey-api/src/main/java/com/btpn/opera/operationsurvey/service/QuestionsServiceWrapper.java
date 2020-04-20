@@ -99,6 +99,14 @@ public class QuestionsServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getQuestionsBySurveyOperationIdQuery(long surveyOperationId) {
+
+		return _questionsService.getQuestionsBySurveyOperationIdQuery(
+			surveyOperationId);
+	}
+
+	@Override
 	public QuestionsService getWrappedService() {
 		return _questionsService;
 	}

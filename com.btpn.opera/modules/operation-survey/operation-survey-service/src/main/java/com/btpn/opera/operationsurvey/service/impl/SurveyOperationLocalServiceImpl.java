@@ -162,4 +162,16 @@ public class SurveyOperationLocalServiceImpl
 			throw new EndDateException();
 		}
 	}
+
+	public List<SurveyOperation> getAllSurveyOperationMapping()
+	{
+		return surveyOperationFinder.findAllSurveyOperationMapping();
+	}
+
+	public List<SurveyOperation> getAllSurveyOperationByLikeTitleQuery(String title)
+	{
+		String theTitle = "'%" + title + "%'";
+
+		return surveyOperationFinder.findSurveyOperationByLikeTitleQuery(theTitle);
+	}
 }

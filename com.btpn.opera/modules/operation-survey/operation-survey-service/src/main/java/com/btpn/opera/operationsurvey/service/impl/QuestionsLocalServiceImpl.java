@@ -97,4 +97,9 @@ public class QuestionsLocalServiceImpl extends QuestionsLocalServiceBaseImpl {
 	{
 		questionsPersistence.removeBySurveyOperationId(surveyOperationId);
 	}
+
+	public List<Questions> getQuestionsBySurveyOperationIdQuery(long surveyOperationId)
+	{
+		return questionsFinder.findQuestionsBySurveyOperationIdQuery(surveyOperationId);
+	}
 }

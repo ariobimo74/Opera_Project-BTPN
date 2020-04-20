@@ -411,6 +411,73 @@ public class SurveyOperationServiceHttp {
 		}
 	}
 
+	public static java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperation>
+			getAllSurveyOperationMapping(HttpPrincipal httpPrincipal) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				SurveyOperationServiceUtil.class,
+				"getAllSurveyOperationMapping",
+				_getAllSurveyOperationMappingParameterTypes10);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (java.util.List
+				<com.btpn.opera.operationsurvey.model.SurveyOperation>)
+					returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperation>
+			getAllSurveyOperationByLikeTitleQuery(
+				HttpPrincipal httpPrincipal, String title) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				SurveyOperationServiceUtil.class,
+				"getAllSurveyOperationByLikeTitleQuery",
+				_getAllSurveyOperationByLikeTitleQueryParameterTypes11);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, title);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (java.util.List
+				<com.btpn.opera.operationsurvey.model.SurveyOperation>)
+					returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		SurveyOperationServiceHttp.class);
 
@@ -446,5 +513,11 @@ public class SurveyOperationServiceHttp {
 		new Class[] {};
 	private static final Class<?>[]
 		_deleteSurveyOperationAfterEndDateParameterTypes9 = new Class[] {};
+	private static final Class<?>[]
+		_getAllSurveyOperationMappingParameterTypes10 = new Class[] {};
+	private static final Class<?>[]
+		_getAllSurveyOperationByLikeTitleQueryParameterTypes11 = new Class[] {
+			String.class
+		};
 
 }

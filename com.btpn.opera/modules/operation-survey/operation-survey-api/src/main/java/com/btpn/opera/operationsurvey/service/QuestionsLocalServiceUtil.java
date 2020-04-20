@@ -285,6 +285,13 @@ public class QuestionsLocalServiceUtil {
 		return getService().getQuestionsBySurveyOperationId(surveyOperationId);
 	}
 
+	public static java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getQuestionsBySurveyOperationIdQuery(long surveyOperationId) {
+
+		return getService().getQuestionsBySurveyOperationIdQuery(
+			surveyOperationId);
+	}
+
 	/**
 	 * Returns a range of all the questionses.
 	 *

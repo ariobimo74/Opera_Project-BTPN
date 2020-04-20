@@ -97,6 +97,13 @@ public class QuestionsServiceUtil {
 		return getService().getQuestionsBySurveyOperationId(surveyOperationId);
 	}
 
+	public static java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getQuestionsBySurveyOperationIdQuery(long surveyOperationId) {
+
+		return getService().getQuestionsBySurveyOperationIdQuery(
+			surveyOperationId);
+	}
+
 	public static QuestionsService getService() {
 		return _serviceTracker.getService();
 	}

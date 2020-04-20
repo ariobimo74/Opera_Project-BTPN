@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<custom-sql>
+    <sql id="findAllSurveyOperationMapping">
+        <![CDATA[
+           SELECT survey_operation.title, survey_object.name, (CAST(CONVERT(DATE, survey_operation.start_date) AS VARCHAR) + ' - ' + CAST(CONVERT(DATE, survey_operation.end_date) AS VARCHAR)) AS periode, survey_operation.submitted_date FROM survey_operation AS survey_operation
+            LEFT JOIN survey_object AS survey_object
+            ON survey_operation.survey_object_id = survey_object.id
+        ]]>
+    </sql>
+    <sql id="findSurveyOperationByLikeTitleQuery">
+        <![CDATA[
+           SELECT * FROM survey_operation WHERE title LIKE ?
+        ]]>
+    </sql>
+    <sql id="findQuestionsBySurveyOperationIdQuery">
+        <![CDATA[
+            SELECT * FROM questions WHERE survey_operation_id = ?
+        ]]>
+    </sql>
+</custom-sql>

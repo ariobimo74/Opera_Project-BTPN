@@ -291,6 +291,39 @@ public class QuestionsServiceHttp {
 		}
 	}
 
+	public static java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getQuestionsBySurveyOperationIdQuery(
+			HttpPrincipal httpPrincipal, long surveyOperationId) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				QuestionsServiceUtil.class,
+				"getQuestionsBySurveyOperationIdQuery",
+				_getQuestionsBySurveyOperationIdQueryParameterTypes7);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, surveyOperationId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (java.util.List
+				<com.btpn.opera.operationsurvey.model.Questions>)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(QuestionsServiceHttp.class);
 
 	private static final Class<?>[] _getAllQuestionsParameterTypes0 =
@@ -314,6 +347,10 @@ public class QuestionsServiceHttp {
 		new Class[] {long.class};
 	private static final Class<?>[]
 		_deleteQuestionsByOperationSurveyIdParameterTypes6 = new Class[] {
+			long.class
+		};
+	private static final Class<?>[]
+		_getQuestionsBySurveyOperationIdQueryParameterTypes7 = new Class[] {
 			long.class
 		};
 

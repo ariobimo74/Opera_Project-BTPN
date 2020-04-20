@@ -87,4 +87,9 @@ public class QuestionsServiceImpl extends QuestionsServiceBaseImpl {
 	{
 		questionsLocalService.deleteAllQuestionsBySurveyOperationId(surveyOperationId);
 	}
+
+	public List<Questions> getQuestionsBySurveyOperationIdQuery(long surveyOperationId)
+	{
+		return questionsLocalService.getQuestionsBySurveyOperationIdQuery(surveyOperationId);
+	}
 }

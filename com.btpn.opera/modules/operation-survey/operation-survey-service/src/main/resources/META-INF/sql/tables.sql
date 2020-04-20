@@ -36,3 +36,12 @@ create table survey_operation (
 	modified_date DATE null,
 	modified_by LONG
 );
+
+create table survey_operation_view (
+	uuid_ VARCHAR(75) null,
+	id LONG not null primary key,
+	title VARCHAR(75) null,
+	survey_object VARCHAR(75) null,
+	survey_period VARCHAR(75) null,
+	submitted_date DATE null
+);

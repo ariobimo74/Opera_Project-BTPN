@@ -83,4 +83,8 @@ public interface QuestionsService extends BaseService {
 	public List<Questions> getQuestionsBySurveyOperationId(
 		long surveyOperationId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Questions> getQuestionsBySurveyOperationIdQuery(
+		long surveyOperationId);
+
 }

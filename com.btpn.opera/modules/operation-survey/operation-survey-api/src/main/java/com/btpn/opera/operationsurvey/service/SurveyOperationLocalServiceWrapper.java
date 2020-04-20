@@ -269,6 +269,21 @@ public class SurveyOperationLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
+		getAllSurveyOperationByLikeTitleQuery(String title) {
+
+		return _surveyOperationLocalService.
+			getAllSurveyOperationByLikeTitleQuery(title);
+	}
+
+	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
+		getAllSurveyOperationMapping() {
+
+		return _surveyOperationLocalService.getAllSurveyOperationMapping();
+	}
+
+	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
 		getAllSurveyOperationPaging(int startPage, int endPage) {
 
 		return _surveyOperationLocalService.getAllSurveyOperationPaging(

@@ -76,6 +76,13 @@ public interface SurveyOperationService extends BaseService {
 	public List<SurveyOperation> getAllSurveyOperation();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SurveyOperation> getAllSurveyOperationByLikeTitleQuery(
+		String title);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SurveyOperation> getAllSurveyOperationMapping();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SurveyOperation> getAllSurveyOperationPaging(
 		int startPage, int endPage);
 

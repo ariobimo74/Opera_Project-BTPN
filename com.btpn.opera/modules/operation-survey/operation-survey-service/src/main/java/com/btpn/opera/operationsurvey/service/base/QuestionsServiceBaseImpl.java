@@ -16,9 +16,11 @@ package com.btpn.opera.operationsurvey.service.base;
 
 import com.btpn.opera.operationsurvey.model.Questions;
 import com.btpn.opera.operationsurvey.service.QuestionsService;
+import com.btpn.opera.operationsurvey.service.persistence.QuestionsFinder;
 import com.btpn.opera.operationsurvey.service.persistence.QuestionsPersistence;
 import com.btpn.opera.operationsurvey.service.persistence.RespondenPersistence;
 import com.btpn.opera.operationsurvey.service.persistence.SurveyObjectPersistence;
+import com.btpn.opera.operationsurvey.service.persistence.SurveyOperationFinder;
 import com.btpn.opera.operationsurvey.service.persistence.SurveyOperationPersistence;
 
 import com.liferay.portal.aop.AopService;
@@ -119,6 +121,9 @@ public abstract class QuestionsServiceBaseImpl
 	protected QuestionsPersistence questionsPersistence;
 
 	@Reference
+	protected QuestionsFinder questionsFinder;
+
+	@Reference
 	protected RespondenPersistence respondenPersistence;
 
 	@Reference
@@ -126,6 +131,9 @@ public abstract class QuestionsServiceBaseImpl
 
 	@Reference
 	protected SurveyOperationPersistence surveyOperationPersistence;
+
+	@Reference
+	protected SurveyOperationFinder surveyOperationFinder;
 
 	@Reference
 	protected com.liferay.counter.kernel.service.CounterLocalService

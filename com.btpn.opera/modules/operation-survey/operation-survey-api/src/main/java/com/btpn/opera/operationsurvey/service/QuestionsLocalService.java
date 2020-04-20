@@ -227,6 +227,10 @@ public interface QuestionsLocalService
 	public List<Questions> getQuestionsBySurveyOperationId(
 		long surveyOperationId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Questions> getQuestionsBySurveyOperationIdQuery(
+		long surveyOperationId);
+
 	/**
 	 * Returns a range of all the questionses.
 	 *

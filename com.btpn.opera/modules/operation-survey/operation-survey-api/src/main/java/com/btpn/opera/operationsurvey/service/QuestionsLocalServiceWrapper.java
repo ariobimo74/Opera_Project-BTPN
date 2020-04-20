@@ -299,6 +299,14 @@ public class QuestionsLocalServiceWrapper
 			surveyOperationId);
 	}
 
+	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.Questions>
+		getQuestionsBySurveyOperationIdQuery(long surveyOperationId) {
+
+		return _questionsLocalService.getQuestionsBySurveyOperationIdQuery(
+			surveyOperationId);
+	}
+
 	/**
 	 * Returns a range of all the questionses.
 	 *

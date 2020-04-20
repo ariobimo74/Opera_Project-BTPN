@@ -91,6 +91,20 @@ public class SurveyOperationServiceUtil {
 
 	public static java.util.List
 		<com.btpn.opera.operationsurvey.model.SurveyOperation>
+			getAllSurveyOperationByLikeTitleQuery(String title) {
+
+		return getService().getAllSurveyOperationByLikeTitleQuery(title);
+	}
+
+	public static java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperation>
+			getAllSurveyOperationMapping() {
+
+		return getService().getAllSurveyOperationMapping();
+	}
+
+	public static java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperation>
 			getAllSurveyOperationPaging(int startPage, int endPage) {
 
 		return getService().getAllSurveyOperationPaging(startPage, endPage);

@@ -104,4 +104,14 @@ public class SurveyOperationServiceImpl extends SurveyOperationServiceBaseImpl {
 	{
 		surveyOperationLocalService.deleteSurveyOperationAfterEndDate();
 	}
+
+	public List<SurveyOperation> getAllSurveyOperationMapping()
+	{
+		return surveyOperationLocalService.getAllSurveyOperationMapping();
+	}
+
+	public List<SurveyOperation> getAllSurveyOperationByLikeTitleQuery(String title)
+	{
+		return surveyOperationLocalService.getAllSurveyOperationByLikeTitleQuery(title);
+	}
 }
