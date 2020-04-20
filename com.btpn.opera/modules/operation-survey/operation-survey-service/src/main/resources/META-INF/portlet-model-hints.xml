@@ -32,13 +32,16 @@
 		<field name="title" type="String" />
 		<field name="description" type="String">
 			<hint name="max-length">255</hint>
+			<hint name="auto-size">true</hint>
 		</field>
 		<field name="surveyObjectId" type="long" />
 		<field name="startDate" type="Date">
 			<hint name="show-time">false</hint>
+			<hint name="year-range-past">false</hint>
 		</field>
 		<field name="endDate" type="Date">
 			<hint name="show-time">false</hint>
+			<hint name="year-range-past">false</hint>
 		</field>
 		<field name="submittedDate" type="Date" />
 		<field name="createdDate" type="Date" />

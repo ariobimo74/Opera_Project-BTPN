@@ -91,13 +91,6 @@ public class SurveyOperationServiceUtil {
 
 	public static java.util.List
 		<com.btpn.opera.operationsurvey.model.SurveyOperation>
-			getAllSurveyOperationByLikeTitleQuery(String title) {
-
-		return getService().getAllSurveyOperationByLikeTitleQuery(title);
-	}
-
-	public static java.util.List
-		<com.btpn.opera.operationsurvey.model.SurveyOperation>
 			getAllSurveyOperationMapping() {
 
 		return getService().getAllSurveyOperationMapping();
@@ -117,6 +110,13 @@ public class SurveyOperationServiceUtil {
 	 */
 	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperation>
+			getSurveyOperationBeforeEndDate() {
+
+		return getService().getSurveyOperationBeforeEndDate();
 	}
 
 	public static com.btpn.opera.operationsurvey.model.SurveyOperation

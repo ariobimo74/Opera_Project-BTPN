@@ -253,13 +253,6 @@ public class SurveyOperationLocalServiceUtil {
 
 	public static java.util.List
 		<com.btpn.opera.operationsurvey.model.SurveyOperation>
-			getAllSurveyOperationByLikeTitleQuery(String title) {
-
-		return getService().getAllSurveyOperationByLikeTitleQuery(title);
-	}
-
-	public static java.util.List
-		<com.btpn.opera.operationsurvey.model.SurveyOperation>
 			getAllSurveyOperationMapping() {
 
 		return getService().getAllSurveyOperationMapping();
@@ -307,6 +300,13 @@ public class SurveyOperationLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getSurveyOperation(id);
+	}
+
+	public static java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperation>
+			getSurveyOperationBeforeEndDate() {
+
+		return getService().getSurveyOperationBeforeEndDate();
 	}
 
 	public static com.btpn.opera.operationsurvey.model.SurveyOperation

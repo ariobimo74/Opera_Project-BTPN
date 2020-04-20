@@ -11,6 +11,7 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import java.util.Date;
 import java.util.List;
 
 @Component(service = SurveyOperationFinder.class)
@@ -46,7 +47,7 @@ public class SurveyOperationFinderImpl extends SurveyOperationFinderBaseImpl imp
         return null;
     }
 
-    public List<SurveyOperation> findSurveyOperationByLikeTitleQuery(String title)
+    public List<SurveyOperation> findSurveyOperationBeforeEndDate()
     {
         Session session = null;
 
@@ -54,19 +55,17 @@ public class SurveyOperationFinderImpl extends SurveyOperationFinderBaseImpl imp
         {
             session = openSession();
 
-            String sql = customSQL.get(getClass(), "findSurveyOperationByLikeTitleQuery");
+            String sql = customSQL.get(getClass(), "findSurveyOperationBeforeEndDate");
             SQLQuery sqlQuery = session.createSQLQuery(sql);
             sqlQuery.setCacheable(false);
-            sqlQuery.addEntity("SurveyOperation", SurveyObjectImpl.class);
-
-            QueryPos queryPos = QueryPos.getInstance(sqlQuery);
-            queryPos.add(title);
+            sqlQuery.addEntity("SurveyOperation", SurveyOperationImpl.class);
 
             return (List<SurveyOperation>) sqlQuery.list();
         }
         catch (Exception e)
         {
-            e.getStackTrace();
+            System.out.println(e);
+            e.getCause().getMessage();
         }
         finally {
             closeSession(session);

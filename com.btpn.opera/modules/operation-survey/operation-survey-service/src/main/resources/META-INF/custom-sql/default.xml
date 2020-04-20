@@ -8,9 +8,9 @@
             ON survey_operation.survey_object_id = survey_object.id
         ]]>
     </sql>
-    <sql id="findSurveyOperationByLikeTitleQuery">
+    <sql id="findSurveyOperationBeforeEndDate">
         <![CDATA[
-           SELECT * FROM survey_operation WHERE title LIKE ?
+            SELECT * FROM survey_operation WHERE end_date > GETDATE()
         ]]>
     </sql>
     <sql id="findQuestionsBySurveyOperationIdQuery">

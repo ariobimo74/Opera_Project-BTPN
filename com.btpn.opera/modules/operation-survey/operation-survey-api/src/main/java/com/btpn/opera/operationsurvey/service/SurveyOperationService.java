@@ -76,10 +76,6 @@ public interface SurveyOperationService extends BaseService {
 	public List<SurveyOperation> getAllSurveyOperation();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SurveyOperation> getAllSurveyOperationByLikeTitleQuery(
-		String title);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SurveyOperation> getAllSurveyOperationMapping();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -92,6 +88,9 @@ public interface SurveyOperationService extends BaseService {
 	 * @return the OSGi service identifier
 	 */
 	public String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SurveyOperation> getSurveyOperationBeforeEndDate();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public SurveyOperation getSurveyOperationById(long id)

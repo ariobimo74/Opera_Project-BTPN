@@ -446,16 +446,15 @@ public class SurveyOperationServiceHttp {
 
 	public static java.util.List
 		<com.btpn.opera.operationsurvey.model.SurveyOperation>
-			getAllSurveyOperationByLikeTitleQuery(
-				HttpPrincipal httpPrincipal, String title) {
+			getSurveyOperationBeforeEndDate(HttpPrincipal httpPrincipal) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
 				SurveyOperationServiceUtil.class,
-				"getAllSurveyOperationByLikeTitleQuery",
-				_getAllSurveyOperationByLikeTitleQueryParameterTypes11);
+				"getSurveyOperationBeforeEndDate",
+				_getSurveyOperationBeforeEndDateParameterTypes11);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, title);
+			MethodHandler methodHandler = new MethodHandler(methodKey);
 
 			Object returnObj = null;
 
@@ -516,8 +515,6 @@ public class SurveyOperationServiceHttp {
 	private static final Class<?>[]
 		_getAllSurveyOperationMappingParameterTypes10 = new Class[] {};
 	private static final Class<?>[]
-		_getAllSurveyOperationByLikeTitleQueryParameterTypes11 = new Class[] {
-			String.class
-		};
+		_getSurveyOperationBeforeEndDateParameterTypes11 = new Class[] {};
 
 }

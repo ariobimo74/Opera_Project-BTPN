@@ -168,10 +168,8 @@ public class SurveyOperationLocalServiceImpl
 		return surveyOperationFinder.findAllSurveyOperationMapping();
 	}
 
-	public List<SurveyOperation> getAllSurveyOperationByLikeTitleQuery(String title)
+	public List<SurveyOperation> getSurveyOperationBeforeEndDate()
 	{
-		String theTitle = "'%" + title + "%'";
-
-		return surveyOperationFinder.findSurveyOperationByLikeTitleQuery(theTitle);
+		return surveyOperationFinder.findSurveyOperationBeforeEndDate();
 	}
 }

@@ -269,14 +269,6 @@ public class SurveyOperationLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
-		getAllSurveyOperationByLikeTitleQuery(String title) {
-
-		return _surveyOperationLocalService.
-			getAllSurveyOperationByLikeTitleQuery(title);
-	}
-
-	@Override
-	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
 		getAllSurveyOperationMapping() {
 
 		return _surveyOperationLocalService.getAllSurveyOperationMapping();
@@ -329,6 +321,13 @@ public class SurveyOperationLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _surveyOperationLocalService.getSurveyOperation(id);
+	}
+
+	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
+		getSurveyOperationBeforeEndDate() {
+
+		return _surveyOperationLocalService.getSurveyOperationBeforeEndDate();
 	}
 
 	@Override

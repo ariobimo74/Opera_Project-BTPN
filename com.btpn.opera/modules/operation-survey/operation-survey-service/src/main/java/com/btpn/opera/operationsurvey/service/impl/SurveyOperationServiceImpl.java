@@ -110,8 +110,8 @@ public class SurveyOperationServiceImpl extends SurveyOperationServiceBaseImpl {
 		return surveyOperationLocalService.getAllSurveyOperationMapping();
 	}
 
-	public List<SurveyOperation> getAllSurveyOperationByLikeTitleQuery(String title)
+	public List<SurveyOperation> getSurveyOperationBeforeEndDate()
 	{
-		return surveyOperationLocalService.getAllSurveyOperationByLikeTitleQuery(title);
+		return surveyOperationLocalService.getSurveyOperationBeforeEndDate();
 	}
 }

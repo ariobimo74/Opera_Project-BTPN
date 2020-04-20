@@ -272,14 +272,14 @@ public class SurveyOperationServiceSoap {
 	}
 
 	public static com.btpn.opera.operationsurvey.model.SurveyOperationSoap[]
-			getAllSurveyOperationByLikeTitleQuery(String title)
+			getSurveyOperationBeforeEndDate()
 		throws RemoteException {
 
 		try {
 			java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
 				returnValue =
 					SurveyOperationServiceUtil.
-						getAllSurveyOperationByLikeTitleQuery(title);
+						getSurveyOperationBeforeEndDate();
 
 			return com.btpn.opera.operationsurvey.model.SurveyOperationSoap.
 				toSoapModels(returnValue);

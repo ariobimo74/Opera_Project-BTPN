@@ -203,10 +203,6 @@ public interface SurveyOperationLocalService
 	public List<SurveyOperation> getAllSurveyOperation();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SurveyOperation> getAllSurveyOperationByLikeTitleQuery(
-		String title);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SurveyOperation> getAllSurveyOperationMapping();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -237,6 +233,9 @@ public interface SurveyOperationLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public SurveyOperation getSurveyOperation(long id) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SurveyOperation> getSurveyOperationBeforeEndDate();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public SurveyOperation getSurveyOperationById(long id)

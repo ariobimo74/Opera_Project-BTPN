@@ -92,14 +92,6 @@ public class SurveyOperationServiceWrapper
 
 	@Override
 	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
-		getAllSurveyOperationByLikeTitleQuery(String title) {
-
-		return _surveyOperationService.getAllSurveyOperationByLikeTitleQuery(
-			title);
-	}
-
-	@Override
-	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
 		getAllSurveyOperationMapping() {
 
 		return _surveyOperationService.getAllSurveyOperationMapping();
@@ -121,6 +113,13 @@ public class SurveyOperationServiceWrapper
 	@Override
 	public String getOSGiServiceIdentifier() {
 		return _surveyOperationService.getOSGiServiceIdentifier();
+	}
+
+	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
+		getSurveyOperationBeforeEndDate() {
+
+		return _surveyOperationService.getSurveyOperationBeforeEndDate();
 	}
 
 	@Override

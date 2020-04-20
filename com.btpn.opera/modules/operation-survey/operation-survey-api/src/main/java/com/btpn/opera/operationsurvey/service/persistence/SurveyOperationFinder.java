@@ -27,6 +27,6 @@ public interface SurveyOperationFinder {
 		findAllSurveyOperationMapping();
 
 	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
-		findSurveyOperationByLikeTitleQuery(String title);
+		findSurveyOperationBeforeEndDate();
 
 }
