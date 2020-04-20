@@ -14,13 +14,19 @@
 
 package com.btpn.opera.operationsurvey.service;
 
+import com.btpn.opera.operationsurvey.model.Responden;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+
+import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -47,6 +53,17 @@ public interface RespondenService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link RespondenServiceUtil} to access the responden remote service. Add custom service methods to <code>com.btpn.opera.operationsurvey.service.impl.RespondenServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public Responden addRespondenByAdmin(
+		String nik, String fullName, String lob, String division,
+		long surveyOperationId, ServiceContext serviceContext);
+
+	public Responden deleteRespondenById(long id) throws PortalException;
+
+	public void deleteRespondenBySurveyOperationId(long surveyOperationId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Responden> getAllResponden();
 
 	/**
 	 * Returns the OSGi service identifier.
@@ -54,5 +71,17 @@ public interface RespondenService extends BaseService {
 	 * @return the OSGi service identifier
 	 */
 	public String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Responden getRespondenById(long id) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Responden> getRespondenBySurveyOperationId(
+		long surveyOperationId);
+
+	public Responden updateRespondenByUser(
+			long id, double totalValue, String answerRecord, String notes,
+			ServiceContext serviceContext)
+		throws PortalException;
 
 }

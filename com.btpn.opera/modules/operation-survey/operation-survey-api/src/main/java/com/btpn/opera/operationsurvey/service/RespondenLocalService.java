@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -71,6 +72,10 @@ public interface RespondenLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Responden addResponden(Responden responden);
 
+	public Responden addRespondenByAdmin(
+		String nik, String fullName, String lob, String division,
+		long surveyOperationId, ServiceContext serviceContext);
+
 	/**
 	 * Creates a new responden with the primary key. Does not add the responden to the database.
 	 *
@@ -105,6 +110,11 @@ public interface RespondenLocalService
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	public Responden deleteResponden(Responden responden);
+
+	public Responden deleteRespondenById(long id) throws PortalException;
+
+	public void deleteRespondenBySurveyOperationId(long surveyOperationId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public DynamicQuery dynamicQuery();
@@ -179,6 +189,9 @@ public interface RespondenLocalService
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Responden> getAllResponden();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
@@ -202,6 +215,13 @@ public interface RespondenLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Responden getResponden(long id) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Responden getRespondenById(long id) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Responden> getRespondenBySurveyOperationId(
+		long surveyOperationId);
 
 	/**
 	 * Returns a range of all the respondens.
@@ -233,5 +253,10 @@ public interface RespondenLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Responden updateResponden(Responden responden);
+
+	public Responden updateRespondenByUser(
+			long id, double totalValue, String answerRecord, String notes,
+			ServiceContext serviceContext)
+		throws PortalException;
 
 }

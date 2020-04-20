@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.Serializable;
 
@@ -90,86 +89,138 @@ public class RespondenPersistenceImpl
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
-	private FinderPath _finderPathFetchBysurveyOperationID;
-	private FinderPath _finderPathCountBysurveyOperationID;
+	private FinderPath _finderPathWithPaginationFindBySurveyOperationID;
+	private FinderPath _finderPathWithoutPaginationFindBySurveyOperationID;
+	private FinderPath _finderPathCountBySurveyOperationID;
 
 	/**
-	 * Returns the responden where surveyOperationId = &#63; or throws a <code>NoSuchRespondenException</code> if it could not be found.
+	 * Returns all the respondens where surveyOperationId = &#63;.
 	 *
 	 * @param surveyOperationId the survey operation ID
-	 * @return the matching responden
-	 * @throws NoSuchRespondenException if a matching responden could not be found
+	 * @return the matching respondens
 	 */
 	@Override
-	public Responden findBysurveyOperationID(long surveyOperationId)
-		throws NoSuchRespondenException {
-
-		Responden responden = fetchBysurveyOperationID(surveyOperationId);
-
-		if (responden == null) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("surveyOperationId=");
-			msg.append(surveyOperationId);
-
-			msg.append("}");
-
-			if (_log.isDebugEnabled()) {
-				_log.debug(msg.toString());
-			}
-
-			throw new NoSuchRespondenException(msg.toString());
-		}
-
-		return responden;
+	public List<Responden> findBySurveyOperationID(long surveyOperationId) {
+		return findBySurveyOperationID(
+			surveyOperationId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns the responden where surveyOperationId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns a range of all the respondens where surveyOperationId = &#63;.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchBysurveyOperationID(long)}
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RespondenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
 	 * @param surveyOperationId the survey operation ID
+	 * @param start the lower bound of the range of respondens
+	 * @param end the upper bound of the range of respondens (not inclusive)
+	 * @return the range of matching respondens
+	 */
+	@Override
+	public List<Responden> findBySurveyOperationID(
+		long surveyOperationId, int start, int end) {
+
+		return findBySurveyOperationID(surveyOperationId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the respondens where surveyOperationId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RespondenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findBySurveyOperationID(long, int, int, OrderByComparator)}
+	 * @param surveyOperationId the survey operation ID
+	 * @param start the lower bound of the range of respondens
+	 * @param end the upper bound of the range of respondens (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching responden, or <code>null</code> if a matching responden could not be found
+	 * @return the ordered range of matching respondens
 	 */
 	@Deprecated
 	@Override
-	public Responden fetchBysurveyOperationID(
-		long surveyOperationId, boolean useFinderCache) {
+	public List<Responden> findBySurveyOperationID(
+		long surveyOperationId, int start, int end,
+		OrderByComparator<Responden> orderByComparator,
+		boolean useFinderCache) {
 
-		return fetchBysurveyOperationID(surveyOperationId);
+		return findBySurveyOperationID(
+			surveyOperationId, start, end, orderByComparator);
 	}
 
 	/**
-	 * Returns the responden where surveyOperationId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns an ordered range of all the respondens where surveyOperationId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RespondenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
 	 *
 	 * @param surveyOperationId the survey operation ID
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching responden, or <code>null</code> if a matching responden could not be found
+	 * @param start the lower bound of the range of respondens
+	 * @param end the upper bound of the range of respondens (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching respondens
 	 */
 	@Override
-	public Responden fetchBysurveyOperationID(long surveyOperationId) {
-		Object[] finderArgs = new Object[] {surveyOperationId};
+	public List<Responden> findBySurveyOperationID(
+		long surveyOperationId, int start, int end,
+		OrderByComparator<Responden> orderByComparator) {
 
-		Object result = finderCache.getResult(
-			_finderPathFetchBysurveyOperationID, finderArgs, this);
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		if (result instanceof Responden) {
-			Responden responden = (Responden)result;
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+			(orderByComparator == null)) {
 
-			if ((surveyOperationId != responden.getSurveyOperationId())) {
-				result = null;
+			pagination = false;
+			finderPath = _finderPathWithoutPaginationFindBySurveyOperationID;
+			finderArgs = new Object[] {surveyOperationId};
+		}
+		else {
+			finderPath = _finderPathWithPaginationFindBySurveyOperationID;
+			finderArgs = new Object[] {
+				surveyOperationId, start, end, orderByComparator
+			};
+		}
+
+		List<Responden> list = (List<Responden>)finderCache.getResult(
+			finderPath, finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Responden responden : list) {
+				if ((surveyOperationId != responden.getSurveyOperationId())) {
+					list = null;
+
+					break;
+				}
 			}
 		}
 
-		if (result == null) {
-			StringBundler query = new StringBundler(3);
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
 			query.append(_SQL_SELECT_RESPONDEN_WHERE);
 
 			query.append(_FINDER_COLUMN_SURVEYOPERATIONID_SURVEYOPERATIONID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
+			}
+			else if (pagination) {
+				query.append(RespondenModelImpl.ORDER_BY_JPQL);
+			}
 
 			String sql = query.toString();
 
@@ -184,34 +235,25 @@ public class RespondenPersistenceImpl
 
 				qPos.add(surveyOperationId);
 
-				List<Responden> list = q.list();
+				if (!pagination) {
+					list = (List<Responden>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
-				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchBysurveyOperationID, finderArgs, list);
+					Collections.sort(list);
+
+					list = Collections.unmodifiableList(list);
 				}
 				else {
-					if (list.size() > 1) {
-						Collections.sort(list, Collections.reverseOrder());
-
-						if (_log.isWarnEnabled()) {
-							_log.warn(
-								"RespondenPersistenceImpl.fetchBysurveyOperationID(long, boolean) with parameters (" +
-									StringUtil.merge(finderArgs) +
-										") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-						}
-					}
-
-					Responden responden = list.get(0);
-
-					result = responden;
-
-					cacheResult(responden);
+					list = (List<Responden>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
+
+				cacheResult(list);
+
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathFetchBysurveyOperationID, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -220,27 +262,290 @@ public class RespondenPersistenceImpl
 			}
 		}
 
-		if (result instanceof List<?>) {
+		return list;
+	}
+
+	/**
+	 * Returns the first responden in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching responden
+	 * @throws NoSuchRespondenException if a matching responden could not be found
+	 */
+	@Override
+	public Responden findBySurveyOperationID_First(
+			long surveyOperationId,
+			OrderByComparator<Responden> orderByComparator)
+		throws NoSuchRespondenException {
+
+		Responden responden = fetchBySurveyOperationID_First(
+			surveyOperationId, orderByComparator);
+
+		if (responden != null) {
+			return responden;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("surveyOperationId=");
+		msg.append(surveyOperationId);
+
+		msg.append("}");
+
+		throw new NoSuchRespondenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first responden in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching responden, or <code>null</code> if a matching responden could not be found
+	 */
+	@Override
+	public Responden fetchBySurveyOperationID_First(
+		long surveyOperationId,
+		OrderByComparator<Responden> orderByComparator) {
+
+		List<Responden> list = findBySurveyOperationID(
+			surveyOperationId, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last responden in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching responden
+	 * @throws NoSuchRespondenException if a matching responden could not be found
+	 */
+	@Override
+	public Responden findBySurveyOperationID_Last(
+			long surveyOperationId,
+			OrderByComparator<Responden> orderByComparator)
+		throws NoSuchRespondenException {
+
+		Responden responden = fetchBySurveyOperationID_Last(
+			surveyOperationId, orderByComparator);
+
+		if (responden != null) {
+			return responden;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("surveyOperationId=");
+		msg.append(surveyOperationId);
+
+		msg.append("}");
+
+		throw new NoSuchRespondenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last responden in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching responden, or <code>null</code> if a matching responden could not be found
+	 */
+	@Override
+	public Responden fetchBySurveyOperationID_Last(
+		long surveyOperationId,
+		OrderByComparator<Responden> orderByComparator) {
+
+		int count = countBySurveyOperationID(surveyOperationId);
+
+		if (count == 0) {
 			return null;
 		}
+
+		List<Responden> list = findBySurveyOperationID(
+			surveyOperationId, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the respondens before and after the current responden in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param id the primary key of the current responden
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next responden
+	 * @throws NoSuchRespondenException if a responden with the primary key could not be found
+	 */
+	@Override
+	public Responden[] findBySurveyOperationID_PrevAndNext(
+			long id, long surveyOperationId,
+			OrderByComparator<Responden> orderByComparator)
+		throws NoSuchRespondenException {
+
+		Responden responden = findByPrimaryKey(id);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Responden[] array = new RespondenImpl[3];
+
+			array[0] = getBySurveyOperationID_PrevAndNext(
+				session, responden, surveyOperationId, orderByComparator, true);
+
+			array[1] = responden;
+
+			array[2] = getBySurveyOperationID_PrevAndNext(
+				session, responden, surveyOperationId, orderByComparator,
+				false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Responden getBySurveyOperationID_PrevAndNext(
+		Session session, Responden responden, long surveyOperationId,
+		OrderByComparator<Responden> orderByComparator, boolean previous) {
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
 		else {
-			return (Responden)result;
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_RESPONDEN_WHERE);
+
+		query.append(_FINDER_COLUMN_SURVEYOPERATIONID_SURVEYOPERATIONID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(RespondenModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(surveyOperationId);
+
+		if (orderByComparator != null) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(responden)) {
+
+				qPos.add(orderByConditionValue);
+			}
+		}
+
+		List<Responden> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
 	/**
-	 * Removes the responden where surveyOperationId = &#63; from the database.
+	 * Removes all the respondens where surveyOperationId = &#63; from the database.
 	 *
 	 * @param surveyOperationId the survey operation ID
-	 * @return the responden that was removed
 	 */
 	@Override
-	public Responden removeBysurveyOperationID(long surveyOperationId)
-		throws NoSuchRespondenException {
+	public void removeBySurveyOperationID(long surveyOperationId) {
+		for (Responden responden :
+				findBySurveyOperationID(
+					surveyOperationId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
 
-		Responden responden = findBysurveyOperationID(surveyOperationId);
-
-		return remove(responden);
+			remove(responden);
+		}
 	}
 
 	/**
@@ -250,8 +555,8 @@ public class RespondenPersistenceImpl
 	 * @return the number of matching respondens
 	 */
 	@Override
-	public int countBysurveyOperationID(long surveyOperationId) {
-		FinderPath finderPath = _finderPathCountBysurveyOperationID;
+	public int countBySurveyOperationID(long surveyOperationId) {
+		FinderPath finderPath = _finderPathCountBySurveyOperationID;
 
 		Object[] finderArgs = new Object[] {surveyOperationId};
 
@@ -326,10 +631,6 @@ public class RespondenPersistenceImpl
 			entityCacheEnabled, RespondenImpl.class, responden.getPrimaryKey(),
 			responden);
 
-		finderCache.putResult(
-			_finderPathFetchBysurveyOperationID,
-			new Object[] {responden.getSurveyOperationId()}, responden);
-
 		responden.resetOriginalValues();
 	}
 
@@ -383,8 +684,6 @@ public class RespondenPersistenceImpl
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		clearUniqueFindersCache((RespondenModelImpl)responden, true);
 	}
 
 	@Override
@@ -396,46 +695,6 @@ public class RespondenPersistenceImpl
 			entityCache.removeResult(
 				entityCacheEnabled, RespondenImpl.class,
 				responden.getPrimaryKey());
-
-			clearUniqueFindersCache((RespondenModelImpl)responden, true);
-		}
-	}
-
-	protected void cacheUniqueFindersCache(
-		RespondenModelImpl respondenModelImpl) {
-
-		Object[] args = new Object[] {
-			respondenModelImpl.getSurveyOperationId()
-		};
-
-		finderCache.putResult(
-			_finderPathCountBysurveyOperationID, args, Long.valueOf(1), false);
-		finderCache.putResult(
-			_finderPathFetchBysurveyOperationID, args, respondenModelImpl,
-			false);
-	}
-
-	protected void clearUniqueFindersCache(
-		RespondenModelImpl respondenModelImpl, boolean clearCurrent) {
-
-		if (clearCurrent) {
-			Object[] args = new Object[] {
-				respondenModelImpl.getSurveyOperationId()
-			};
-
-			finderCache.removeResult(_finderPathCountBysurveyOperationID, args);
-			finderCache.removeResult(_finderPathFetchBysurveyOperationID, args);
-		}
-
-		if ((respondenModelImpl.getColumnBitmask() &
-			 _finderPathFetchBysurveyOperationID.getColumnBitmask()) != 0) {
-
-			Object[] args = new Object[] {
-				respondenModelImpl.getOriginalSurveyOperationId()
-			};
-
-			finderCache.removeResult(_finderPathCountBysurveyOperationID, args);
-			finderCache.removeResult(_finderPathFetchBysurveyOperationID, args);
 		}
 	}
 
@@ -587,17 +846,44 @@ public class RespondenPersistenceImpl
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 		else if (isNew) {
+			Object[] args = new Object[] {
+				respondenModelImpl.getSurveyOperationId()
+			};
+
+			finderCache.removeResult(_finderPathCountBySurveyOperationID, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindBySurveyOperationID, args);
+
 			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
 			finderCache.removeResult(
 				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((respondenModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindBySurveyOperationID.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					respondenModelImpl.getOriginalSurveyOperationId()
+				};
+
+				finderCache.removeResult(
+					_finderPathCountBySurveyOperationID, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindBySurveyOperationID, args);
+
+				args = new Object[] {respondenModelImpl.getSurveyOperationId()};
+
+				finderCache.removeResult(
+					_finderPathCountBySurveyOperationID, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindBySurveyOperationID, args);
+			}
 		}
 
 		entityCache.putResult(
 			entityCacheEnabled, RespondenImpl.class, responden.getPrimaryKey(),
 			responden, false);
-
-		clearUniqueFindersCache(respondenModelImpl, false);
-		cacheUniqueFindersCache(respondenModelImpl);
 
 		responden.resetOriginalValues();
 
@@ -891,16 +1177,24 @@ public class RespondenPersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
 			new String[0]);
 
-		_finderPathFetchBysurveyOperationID = new FinderPath(
+		_finderPathWithPaginationFindBySurveyOperationID = new FinderPath(
 			entityCacheEnabled, finderCacheEnabled, RespondenImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchBysurveyOperationID",
-			new String[] {Long.class.getName()},
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findBySurveyOperationID",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindBySurveyOperationID = new FinderPath(
+			entityCacheEnabled, finderCacheEnabled, RespondenImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findBySurveyOperationID", new String[] {Long.class.getName()},
 			RespondenModelImpl.SURVEYOPERATIONID_COLUMN_BITMASK);
 
-		_finderPathCountBysurveyOperationID = new FinderPath(
+		_finderPathCountBySurveyOperationID = new FinderPath(
 			entityCacheEnabled, finderCacheEnabled, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"countBysurveyOperationID", new String[] {Long.class.getName()});
+			"countBySurveyOperationID", new String[] {Long.class.getName()});
 	}
 
 	@Deactivate

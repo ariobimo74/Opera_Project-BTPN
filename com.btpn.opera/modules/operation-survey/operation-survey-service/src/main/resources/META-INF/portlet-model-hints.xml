@@ -4,7 +4,9 @@
 	<model name="com.btpn.opera.operationsurvey.model.Questions">
 		<field name="id" type="long" />
 		<field name="question" type="String" />
-		<field name="answer" type="String" />
+		<field name="answer" type="String">
+			<hint name="max-length">255</hint>
+		</field>
 		<field name="surveyOperationId" type="long" />
 	</model>
 	<model name="com.btpn.opera.operationsurvey.model.Responden">
@@ -15,7 +17,9 @@
 		<field name="division" type="String" />
 		<field name="surveyOperationId" type="long" />
 		<field name="totalValue" type="double" />
-		<field name="answerRecord" type="String" />
+		<field name="answerRecord" type="String">
+			<hint name="max-length">255</hint>
+		</field>
 		<field name="submittedDate" type="Date" />
 		<field name="notes" type="String" />
 	</model>
@@ -26,10 +30,16 @@
 	<model name="com.btpn.opera.operationsurvey.model.SurveyOperation">
 		<field name="id" type="long" />
 		<field name="title" type="String" />
-		<field name="description" type="String" />
+		<field name="description" type="String">
+			<hint name="max-length">255</hint>
+		</field>
 		<field name="surveyObjectId" type="long" />
-		<field name="startDate" type="Date" />
-		<field name="endDate" type="Date" />
+		<field name="startDate" type="Date">
+			<hint name="show-time">false</hint>
+		</field>
+		<field name="endDate" type="Date">
+			<hint name="show-time">false</hint>
+		</field>
 		<field name="submittedDate" type="Date" />
 		<field name="createdDate" type="Date" />
 		<field name="createdBy" type="long" />

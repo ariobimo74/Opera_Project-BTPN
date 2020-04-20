@@ -127,57 +127,174 @@ public class RespondenUtil {
 	}
 
 	/**
-	 * Returns the responden where surveyOperationId = &#63; or throws a <code>NoSuchRespondenException</code> if it could not be found.
+	 * Returns all the respondens where surveyOperationId = &#63;.
 	 *
 	 * @param surveyOperationId the survey operation ID
-	 * @return the matching responden
-	 * @throws NoSuchRespondenException if a matching responden could not be found
+	 * @return the matching respondens
 	 */
-	public static Responden findBysurveyOperationID(long surveyOperationId)
-		throws com.btpn.opera.operationsurvey.exception.
-			NoSuchRespondenException {
+	public static List<Responden> findBySurveyOperationID(
+		long surveyOperationId) {
 
-		return getPersistence().findBysurveyOperationID(surveyOperationId);
+		return getPersistence().findBySurveyOperationID(surveyOperationId);
 	}
 
 	/**
-	 * Returns the responden where surveyOperationId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns a range of all the respondens where surveyOperationId = &#63;.
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #fetchBysurveyOperationID(long)}
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RespondenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
 	 * @param surveyOperationId the survey operation ID
+	 * @param start the lower bound of the range of respondens
+	 * @param end the upper bound of the range of respondens (not inclusive)
+	 * @return the range of matching respondens
+	 */
+	public static List<Responden> findBySurveyOperationID(
+		long surveyOperationId, int start, int end) {
+
+		return getPersistence().findBySurveyOperationID(
+			surveyOperationId, start, end);
+	}
+
+	/**
+	 * Returns an ordered range of all the respondens where surveyOperationId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RespondenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findBySurveyOperationID(long, int, int, OrderByComparator)}
+	 * @param surveyOperationId the survey operation ID
+	 * @param start the lower bound of the range of respondens
+	 * @param end the upper bound of the range of respondens (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching responden, or <code>null</code> if a matching responden could not be found
+	 * @return the ordered range of matching respondens
 	 */
 	@Deprecated
-	public static Responden fetchBysurveyOperationID(
-		long surveyOperationId, boolean useFinderCache) {
+	public static List<Responden> findBySurveyOperationID(
+		long surveyOperationId, int start, int end,
+		OrderByComparator<Responden> orderByComparator,
+		boolean useFinderCache) {
 
-		return getPersistence().fetchBysurveyOperationID(
-			surveyOperationId, useFinderCache);
+		return getPersistence().findBySurveyOperationID(
+			surveyOperationId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
-	 * Returns the responden where surveyOperationId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns an ordered range of all the respondens where surveyOperationId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>RespondenModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
 	 *
 	 * @param surveyOperationId the survey operation ID
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching responden, or <code>null</code> if a matching responden could not be found
+	 * @param start the lower bound of the range of respondens
+	 * @param end the upper bound of the range of respondens (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching respondens
 	 */
-	public static Responden fetchBysurveyOperationID(long surveyOperationId) {
-		return getPersistence().fetchBysurveyOperationID(surveyOperationId);
+	public static List<Responden> findBySurveyOperationID(
+		long surveyOperationId, int start, int end,
+		OrderByComparator<Responden> orderByComparator) {
+
+		return getPersistence().findBySurveyOperationID(
+			surveyOperationId, start, end, orderByComparator);
 	}
 
 	/**
-	 * Removes the responden where surveyOperationId = &#63; from the database.
+	 * Returns the first responden in the ordered set where surveyOperationId = &#63;.
 	 *
 	 * @param surveyOperationId the survey operation ID
-	 * @return the responden that was removed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching responden
+	 * @throws NoSuchRespondenException if a matching responden could not be found
 	 */
-	public static Responden removeBysurveyOperationID(long surveyOperationId)
+	public static Responden findBySurveyOperationID_First(
+			long surveyOperationId,
+			OrderByComparator<Responden> orderByComparator)
 		throws com.btpn.opera.operationsurvey.exception.
 			NoSuchRespondenException {
 
-		return getPersistence().removeBysurveyOperationID(surveyOperationId);
+		return getPersistence().findBySurveyOperationID_First(
+			surveyOperationId, orderByComparator);
+	}
+
+	/**
+	 * Returns the first responden in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching responden, or <code>null</code> if a matching responden could not be found
+	 */
+	public static Responden fetchBySurveyOperationID_First(
+		long surveyOperationId,
+		OrderByComparator<Responden> orderByComparator) {
+
+		return getPersistence().fetchBySurveyOperationID_First(
+			surveyOperationId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last responden in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching responden
+	 * @throws NoSuchRespondenException if a matching responden could not be found
+	 */
+	public static Responden findBySurveyOperationID_Last(
+			long surveyOperationId,
+			OrderByComparator<Responden> orderByComparator)
+		throws com.btpn.opera.operationsurvey.exception.
+			NoSuchRespondenException {
+
+		return getPersistence().findBySurveyOperationID_Last(
+			surveyOperationId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last responden in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching responden, or <code>null</code> if a matching responden could not be found
+	 */
+	public static Responden fetchBySurveyOperationID_Last(
+		long surveyOperationId,
+		OrderByComparator<Responden> orderByComparator) {
+
+		return getPersistence().fetchBySurveyOperationID_Last(
+			surveyOperationId, orderByComparator);
+	}
+
+	/**
+	 * Returns the respondens before and after the current responden in the ordered set where surveyOperationId = &#63;.
+	 *
+	 * @param id the primary key of the current responden
+	 * @param surveyOperationId the survey operation ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next responden
+	 * @throws NoSuchRespondenException if a responden with the primary key could not be found
+	 */
+	public static Responden[] findBySurveyOperationID_PrevAndNext(
+			long id, long surveyOperationId,
+			OrderByComparator<Responden> orderByComparator)
+		throws com.btpn.opera.operationsurvey.exception.
+			NoSuchRespondenException {
+
+		return getPersistence().findBySurveyOperationID_PrevAndNext(
+			id, surveyOperationId, orderByComparator);
+	}
+
+	/**
+	 * Removes all the respondens where surveyOperationId = &#63; from the database.
+	 *
+	 * @param surveyOperationId the survey operation ID
+	 */
+	public static void removeBySurveyOperationID(long surveyOperationId) {
+		getPersistence().removeBySurveyOperationID(surveyOperationId);
 	}
 
 	/**
@@ -186,8 +303,8 @@ public class RespondenUtil {
 	 * @param surveyOperationId the survey operation ID
 	 * @return the number of matching respondens
 	 */
-	public static int countBysurveyOperationID(long surveyOperationId) {
-		return getPersistence().countBysurveyOperationID(surveyOperationId);
+	public static int countBySurveyOperationID(long surveyOperationId) {
+		return getPersistence().countBySurveyOperationID(surveyOperationId);
 	}
 
 	/**

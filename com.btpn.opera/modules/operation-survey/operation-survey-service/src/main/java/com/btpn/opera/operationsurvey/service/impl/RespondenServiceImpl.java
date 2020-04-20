@@ -14,11 +14,16 @@
 
 package com.btpn.opera.operationsurvey.service.impl;
 
+import com.btpn.opera.operationsurvey.model.Responden;
 import com.btpn.opera.operationsurvey.service.base.RespondenServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
 import org.osgi.service.component.annotations.Component;
+
+import java.util.List;
 
 /**
  * The implementation of the responden remote service.
@@ -47,4 +52,39 @@ public class RespondenServiceImpl extends RespondenServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use <code>com.btpn.opera.operationsurvey.service.RespondenServiceUtil</code> to access the responden remote service.
 	 */
+
+	public List<Responden> getAllResponden()
+	{
+		return respondenLocalService.getAllResponden();
+	}
+
+	public Responden getRespondenById(long id) throws PortalException
+	{
+		return respondenLocalService.getRespondenById(id);
+	}
+
+	public Responden addRespondenByAdmin(String nik, String fullName, String lob, String division, long surveyOperationId, ServiceContext serviceContext)
+	{
+		return respondenLocalService.addRespondenByAdmin(nik, fullName, lob, division, surveyOperationId, serviceContext);
+	}
+
+	public Responden updateRespondenByUser(long id, double totalValue, String answerRecord, String notes, ServiceContext serviceContext) throws PortalException
+	{
+		return respondenLocalService.updateRespondenByUser(id, totalValue, answerRecord, notes, serviceContext);
+	}
+
+	public Responden deleteRespondenById(long id) throws PortalException
+	{
+		return respondenLocalService.deleteRespondenById(id);
+	}
+
+	public List<Responden> getRespondenBySurveyOperationId(long surveyOperationId)
+	{
+		return respondenLocalService.getRespondenBySurveyOperationId(surveyOperationId);
+	}
+
+	public void deleteRespondenBySurveyOperationId(long surveyOperationId) throws PortalException
+	{
+		respondenLocalService.deleteRespondenBySurveyOperationId(surveyOperationId);
+	}
 }

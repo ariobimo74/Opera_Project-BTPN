@@ -1,7 +1,7 @@
 create table questions (
 	id LONG not null primary key,
 	question VARCHAR(75) null,
-	answer VARCHAR(75) null,
+	answer VARCHAR(255) null,
 	survey_operation_id LONG
 );
 
@@ -13,7 +13,7 @@ create table responden (
 	division VARCHAR(75) null,
 	survey_operation_id LONG,
 	total_value DOUBLE,
-	answer_record VARCHAR(75) null,
+	answer_record VARCHAR(255) null,
 	submitted_date DATE null,
 	notes VARCHAR(75) null
 );
@@ -26,7 +26,7 @@ create table survey_object (
 create table survey_operation (
 	id LONG not null primary key,
 	title VARCHAR(75) null,
-	description VARCHAR(75) null,
+	description VARCHAR(255) null,
 	survey_object_id LONG,
 	start_date DATE null,
 	end_date DATE null,

@@ -33,6 +33,38 @@ public class RespondenServiceWrapper
 		_respondenService = respondenService;
 	}
 
+	@Override
+	public com.btpn.opera.operationsurvey.model.Responden addRespondenByAdmin(
+		String nik, String fullName, String lob, String division,
+		long surveyOperationId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+
+		return _respondenService.addRespondenByAdmin(
+			nik, fullName, lob, division, surveyOperationId, serviceContext);
+	}
+
+	@Override
+	public com.btpn.opera.operationsurvey.model.Responden deleteRespondenById(
+			long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _respondenService.deleteRespondenById(id);
+	}
+
+	@Override
+	public void deleteRespondenBySurveyOperationId(long surveyOperationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		_respondenService.deleteRespondenBySurveyOperationId(surveyOperationId);
+	}
+
+	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.Responden>
+		getAllResponden() {
+
+		return _respondenService.getAllResponden();
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
@@ -41,6 +73,32 @@ public class RespondenServiceWrapper
 	@Override
 	public String getOSGiServiceIdentifier() {
 		return _respondenService.getOSGiServiceIdentifier();
+	}
+
+	@Override
+	public com.btpn.opera.operationsurvey.model.Responden getRespondenById(
+			long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _respondenService.getRespondenById(id);
+	}
+
+	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.Responden>
+		getRespondenBySurveyOperationId(long surveyOperationId) {
+
+		return _respondenService.getRespondenBySurveyOperationId(
+			surveyOperationId);
+	}
+
+	@Override
+	public com.btpn.opera.operationsurvey.model.Responden updateRespondenByUser(
+			long id, double totalValue, String answerRecord, String notes,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _respondenService.updateRespondenByUser(
+			id, totalValue, answerRecord, notes, serviceContext);
 	}
 
 	@Override

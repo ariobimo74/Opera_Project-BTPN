@@ -99,7 +99,7 @@ public class SurveyOperationModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table survey_operation (id LONG not null primary key,title VARCHAR(75) null,description VARCHAR(75) null,survey_object_id LONG,start_date DATE null,end_date DATE null,submitted_date DATE null,created_date DATE null,created_by LONG,modified_date DATE null,modified_by LONG)";
+		"create table survey_operation (id LONG not null primary key,title VARCHAR(75) null,description VARCHAR(255) null,survey_object_id LONG,start_date DATE null,end_date DATE null,submitted_date DATE null,created_date DATE null,created_by LONG,modified_date DATE null,modified_by LONG)";
 
 	public static final String TABLE_SQL_DROP = "drop table survey_operation";
 

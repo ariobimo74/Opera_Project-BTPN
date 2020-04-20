@@ -67,7 +67,7 @@
 		<column db-name="submitted_date" name="submittedDate" type="Date" />
 		<column db-name="notes" name="notes" type="String" />
 
-		<finder name="surveyOperationID" return-type="">
+		<finder name="SurveyOperationID" return-type="Collection">
 			<finder-column name="surveyOperationId" />
 		</finder>
 	</entity>

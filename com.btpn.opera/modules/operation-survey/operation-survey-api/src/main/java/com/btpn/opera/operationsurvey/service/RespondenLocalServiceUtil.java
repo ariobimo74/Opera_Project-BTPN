@@ -52,6 +52,16 @@ public class RespondenLocalServiceUtil {
 		return getService().addResponden(responden);
 	}
 
+	public static com.btpn.opera.operationsurvey.model.Responden
+		addRespondenByAdmin(
+			String nik, String fullName, String lob, String division,
+			long surveyOperationId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+
+		return getService().addRespondenByAdmin(
+			nik, fullName, lob, division, surveyOperationId, serviceContext);
+	}
+
 	/**
 	 * Creates a new responden with the primary key. Does not add the responden to the database.
 	 *
@@ -100,6 +110,20 @@ public class RespondenLocalServiceUtil {
 			com.btpn.opera.operationsurvey.model.Responden responden) {
 
 		return getService().deleteResponden(responden);
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Responden
+			deleteRespondenById(long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().deleteRespondenById(id);
+	}
+
+	public static void deleteRespondenBySurveyOperationId(
+			long surveyOperationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		getService().deleteRespondenBySurveyOperationId(surveyOperationId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
@@ -199,6 +223,12 @@ public class RespondenLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
+	public static java.util.List<com.btpn.opera.operationsurvey.model.Responden>
+		getAllResponden() {
+
+		return getService().getAllResponden();
+	}
+
 	public static
 		com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery
 			getIndexableActionableDynamicQuery() {
@@ -234,6 +264,19 @@ public class RespondenLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getResponden(id);
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Responden
+			getRespondenById(long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().getRespondenById(id);
+	}
+
+	public static java.util.List<com.btpn.opera.operationsurvey.model.Responden>
+		getRespondenBySurveyOperationId(long surveyOperationId) {
+
+		return getService().getRespondenBySurveyOperationId(surveyOperationId);
 	}
 
 	/**
@@ -273,6 +316,16 @@ public class RespondenLocalServiceUtil {
 			com.btpn.opera.operationsurvey.model.Responden responden) {
 
 		return getService().updateResponden(responden);
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Responden
+			updateRespondenByUser(
+				long id, double totalValue, String answerRecord, String notes,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().updateRespondenByUser(
+			id, totalValue, answerRecord, notes, serviceContext);
 	}
 
 	public static RespondenLocalService getService() {

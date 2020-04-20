@@ -39,6 +39,35 @@ public class RespondenServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.btpn.opera.operationsurvey.service.impl.RespondenServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.btpn.opera.operationsurvey.model.Responden
+		addRespondenByAdmin(
+			String nik, String fullName, String lob, String division,
+			long surveyOperationId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+
+		return getService().addRespondenByAdmin(
+			nik, fullName, lob, division, surveyOperationId, serviceContext);
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Responden
+			deleteRespondenById(long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().deleteRespondenById(id);
+	}
+
+	public static void deleteRespondenBySurveyOperationId(
+			long surveyOperationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		getService().deleteRespondenBySurveyOperationId(surveyOperationId);
+	}
+
+	public static java.util.List<com.btpn.opera.operationsurvey.model.Responden>
+		getAllResponden() {
+
+		return getService().getAllResponden();
+	}
 
 	/**
 	 * Returns the OSGi service identifier.
@@ -47,6 +76,29 @@ public class RespondenServiceUtil {
 	 */
 	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Responden
+			getRespondenById(long id)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().getRespondenById(id);
+	}
+
+	public static java.util.List<com.btpn.opera.operationsurvey.model.Responden>
+		getRespondenBySurveyOperationId(long surveyOperationId) {
+
+		return getService().getRespondenBySurveyOperationId(surveyOperationId);
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Responden
+			updateRespondenByUser(
+				long id, double totalValue, String answerRecord, String notes,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().updateRespondenByUser(
+			id, totalValue, answerRecord, notes, serviceContext);
 	}
 
 	public static RespondenService getService() {
