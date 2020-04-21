@@ -52,6 +52,14 @@ public class SurveyOperationServiceUtil {
 			serviceContext);
 	}
 
+	public static int countAllSurveyOperation() {
+		return getService().countAllSurveyOperation();
+	}
+
+	public static int countSurveyOperationByTitle(String title) {
+		return getService().countSurveyOperationByTitle(title);
+	}
+
 	public static void deleteAllSurveyOperation() {
 		getService().deleteAllSurveyOperation();
 	}

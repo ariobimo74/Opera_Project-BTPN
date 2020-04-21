@@ -50,6 +50,16 @@ public class SurveyOperationServiceWrapper
 	}
 
 	@Override
+	public int countAllSurveyOperation() {
+		return _surveyOperationService.countAllSurveyOperation();
+	}
+
+	@Override
+	public int countSurveyOperationByTitle(String title) {
+		return _surveyOperationService.countSurveyOperationByTitle(title);
+	}
+
+	@Override
 	public void deleteAllSurveyOperation() {
 		_surveyOperationService.deleteAllSurveyOperation();
 	}

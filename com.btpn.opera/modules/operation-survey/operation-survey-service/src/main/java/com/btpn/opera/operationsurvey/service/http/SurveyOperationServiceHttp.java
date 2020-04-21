@@ -354,11 +354,67 @@ public class SurveyOperationServiceHttp {
 		}
 	}
 
+	public static int countAllSurveyOperation(HttpPrincipal httpPrincipal) {
+		try {
+			MethodKey methodKey = new MethodKey(
+				SurveyOperationServiceUtil.class, "countAllSurveyOperation",
+				_countAllSurveyOperationParameterTypes8);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return ((Integer)returnObj).intValue();
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static int countSurveyOperationByTitle(
+		HttpPrincipal httpPrincipal, String title) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				SurveyOperationServiceUtil.class, "countSurveyOperationByTitle",
+				_countSurveyOperationByTitleParameterTypes9);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, title);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return ((Integer)returnObj).intValue();
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
 	public static void deleteAllSurveyOperation(HttpPrincipal httpPrincipal) {
 		try {
 			MethodKey methodKey = new MethodKey(
 				SurveyOperationServiceUtil.class, "deleteAllSurveyOperation",
-				_deleteAllSurveyOperationParameterTypes8);
+				_deleteAllSurveyOperationParameterTypes10);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey);
 
@@ -385,7 +441,7 @@ public class SurveyOperationServiceHttp {
 			MethodKey methodKey = new MethodKey(
 				SurveyOperationServiceUtil.class,
 				"deleteSurveyOperationAfterEndDate",
-				_deleteSurveyOperationAfterEndDateParameterTypes9);
+				_deleteSurveyOperationAfterEndDateParameterTypes11);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey);
 
@@ -419,7 +475,7 @@ public class SurveyOperationServiceHttp {
 			MethodKey methodKey = new MethodKey(
 				SurveyOperationServiceUtil.class,
 				"getAllSurveyOperationMapping",
-				_getAllSurveyOperationMappingParameterTypes10);
+				_getAllSurveyOperationMappingParameterTypes12);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey);
 
@@ -452,7 +508,7 @@ public class SurveyOperationServiceHttp {
 			MethodKey methodKey = new MethodKey(
 				SurveyOperationServiceUtil.class,
 				"getSurveyOperationBeforeEndDate",
-				_getSurveyOperationBeforeEndDateParameterTypes11);
+				_getSurveyOperationBeforeEndDateParameterTypes13);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey);
 
@@ -508,13 +564,19 @@ public class SurveyOperationServiceHttp {
 		_getSurveyOperationByTitlePagingParameterTypes7 = new Class[] {
 			String.class, int.class, int.class
 		};
-	private static final Class<?>[] _deleteAllSurveyOperationParameterTypes8 =
+	private static final Class<?>[] _countAllSurveyOperationParameterTypes8 =
 		new Class[] {};
 	private static final Class<?>[]
-		_deleteSurveyOperationAfterEndDateParameterTypes9 = new Class[] {};
+		_countSurveyOperationByTitleParameterTypes9 = new Class[] {
+			String.class
+		};
+	private static final Class<?>[] _deleteAllSurveyOperationParameterTypes10 =
+		new Class[] {};
 	private static final Class<?>[]
-		_getAllSurveyOperationMappingParameterTypes10 = new Class[] {};
+		_deleteSurveyOperationAfterEndDateParameterTypes11 = new Class[] {};
 	private static final Class<?>[]
-		_getSurveyOperationBeforeEndDateParameterTypes11 = new Class[] {};
+		_getAllSurveyOperationMappingParameterTypes12 = new Class[] {};
+	private static final Class<?>[]
+		_getSurveyOperationBeforeEndDateParameterTypes13 = new Class[] {};
 
 }

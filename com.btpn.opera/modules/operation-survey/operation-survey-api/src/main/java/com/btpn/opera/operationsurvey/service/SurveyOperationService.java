@@ -59,6 +59,10 @@ public interface SurveyOperationService extends BaseService {
 			Date startdate, Date endDate, ServiceContext serviceContext)
 		throws PortalException;
 
+	public int countAllSurveyOperation();
+
+	public int countSurveyOperationByTitle(String title);
+
 	public void deleteAllSurveyOperation();
 
 	public void deleteSurveyOperationAfterEndDate() throws PortalException;

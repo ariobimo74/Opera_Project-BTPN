@@ -66,6 +66,14 @@ public class SurveyOperationLocalServiceUtil {
 		return getService().addSurveyOperation(surveyOperation);
 	}
 
+	public static int countAllSurveyOperation() {
+		return getService().countAllSurveyOperation();
+	}
+
+	public static int countSurveyOperationBytitle(String title) {
+		return getService().countSurveyOperationBytitle(title);
+	}
+
 	/**
 	 * Creates a new survey operation with the primary key. Does not add the survey operation to the database.
 	 *

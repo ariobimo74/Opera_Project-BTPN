@@ -129,6 +129,16 @@ public class SurveyOperationLocalServiceImpl
 		return surveyOperationPersistence.findByTitle(title, startPage, endPage);
 	}
 
+	public int countAllSurveyOperation()
+	{
+		return surveyOperationPersistence.countAll();
+	}
+
+	public int countSurveyOperationBytitle(String title)
+	{
+		return surveyOperationPersistence.countByTitle(title);
+	}
+
 	public void deleteAllSurveyOperation()
 	{
 		surveyOperationPersistence.removeAll();

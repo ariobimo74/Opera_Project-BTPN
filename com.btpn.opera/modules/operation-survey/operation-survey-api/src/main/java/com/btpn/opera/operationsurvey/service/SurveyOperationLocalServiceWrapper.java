@@ -65,6 +65,16 @@ public class SurveyOperationLocalServiceWrapper
 		return _surveyOperationLocalService.addSurveyOperation(surveyOperation);
 	}
 
+	@Override
+	public int countAllSurveyOperation() {
+		return _surveyOperationLocalService.countAllSurveyOperation();
+	}
+
+	@Override
+	public int countSurveyOperationBytitle(String title) {
+		return _surveyOperationLocalService.countSurveyOperationBytitle(title);
+	}
+
 	/**
 	 * Creates a new survey operation with the primary key. Does not add the survey operation to the database.
 	 *

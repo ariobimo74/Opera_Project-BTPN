@@ -95,6 +95,16 @@ public class SurveyOperationServiceImpl extends SurveyOperationServiceBaseImpl {
 
 	}
 
+	public int countAllSurveyOperation()
+	{
+		return surveyOperationLocalService.countAllSurveyOperation();
+	}
+
+	public int countSurveyOperationByTitle(String title)
+	{
+		return surveyOperationLocalService.countSurveyOperationBytitle(title);
+	}
+
 	public void deleteAllSurveyOperation()
 	{
 		surveyOperationLocalService.deleteAllSurveyOperation();

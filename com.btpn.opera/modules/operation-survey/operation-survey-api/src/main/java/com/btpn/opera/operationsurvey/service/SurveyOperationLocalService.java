@@ -77,6 +77,10 @@ public interface SurveyOperationLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public SurveyOperation addSurveyOperation(SurveyOperation surveyOperation);
 
+	public int countAllSurveyOperation();
+
+	public int countSurveyOperationBytitle(String title);
+
 	/**
 	 * Creates a new survey operation with the primary key. Does not add the survey operation to the database.
 	 *
