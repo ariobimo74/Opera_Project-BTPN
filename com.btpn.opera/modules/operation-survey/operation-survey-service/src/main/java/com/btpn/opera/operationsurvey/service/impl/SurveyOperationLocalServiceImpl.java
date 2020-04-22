@@ -18,6 +18,7 @@ import com.btpn.opera.operationsurvey.exception.EndDateException;
 import com.btpn.opera.operationsurvey.exception.StartDateException;
 import com.btpn.opera.operationsurvey.exception.SurveyObjectException;
 import com.btpn.opera.operationsurvey.model.SurveyOperation;
+import com.btpn.opera.operationsurvey.model.SurveyOperationView;
 import com.btpn.opera.operationsurvey.service.base.SurveyOperationLocalServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
@@ -173,7 +174,7 @@ public class SurveyOperationLocalServiceImpl
 		}
 	}
 
-	public List<SurveyOperation> getAllSurveyOperationMapping()
+	public List<SurveyOperationView> getAllSurveyOperationMapping()
 	{
 		return surveyOperationFinder.findAllSurveyOperationMapping();
 	}

@@ -23,6 +23,8 @@ import com.btpn.opera.operationsurvey.service.persistence.RespondenPersistence;
 import com.btpn.opera.operationsurvey.service.persistence.SurveyObjectPersistence;
 import com.btpn.opera.operationsurvey.service.persistence.SurveyOperationFinder;
 import com.btpn.opera.operationsurvey.service.persistence.SurveyOperationPersistence;
+import com.btpn.opera.operationsurvey.service.persistence.SurveyOperationUsersViewPersistence;
+import com.btpn.opera.operationsurvey.service.persistence.SurveyOperationViewPersistence;
 
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -138,6 +140,13 @@ public abstract class SurveyObjectServiceBaseImpl
 
 	@Reference
 	protected SurveyOperationFinder surveyOperationFinder;
+
+	@Reference
+	protected SurveyOperationUsersViewPersistence
+		surveyOperationUsersViewPersistence;
+
+	@Reference
+	protected SurveyOperationViewPersistence surveyOperationViewPersistence;
 
 	@Reference
 	protected com.liferay.counter.kernel.service.CounterLocalService

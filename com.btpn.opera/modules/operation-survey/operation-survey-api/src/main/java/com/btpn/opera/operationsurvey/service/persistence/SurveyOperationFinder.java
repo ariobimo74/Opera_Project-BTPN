@@ -23,8 +23,9 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface SurveyOperationFinder {
 
-	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
-		findAllSurveyOperationMapping();
+	public java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperationView>
+			findAllSurveyOperationMapping();
 
 	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
 		findSurveyOperationBeforeEndDate();

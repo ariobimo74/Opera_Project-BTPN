@@ -101,8 +101,9 @@ public class SurveyOperationServiceWrapper
 	}
 
 	@Override
-	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
-		getAllSurveyOperationMapping() {
+	public java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperationView>
+			getAllSurveyOperationMapping() {
 
 		return _surveyOperationService.getAllSurveyOperationMapping();
 	}

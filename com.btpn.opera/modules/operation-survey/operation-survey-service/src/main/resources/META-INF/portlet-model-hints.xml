@@ -54,4 +54,30 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="modifiedBy" type="long" />
 	</model>
+	<model name="com.btpn.opera.operationsurvey.model.SurveyOperationUsersView">
+		<field name="id" type="long" />
+		<field name="title" type="String" />
+		<field name="objectName" type="String" />
+		<field name="startDate" type="Date">
+			<hint name="show-time">false</hint>
+		</field>
+		<field name="endDate" type="Date">
+			<hint name="show-time">false</hint>
+		</field>
+		<field name="respondenId" type="long" />
+		<field name="respondenNik" type="String" />
+		<field name="submittedDate" type="Date" />
+	</model>
+	<model name="com.btpn.opera.operationsurvey.model.SurveyOperationView">
+		<field name="id" type="long" />
+		<field name="title" type="String" />
+		<field name="name" type="String" />
+		<field name="startDate" type="Date">
+			<hint name="show-time">false</hint>
+		</field>
+		<field name="endDate" type="Date">
+			<hint name="show-time">false</hint>
+		</field>
+		<field name="submitted_date" type="Date" />
+	</model>
 </model-hints>

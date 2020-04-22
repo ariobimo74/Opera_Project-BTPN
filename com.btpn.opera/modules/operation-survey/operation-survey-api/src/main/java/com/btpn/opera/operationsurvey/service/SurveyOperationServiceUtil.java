@@ -98,7 +98,7 @@ public class SurveyOperationServiceUtil {
 	}
 
 	public static java.util.List
-		<com.btpn.opera.operationsurvey.model.SurveyOperation>
+		<com.btpn.opera.operationsurvey.model.SurveyOperationView>
 			getAllSurveyOperationMapping() {
 
 		return getService().getAllSurveyOperationMapping();

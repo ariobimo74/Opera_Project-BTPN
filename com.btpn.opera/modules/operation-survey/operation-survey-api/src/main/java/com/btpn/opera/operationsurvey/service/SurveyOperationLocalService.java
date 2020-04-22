@@ -15,6 +15,7 @@
 package com.btpn.opera.operationsurvey.service;
 
 import com.btpn.opera.operationsurvey.model.SurveyOperation;
+import com.btpn.opera.operationsurvey.model.SurveyOperationView;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -207,7 +208,7 @@ public interface SurveyOperationLocalService
 	public List<SurveyOperation> getAllSurveyOperation();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SurveyOperation> getAllSurveyOperationMapping();
+	public List<SurveyOperationView> getAllSurveyOperationMapping();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SurveyOperation> getAllSurveyOperationPaging(

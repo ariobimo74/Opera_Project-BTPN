@@ -3,9 +3,19 @@
 <custom-sql>
     <sql id="findAllSurveyOperationMapping">
         <![CDATA[
-           SELECT survey_operation.title, survey_object.name, (CAST(CONVERT(DATE, survey_operation.start_date) AS VARCHAR) + ' - ' + CAST(CONVERT(DATE, survey_operation.end_date) AS VARCHAR)) AS periode, survey_operation.submitted_date FROM survey_operation AS survey_operation
+           SELECT survey_operation.id, survey_operation.title, survey_object.name, (CAST(CONVERT(DATE, survey_operation.start_date) AS VARCHAR) + ' - ' + CAST(CONVERT(DATE, survey_operation.end_date) AS VARCHAR)) AS periode, survey_operation.submitted_date FROM survey_operation AS survey_operation
             LEFT JOIN survey_object AS survey_object
             ON survey_operation.survey_object_id = survey_object.id
+        ]]>
+    </sql>
+    <sql id="surveyOperationUsers">
+        <![CDATA[
+           SELECT survey_operation.id, survey_operation.title, survey_object.name AS object_name, (CAST(CONVERT(DATE, survey_operation.start_date) AS VARCHAR) + ' - ' + CAST(CONVERT(DATE, survey_operation.end_date) AS VARCHAR)) AS periode, responden.id AS responden_id, responden.nik AS responden_nik, responden.submitted_date
+			FROM survey_operation AS survey_operation
+            LEFT JOIN survey_object AS survey_object
+            ON survey_operation.survey_object_id = survey_object.id
+			RIGHT JOIN responden AS responden
+			ON responden.survey_operation_id = survey_operation.id
         ]]>
     </sql>
     <sql id="findSurveyOperationBeforeEndDate">

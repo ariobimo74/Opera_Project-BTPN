@@ -282,16 +282,18 @@ public class SurveyOperationServiceSoap {
 		}
 	}
 
-	public static com.btpn.opera.operationsurvey.model.SurveyOperationSoap[]
+	public static com.btpn.opera.operationsurvey.model.SurveyOperationViewSoap[]
 			getAllSurveyOperationMapping()
 		throws RemoteException {
 
 		try {
-			java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
-				returnValue =
-					SurveyOperationServiceUtil.getAllSurveyOperationMapping();
+			java.util.List
+				<com.btpn.opera.operationsurvey.model.SurveyOperationView>
+					returnValue =
+						SurveyOperationServiceUtil.
+							getAllSurveyOperationMapping();
 
-			return com.btpn.opera.operationsurvey.model.SurveyOperationSoap.
+			return com.btpn.opera.operationsurvey.model.SurveyOperationViewSoap.
 				toSoapModels(returnValue);
 		}
 		catch (Exception e) {

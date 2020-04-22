@@ -468,7 +468,7 @@ public class SurveyOperationServiceHttp {
 	}
 
 	public static java.util.List
-		<com.btpn.opera.operationsurvey.model.SurveyOperation>
+		<com.btpn.opera.operationsurvey.model.SurveyOperationView>
 			getAllSurveyOperationMapping(HttpPrincipal httpPrincipal) {
 
 		try {
@@ -490,7 +490,7 @@ public class SurveyOperationServiceHttp {
 			}
 
 			return (java.util.List
-				<com.btpn.opera.operationsurvey.model.SurveyOperation>)
+				<com.btpn.opera.operationsurvey.model.SurveyOperationView>)
 					returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
