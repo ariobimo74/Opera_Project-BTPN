@@ -16,6 +16,7 @@ package com.btpn.opera.operationsurvey.service.base;
 
 import com.btpn.opera.operationsurvey.model.SurveyOperation;
 import com.btpn.opera.operationsurvey.service.SurveyOperationLocalService;
+import com.btpn.opera.operationsurvey.service.persistence.AnswersPersistence;
 import com.btpn.opera.operationsurvey.service.persistence.QuestionsFinder;
 import com.btpn.opera.operationsurvey.service.persistence.QuestionsPersistence;
 import com.btpn.opera.operationsurvey.service.persistence.RespondenPersistence;
@@ -390,6 +391,9 @@ public abstract class SurveyOperationLocalServiceBaseImpl
 			throw new SystemException(e);
 		}
 	}
+
+	@Reference
+	protected AnswersPersistence answersPersistence;
 
 	@Reference
 	protected QuestionsPersistence questionsPersistence;

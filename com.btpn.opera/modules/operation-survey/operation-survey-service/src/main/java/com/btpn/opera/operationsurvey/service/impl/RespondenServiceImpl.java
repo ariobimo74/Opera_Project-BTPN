@@ -68,6 +68,11 @@ public class RespondenServiceImpl extends RespondenServiceBaseImpl {
 		return respondenLocalService.addRespondenByAdmin(nik, fullName, lob, division, surveyOperationId, serviceContext);
 	}
 
+	public Responden editRespondenByAdmin(long id, String nik, String fullName, String lob, String division, long surveyOperationId, ServiceContext serviceContext) throws PortalException
+	{
+		return respondenLocalService.editRespondenByAdmin(id, nik, fullName, lob, division, surveyOperationId, serviceContext);
+	}
+
 	public Responden updateRespondenByUser(long id, double totalValue, String answerRecord, String notes, ServiceContext serviceContext) throws PortalException
 	{
 		return respondenLocalService.updateRespondenByUser(id, totalValue, answerRecord, notes, serviceContext);

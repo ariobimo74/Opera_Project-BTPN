@@ -155,8 +155,7 @@ public class QuestionsServiceHttp {
 	}
 
 	public static com.btpn.opera.operationsurvey.model.Questions addQuestions(
-		HttpPrincipal httpPrincipal, String question, String answer,
-		long surveyOperationId,
+		HttpPrincipal httpPrincipal, String question, long surveyOperationId,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 
 		try {
@@ -165,7 +164,7 @@ public class QuestionsServiceHttp {
 				_addQuestionsParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, question, answer, surveyOperationId, serviceContext);
+				methodKey, question, surveyOperationId, serviceContext);
 
 			Object returnObj = null;
 
@@ -188,7 +187,7 @@ public class QuestionsServiceHttp {
 
 	public static com.btpn.opera.operationsurvey.model.Questions editQuestions(
 			HttpPrincipal httpPrincipal, long id, String question,
-			String answer, long surveyOperationId,
+			long surveyOperationId,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -198,8 +197,7 @@ public class QuestionsServiceHttp {
 				_editQuestionsParameterTypes4);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, id, question, answer, surveyOperationId,
-				serviceContext);
+				methodKey, id, question, surveyOperationId, serviceContext);
 
 			Object returnObj = null;
 
@@ -335,12 +333,12 @@ public class QuestionsServiceHttp {
 			long.class
 		};
 	private static final Class<?>[] _addQuestionsParameterTypes3 = new Class[] {
-		String.class, String.class, long.class,
+		String.class, long.class,
 		com.liferay.portal.kernel.service.ServiceContext.class
 	};
 	private static final Class<?>[] _editQuestionsParameterTypes4 =
 		new Class[] {
-			long.class, String.class, String.class, long.class,
+			long.class, String.class, long.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _deleteQuestionsByIdParameterTypes5 =

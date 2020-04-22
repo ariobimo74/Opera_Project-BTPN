@@ -182,6 +182,11 @@ public interface RespondenLocalService
 	public long dynamicQueryCount(
 		DynamicQuery dynamicQuery, Projection projection);
 
+	public Responden editRespondenByAdmin(
+			long id, String nik, String fullName, String lob, String division,
+			long surveyOperationId, ServiceContext serviceContext)
+		throws PortalException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Responden fetchResponden(long id);
 

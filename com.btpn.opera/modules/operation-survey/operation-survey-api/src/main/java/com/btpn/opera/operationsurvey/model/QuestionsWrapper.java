@@ -46,7 +46,6 @@ public class QuestionsWrapper
 
 		attributes.put("id", getId());
 		attributes.put("question", getQuestion());
-		attributes.put("answer", getAnswer());
 		attributes.put("surveyOperationId", getSurveyOperationId());
 
 		return attributes;
@@ -66,27 +65,11 @@ public class QuestionsWrapper
 			setQuestion(question);
 		}
 
-		String answer = (String)attributes.get("answer");
-
-		if (answer != null) {
-			setAnswer(answer);
-		}
-
 		Long surveyOperationId = (Long)attributes.get("surveyOperationId");
 
 		if (surveyOperationId != null) {
 			setSurveyOperationId(surveyOperationId);
 		}
-	}
-
-	/**
-	 * Returns the answer of this questions.
-	 *
-	 * @return the answer of this questions
-	 */
-	@Override
-	public String getAnswer() {
-		return model.getAnswer();
 	}
 
 	/**
@@ -132,16 +115,6 @@ public class QuestionsWrapper
 	@Override
 	public void persist() {
 		model.persist();
-	}
-
-	/**
-	 * Sets the answer of this questions.
-	 *
-	 * @param answer the answer of this questions
-	 */
-	@Override
-	public void setAnswer(String answer) {
-		model.setAnswer(answer);
 	}
 
 	/**

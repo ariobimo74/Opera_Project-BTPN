@@ -364,6 +364,14 @@ public class SurveyOperationLocalServiceWrapper
 			title, startPage, endPage);
 	}
 
+	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
+		getSurveyOperationByTitleQuery(String title) {
+
+		return _surveyOperationLocalService.getSurveyOperationByTitleQuery(
+			title);
+	}
+
 	/**
 	 * Returns a range of all the survey operations.
 	 *

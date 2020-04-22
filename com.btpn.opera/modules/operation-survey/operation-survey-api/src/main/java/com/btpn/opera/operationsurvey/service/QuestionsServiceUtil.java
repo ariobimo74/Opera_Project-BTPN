@@ -40,11 +40,11 @@ public class QuestionsServiceUtil {
 	 * Never modify this class directly. Add custom service methods to <code>com.btpn.opera.operationsurvey.service.impl.QuestionsServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.btpn.opera.operationsurvey.model.Questions addQuestions(
-		String question, String answer, long surveyOperationId,
+		String question, long surveyOperationId,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 
 		return getService().addQuestions(
-			question, answer, surveyOperationId, serviceContext);
+			question, surveyOperationId, serviceContext);
 	}
 
 	public static com.btpn.opera.operationsurvey.model.Questions
@@ -61,12 +61,12 @@ public class QuestionsServiceUtil {
 	}
 
 	public static com.btpn.opera.operationsurvey.model.Questions editQuestions(
-			long id, String question, String answer, long surveyOperationId,
+			long id, String question, long surveyOperationId,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().editQuestions(
-			id, question, answer, surveyOperationId, serviceContext);
+			id, question, surveyOperationId, serviceContext);
 	}
 
 	public static java.util.List<com.btpn.opera.operationsurvey.model.Questions>

@@ -157,6 +157,13 @@ public class SurveyOperationServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
+		getSurveyOperationByTitleQuery(String title) {
+
+		return _surveyOperationService.getSurveyOperationByTitleQuery(title);
+	}
+
+	@Override
 	public SurveyOperationService getWrappedService() {
 		return _surveyOperationService;
 	}

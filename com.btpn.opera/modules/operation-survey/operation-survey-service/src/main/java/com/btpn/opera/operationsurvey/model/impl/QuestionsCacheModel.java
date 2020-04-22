@@ -63,14 +63,12 @@ public class QuestionsCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(7);
 
 		sb.append("{id=");
 		sb.append(id);
 		sb.append(", question=");
 		sb.append(question);
-		sb.append(", answer=");
-		sb.append(answer);
 		sb.append(", surveyOperationId=");
 		sb.append(surveyOperationId);
 		sb.append("}");
@@ -91,13 +89,6 @@ public class QuestionsCacheModel
 			questionsImpl.setQuestion(question);
 		}
 
-		if (answer == null) {
-			questionsImpl.setAnswer("");
-		}
-		else {
-			questionsImpl.setAnswer(answer);
-		}
-
 		questionsImpl.setSurveyOperationId(surveyOperationId);
 
 		questionsImpl.resetOriginalValues();
@@ -109,7 +100,6 @@ public class QuestionsCacheModel
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		id = objectInput.readLong();
 		question = objectInput.readUTF();
-		answer = objectInput.readUTF();
 
 		surveyOperationId = objectInput.readLong();
 	}
@@ -125,19 +115,11 @@ public class QuestionsCacheModel
 			objectOutput.writeUTF(question);
 		}
 
-		if (answer == null) {
-			objectOutput.writeUTF("");
-		}
-		else {
-			objectOutput.writeUTF(answer);
-		}
-
 		objectOutput.writeLong(surveyOperationId);
 	}
 
 	public long id;
 	public String question;
-	public String answer;
 	public long surveyOperationId;
 
 }

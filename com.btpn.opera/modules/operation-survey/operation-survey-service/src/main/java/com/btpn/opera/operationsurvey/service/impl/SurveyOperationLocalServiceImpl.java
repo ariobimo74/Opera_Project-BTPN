@@ -182,4 +182,11 @@ public class SurveyOperationLocalServiceImpl
 	{
 		return surveyOperationFinder.findSurveyOperationBeforeEndDate();
 	}
+
+	public List<SurveyOperation> getSurveyOperationByTitleQuery(String title)
+	{
+		String theTitle = '%' + title + '%';
+
+		return surveyOperationFinder.findSurveyOperationByTitleQuery(theTitle);
+	}
 }

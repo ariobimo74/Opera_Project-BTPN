@@ -2,16 +2,24 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="false" default-lazy="false">
+	<import class="com.btpn.opera.operationsurvey.model.Answers" />
 	<import class="com.btpn.opera.operationsurvey.model.Questions" />
 	<import class="com.btpn.opera.operationsurvey.model.Responden" />
 	<import class="com.btpn.opera.operationsurvey.model.SurveyObject" />
 	<import class="com.btpn.opera.operationsurvey.model.SurveyOperation" />
+	<class name="com.btpn.opera.operationsurvey.model.impl.AnswersImpl" table="answers">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="id" type="long">
+			<generator class="assigned" />
+		</id>
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="answer" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="value" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="questions_id" name="questionsId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
 	<class name="com.btpn.opera.operationsurvey.model.impl.QuestionsImpl" table="questions">
 		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="id" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="question" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="answer" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="survey_operation_id" name="surveyOperationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.btpn.opera.operationsurvey.model.impl.RespondenImpl" table="responden">

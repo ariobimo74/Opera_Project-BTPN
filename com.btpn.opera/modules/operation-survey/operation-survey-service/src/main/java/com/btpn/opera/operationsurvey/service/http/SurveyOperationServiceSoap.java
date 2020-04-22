@@ -321,6 +321,26 @@ public class SurveyOperationServiceSoap {
 		}
 	}
 
+	public static com.btpn.opera.operationsurvey.model.SurveyOperationSoap[]
+			getSurveyOperationByTitleQuery(String title)
+		throws RemoteException {
+
+		try {
+			java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
+				returnValue =
+					SurveyOperationServiceUtil.getSurveyOperationByTitleQuery(
+						title);
+
+			return com.btpn.opera.operationsurvey.model.SurveyOperationSoap.
+				toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		SurveyOperationServiceSoap.class);
 

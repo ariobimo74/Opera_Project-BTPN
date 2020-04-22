@@ -13,6 +13,11 @@
             SELECT * FROM survey_operation WHERE end_date > GETDATE()
         ]]>
     </sql>
+    <sql id="findSurveyOperationByTitleQuery">
+        <![CDATA[
+            SELECT * FROM survey_operation WHERE title LIKE ?
+        ]]>
+    </sql>
     <sql id="findQuestionsBySurveyOperationIdQuery">
         <![CDATA[
             SELECT * FROM questions WHERE survey_operation_id = ?

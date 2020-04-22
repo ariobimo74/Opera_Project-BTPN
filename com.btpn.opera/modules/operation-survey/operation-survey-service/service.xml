@@ -47,11 +47,21 @@
 	<entity table="questions" name="Questions" local-service="true" remote-service="true" uuid="false">
 		<column db-name="id" name="id" type="long" primary="true" />
 		<column db-name="question" name="question" type="String" />
-		<column db-name="answer" name="answer" type="String" />
 		<column db-name="survey_operation_id" name="surveyOperationId" type="long" />
 
 		<finder name="SurveyOperationId" return-type="Collection">
 			<finder-column name="surveyOperationId" />
+		</finder>
+	</entity>
+
+	<entity table="answers" name="Answers" local-service="true" remote-service="true" uuid="false">
+		<column db-name="id" name="id" type="long" primary="true" />
+		<column db-name="answer" name="answer" type="String" />
+		<column db-name="value" name="value" type="double" />
+		<column db-name="questions_id" name="questionsId" type="long" />
+
+		<finder name="QuestionsId" return-type="Collection">
+			<finder-column name="questionsId" />
 		</finder>
 	</entity>
 
@@ -76,5 +86,6 @@
 		<exception>SurveyObject</exception>
 		<exception>StartDate</exception>
 		<exception>EndDate</exception>
+		<exception>Value</exception>
 	</exceptions>
 </service-builder>

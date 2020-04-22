@@ -65,24 +65,22 @@ public class QuestionsLocalServiceImpl extends QuestionsLocalServiceBaseImpl {
 		return questionsPersistence.findBySurveyOperationId(surveyOperationId);
 	}
 
-	public Questions addQuestions(String question, String answer, long surveyOperationId, ServiceContext serviceContext)
+	public Questions addQuestions(String question, long surveyOperationId, ServiceContext serviceContext)
 	{
 		long id = counterLocalService.increment();
 		Questions questions = questionsPersistence.create(id);
 
 		questions.setQuestion(question);
-		questions.setAnswer(answer);
 		questions.setSurveyOperationId(surveyOperationId);
 
 		return questionsPersistence.update(questions);
 	}
 
-	public Questions editQuestions(long id, String question, String answer, long surveyOperationId, ServiceContext serviceContext) throws PortalException
+	public Questions editQuestions(long id, String question, long surveyOperationId, ServiceContext serviceContext) throws PortalException
 	{
 		Questions questions = questionsPersistence.findByPrimaryKey(id);
 
 		questions.setQuestion(question);
-		questions.setAnswer(answer);
 		questions.setSurveyOperationId(surveyOperationId);
 
 		return questionsPersistence.update(questions);

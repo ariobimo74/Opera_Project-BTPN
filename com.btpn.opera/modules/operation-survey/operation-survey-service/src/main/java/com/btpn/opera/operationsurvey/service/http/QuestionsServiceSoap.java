@@ -123,14 +123,14 @@ public class QuestionsServiceSoap {
 
 	public static com.btpn.opera.operationsurvey.model.QuestionsSoap
 			addQuestions(
-				String question, String answer, long surveyOperationId,
+				String question, long surveyOperationId,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 
 		try {
 			com.btpn.opera.operationsurvey.model.Questions returnValue =
 				QuestionsServiceUtil.addQuestions(
-					question, answer, surveyOperationId, serviceContext);
+					question, surveyOperationId, serviceContext);
 
 			return com.btpn.opera.operationsurvey.model.QuestionsSoap.
 				toSoapModel(returnValue);
@@ -144,14 +144,14 @@ public class QuestionsServiceSoap {
 
 	public static com.btpn.opera.operationsurvey.model.QuestionsSoap
 			editQuestions(
-				long id, String question, String answer, long surveyOperationId,
+				long id, String question, long surveyOperationId,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 
 		try {
 			com.btpn.opera.operationsurvey.model.Questions returnValue =
 				QuestionsServiceUtil.editQuestions(
-					id, question, answer, surveyOperationId, serviceContext);
+					id, question, surveyOperationId, serviceContext);
 
 			return com.btpn.opera.operationsurvey.model.QuestionsSoap.
 				toSoapModel(returnValue);

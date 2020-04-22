@@ -73,8 +73,7 @@ public interface QuestionsLocalService
 	public Questions addQuestions(Questions questions);
 
 	public Questions addQuestions(
-		String question, String answer, long surveyOperationId,
-		ServiceContext serviceContext);
+		String question, long surveyOperationId, ServiceContext serviceContext);
 
 	/**
 	 * Creates a new questions with the primary key. Does not add the questions to the database.
@@ -182,7 +181,7 @@ public interface QuestionsLocalService
 		DynamicQuery dynamicQuery, Projection projection);
 
 	public Questions editQuestions(
-			long id, String question, String answer, long surveyOperationId,
+			long id, String question, long surveyOperationId,
 			ServiceContext serviceContext)
 		throws PortalException;
 

@@ -83,21 +83,6 @@ public interface QuestionsModel extends BaseModel<Questions> {
 	public void setQuestion(String question);
 
 	/**
-	 * Returns the answer of this questions.
-	 *
-	 * @return the answer of this questions
-	 */
-	@AutoEscape
-	public String getAnswer();
-
-	/**
-	 * Sets the answer of this questions.
-	 *
-	 * @param answer the answer of this questions
-	 */
-	public void setAnswer(String answer);
-
-	/**
 	 * Returns the survey operation ID of this questions.
 	 *
 	 * @return the survey operation ID of this questions

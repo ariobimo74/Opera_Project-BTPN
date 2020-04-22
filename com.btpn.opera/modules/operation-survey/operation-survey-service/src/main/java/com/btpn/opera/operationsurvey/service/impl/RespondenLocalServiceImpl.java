@@ -75,6 +75,19 @@ public class RespondenLocalServiceImpl extends RespondenLocalServiceBaseImpl {
 		return respondenPersistence.update(responden);
 	}
 
+	public Responden editRespondenByAdmin(long id, String nik, String fullName, String lob, String division, long surveyOperationId, ServiceContext serviceContext) throws PortalException
+	{
+		Responden responden = respondenPersistence.findByPrimaryKey(id);
+
+		responden.setNik(nik);
+		responden.setFullName(fullName);
+		responden.setLob(lob);
+		responden.setDivision(division);
+		responden.setSurveyOperationId(surveyOperationId);
+
+		return respondenPersistence.update(responden);
+	}
+
 	public Responden updateRespondenByUser(long id, double totalValue, String answerRecord, String notes, ServiceContext serviceContext) throws PortalException
 	{
 		Date now = new Date();

@@ -157,6 +157,49 @@ public class RespondenServiceHttp {
 	}
 
 	public static com.btpn.opera.operationsurvey.model.Responden
+			editRespondenByAdmin(
+				HttpPrincipal httpPrincipal, long id, String nik,
+				String fullName, String lob, String division,
+				long surveyOperationId,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				RespondenServiceUtil.class, "editRespondenByAdmin",
+				_editRespondenByAdminParameterTypes3);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, id, nik, fullName, lob, division, surveyOperationId,
+				serviceContext);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (com.btpn.opera.operationsurvey.model.Responden)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static com.btpn.opera.operationsurvey.model.Responden
 			updateRespondenByUser(
 				HttpPrincipal httpPrincipal, long id, double totalValue,
 				String answerRecord, String notes,
@@ -166,7 +209,7 @@ public class RespondenServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				RespondenServiceUtil.class, "updateRespondenByUser",
-				_updateRespondenByUserParameterTypes3);
+				_updateRespondenByUserParameterTypes4);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, id, totalValue, answerRecord, notes, serviceContext);
@@ -204,7 +247,7 @@ public class RespondenServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				RespondenServiceUtil.class, "deleteRespondenById",
-				_deleteRespondenByIdParameterTypes4);
+				_deleteRespondenByIdParameterTypes5);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, id);
 
@@ -241,7 +284,7 @@ public class RespondenServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				RespondenServiceUtil.class, "getRespondenBySurveyOperationId",
-				_getRespondenBySurveyOperationIdParameterTypes5);
+				_getRespondenBySurveyOperationIdParameterTypes6);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, surveyOperationId);
@@ -274,7 +317,7 @@ public class RespondenServiceHttp {
 			MethodKey methodKey = new MethodKey(
 				RespondenServiceUtil.class,
 				"deleteRespondenBySurveyOperationId",
-				_deleteRespondenBySurveyOperationIdParameterTypes6);
+				_deleteRespondenBySurveyOperationIdParameterTypes7);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, surveyOperationId);
@@ -312,19 +355,24 @@ public class RespondenServiceHttp {
 			String.class, String.class, String.class, String.class, long.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
-	private static final Class<?>[] _updateRespondenByUserParameterTypes3 =
+	private static final Class<?>[] _editRespondenByAdminParameterTypes3 =
+		new Class[] {
+			long.class, String.class, String.class, String.class, String.class,
+			long.class, com.liferay.portal.kernel.service.ServiceContext.class
+		};
+	private static final Class<?>[] _updateRespondenByUserParameterTypes4 =
 		new Class[] {
 			long.class, double.class, String.class, String.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
-	private static final Class<?>[] _deleteRespondenByIdParameterTypes4 =
+	private static final Class<?>[] _deleteRespondenByIdParameterTypes5 =
 		new Class[] {long.class};
 	private static final Class<?>[]
-		_getRespondenBySurveyOperationIdParameterTypes5 = new Class[] {
+		_getRespondenBySurveyOperationIdParameterTypes6 = new Class[] {
 			long.class
 		};
 	private static final Class<?>[]
-		_deleteRespondenBySurveyOperationIdParameterTypes6 = new Class[] {
+		_deleteRespondenBySurveyOperationIdParameterTypes7 = new Class[] {
 			long.class
 		};
 

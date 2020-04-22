@@ -252,6 +252,9 @@ public interface SurveyOperationLocalService
 	public List<SurveyOperation> getSurveyOperationByTitlePaging(
 		String title, int startPage, int endPage);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SurveyOperation> getSurveyOperationByTitleQuery(String title);
+
 	/**
 	 * Returns a range of all the survey operations.
 	 *

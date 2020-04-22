@@ -63,6 +63,18 @@ public class RespondenServiceUtil {
 		getService().deleteRespondenBySurveyOperationId(surveyOperationId);
 	}
 
+	public static com.btpn.opera.operationsurvey.model.Responden
+			editRespondenByAdmin(
+				long id, String nik, String fullName, String lob,
+				String division, long surveyOperationId,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().editRespondenByAdmin(
+			id, nik, fullName, lob, division, surveyOperationId,
+			serviceContext);
+	}
+
 	public static java.util.List<com.btpn.opera.operationsurvey.model.Responden>
 		getAllResponden() {
 

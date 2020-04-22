@@ -1,12 +1,17 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="com.btpn.opera.operationsurvey.model.Answers">
+		<field name="id" type="long" />
+		<field name="answer" type="String">
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="value" type="double" />
+		<field name="questionsId" type="long" />
+	</model>
 	<model name="com.btpn.opera.operationsurvey.model.Questions">
 		<field name="id" type="long" />
 		<field name="question" type="String" />
-		<field name="answer" type="String">
-			<hint name="max-length">255</hint>
-		</field>
 		<field name="surveyOperationId" type="long" />
 	</model>
 	<model name="com.btpn.opera.operationsurvey.model.Responden">

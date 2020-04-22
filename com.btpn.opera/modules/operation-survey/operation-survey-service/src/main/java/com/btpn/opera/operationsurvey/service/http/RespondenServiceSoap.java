@@ -125,6 +125,29 @@ public class RespondenServiceSoap {
 	}
 
 	public static com.btpn.opera.operationsurvey.model.RespondenSoap
+			editRespondenByAdmin(
+				long id, String nik, String fullName, String lob,
+				String division, long surveyOperationId,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			com.btpn.opera.operationsurvey.model.Responden returnValue =
+				RespondenServiceUtil.editRespondenByAdmin(
+					id, nik, fullName, lob, division, surveyOperationId,
+					serviceContext);
+
+			return com.btpn.opera.operationsurvey.model.RespondenSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.btpn.opera.operationsurvey.model.RespondenSoap
 			updateRespondenByUser(
 				long id, double totalValue, String answerRecord, String notes,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)

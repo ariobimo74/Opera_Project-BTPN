@@ -54,15 +54,14 @@ public interface QuestionsService extends BaseService {
 	 * Never modify or reference this interface directly. Always use {@link QuestionsServiceUtil} to access the questions remote service. Add custom service methods to <code>com.btpn.opera.operationsurvey.service.impl.QuestionsServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public Questions addQuestions(
-		String question, String answer, long surveyOperationId,
-		ServiceContext serviceContext);
+		String question, long surveyOperationId, ServiceContext serviceContext);
 
 	public Questions deleteQuestionsById(long id) throws PortalException;
 
 	public void deleteQuestionsByOperationSurveyId(long surveyOperationId);
 
 	public Questions editQuestions(
-			long id, String question, String answer, long surveyOperationId,
+			long id, String question, long surveyOperationId,
 			ServiceContext serviceContext)
 		throws PortalException;
 

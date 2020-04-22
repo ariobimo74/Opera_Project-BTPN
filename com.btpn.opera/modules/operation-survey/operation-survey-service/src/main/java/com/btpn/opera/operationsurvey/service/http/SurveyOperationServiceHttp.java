@@ -533,6 +533,40 @@ public class SurveyOperationServiceHttp {
 		}
 	}
 
+	public static java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperation>
+			getSurveyOperationByTitleQuery(
+				HttpPrincipal httpPrincipal, String title) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				SurveyOperationServiceUtil.class,
+				"getSurveyOperationByTitleQuery",
+				_getSurveyOperationByTitleQueryParameterTypes14);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, title);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (java.util.List
+				<com.btpn.opera.operationsurvey.model.SurveyOperation>)
+					returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		SurveyOperationServiceHttp.class);
 
@@ -578,5 +612,9 @@ public class SurveyOperationServiceHttp {
 		_getAllSurveyOperationMappingParameterTypes12 = new Class[] {};
 	private static final Class<?>[]
 		_getSurveyOperationBeforeEndDateParameterTypes13 = new Class[] {};
+	private static final Class<?>[]
+		_getSurveyOperationByTitleQueryParameterTypes14 = new Class[] {
+			String.class
+		};
 
 }

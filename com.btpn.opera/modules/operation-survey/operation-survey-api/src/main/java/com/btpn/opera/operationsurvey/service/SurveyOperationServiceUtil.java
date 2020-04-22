@@ -150,6 +150,13 @@ public class SurveyOperationServiceUtil {
 			title, startPage, endPage);
 	}
 
+	public static java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperation>
+			getSurveyOperationByTitleQuery(String title) {
+
+		return getService().getSurveyOperationByTitleQuery(title);
+	}
+
 	public static SurveyOperationService getService() {
 		return _serviceTracker.getService();
 	}

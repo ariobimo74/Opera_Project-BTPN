@@ -124,4 +124,9 @@ public class SurveyOperationServiceImpl extends SurveyOperationServiceBaseImpl {
 	{
 		return surveyOperationLocalService.getSurveyOperationBeforeEndDate();
 	}
+
+	public List<SurveyOperation> getSurveyOperationByTitleQuery(String title)
+	{
+		return surveyOperationLocalService.getSurveyOperationByTitleQuery(title);
+	}
 }

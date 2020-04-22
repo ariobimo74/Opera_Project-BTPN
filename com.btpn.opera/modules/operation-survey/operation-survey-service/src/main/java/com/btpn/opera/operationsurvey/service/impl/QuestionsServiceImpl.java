@@ -68,14 +68,14 @@ public class QuestionsServiceImpl extends QuestionsServiceBaseImpl {
 		return questionsLocalService.getQuestionsBySurveyOperationId(surveyOperationId);
 	}
 
-	public Questions addQuestions(String question, String answer, long surveyOperationId, ServiceContext serviceContext)
+	public Questions addQuestions(String question, long surveyOperationId, ServiceContext serviceContext)
 	{
-		return questionsLocalService.addQuestions(question, answer, surveyOperationId, serviceContext);
+		return questionsLocalService.addQuestions(question, surveyOperationId, serviceContext);
 	}
 
-	public Questions editQuestions(long id, String question, String answer, long surveyOperationId, ServiceContext serviceContext) throws PortalException
+	public Questions editQuestions(long id, String question, long surveyOperationId, ServiceContext serviceContext) throws PortalException
 	{
-		return questionsLocalService.editQuestions(id, question, answer, surveyOperationId, serviceContext);
+		return questionsLocalService.editQuestions(id, question, surveyOperationId, serviceContext);
 	}
 
 	public Questions deleteQuestionsById(long id) throws PortalException

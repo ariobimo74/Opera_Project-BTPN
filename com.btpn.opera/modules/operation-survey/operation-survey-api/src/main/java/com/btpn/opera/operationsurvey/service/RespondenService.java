@@ -62,6 +62,11 @@ public interface RespondenService extends BaseService {
 	public void deleteRespondenBySurveyOperationId(long surveyOperationId)
 		throws PortalException;
 
+	public Responden editRespondenByAdmin(
+			long id, String nik, String fullName, String lob, String division,
+			long surveyOperationId, ServiceContext serviceContext)
+		throws PortalException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Responden> getAllResponden();
 

@@ -29,4 +29,7 @@ public interface SurveyOperationFinder {
 	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
 		findSurveyOperationBeforeEndDate();
 
+	public java.util.List<com.btpn.opera.operationsurvey.model.SurveyOperation>
+		findSurveyOperationByTitleQuery(String title);
+
 }

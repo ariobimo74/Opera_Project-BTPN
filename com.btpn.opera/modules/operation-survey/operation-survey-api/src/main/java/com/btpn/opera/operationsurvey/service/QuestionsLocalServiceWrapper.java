@@ -50,11 +50,11 @@ public class QuestionsLocalServiceWrapper
 
 	@Override
 	public com.btpn.opera.operationsurvey.model.Questions addQuestions(
-		String question, String answer, long surveyOperationId,
+		String question, long surveyOperationId,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 
 		return _questionsLocalService.addQuestions(
-			question, answer, surveyOperationId, serviceContext);
+			question, surveyOperationId, serviceContext);
 	}
 
 	/**
@@ -215,12 +215,12 @@ public class QuestionsLocalServiceWrapper
 
 	@Override
 	public com.btpn.opera.operationsurvey.model.Questions editQuestions(
-			long id, String question, String answer, long surveyOperationId,
+			long id, String question, long surveyOperationId,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _questionsLocalService.editQuestions(
-			id, question, answer, surveyOperationId, serviceContext);
+			id, question, surveyOperationId, serviceContext);
 	}
 
 	@Override

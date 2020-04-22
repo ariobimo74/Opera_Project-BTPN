@@ -1,7 +1,13 @@
+create table answers (
+	id LONG not null primary key,
+	answer VARCHAR(100) null,
+	value DOUBLE,
+	questions_id LONG
+);
+
 create table questions (
 	id LONG not null primary key,
 	question VARCHAR(75) null,
-	answer VARCHAR(255) null,
 	survey_operation_id LONG
 );
 
