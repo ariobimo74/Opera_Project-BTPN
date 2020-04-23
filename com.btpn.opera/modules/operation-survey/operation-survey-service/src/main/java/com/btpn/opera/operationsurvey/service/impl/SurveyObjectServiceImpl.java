@@ -57,7 +57,7 @@ public class SurveyObjectServiceImpl extends SurveyObjectServiceBaseImpl {
 		return surveyObjectLocalService.getAllSurveyObject();
 	}
 
-	public SurveyObject getSurveyObjectById(long id) throws PortalException
+	public SurveyObject getSurveyObjectById(long id)
 	{
 		return surveyObjectLocalService.getSurveyObjectById(id);
 	}

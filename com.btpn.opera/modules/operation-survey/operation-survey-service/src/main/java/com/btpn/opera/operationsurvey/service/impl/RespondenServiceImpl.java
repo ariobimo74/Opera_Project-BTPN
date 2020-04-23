@@ -58,7 +58,7 @@ public class RespondenServiceImpl extends RespondenServiceBaseImpl {
 		return respondenLocalService.getAllResponden();
 	}
 
-	public Responden getRespondenById(long id) throws PortalException
+	public Responden getRespondenById(long id)
 	{
 		return respondenLocalService.getRespondenById(id);
 	}

@@ -86,8 +86,7 @@ public class AnswersServiceHttp {
 	}
 
 	public static com.btpn.opera.operationsurvey.model.Answers getAnswersById(
-			HttpPrincipal httpPrincipal, long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		HttpPrincipal httpPrincipal, long id) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -102,13 +101,6 @@ public class AnswersServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				if (e instanceof
-						com.liferay.portal.kernel.exception.PortalException) {
-
-					throw (com.liferay.portal.kernel.exception.PortalException)
-						e;
-				}
-
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					e);
 			}

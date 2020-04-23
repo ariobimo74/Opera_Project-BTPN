@@ -16,6 +16,7 @@ package com.btpn.opera.operationsurvey.service.impl;
 
 import com.btpn.opera.operationsurvey.exception.ValueException;
 import com.btpn.opera.operationsurvey.model.Answers;
+import com.btpn.opera.operationsurvey.model.impl.AnswersImpl;
 import com.btpn.opera.operationsurvey.service.base.AnswersLocalServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
@@ -57,9 +58,15 @@ public class AnswersLocalServiceImpl extends AnswersLocalServiceBaseImpl {
 		return answersPersistence.findAll();
 	}
 
-	public Answers getAnswersById(long id) throws PortalException
+	public Answers getAnswersById(long id)
 	{
-		return answersPersistence.findByPrimaryKey(id);
+		try {
+			return answersPersistence.findByPrimaryKey(id);
+		}
+		catch (Exception e)
+		{
+			return new AnswersImpl();
+		}
 	}
 
 	public Answers addAnswers(String answer, double value, long questionsId, ServiceContext serviceContext) throws PortalException

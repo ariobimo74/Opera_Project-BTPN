@@ -55,6 +55,14 @@ public class SurveyOperationUsersViewServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperationUsersView>
+			getSurveyOperationUsersViewByRespondenId(long respondenId) {
+
+		return getService().getSurveyOperationUsersViewByRespondenId(
+			respondenId);
+	}
+
 	public static SurveyOperationUsersViewService getService() {
 		return _serviceTracker.getService();
 	}

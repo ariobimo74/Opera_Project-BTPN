@@ -58,7 +58,7 @@ public class AnswersServiceImpl extends AnswersServiceBaseImpl {
 		return answersLocalService.getAllAnswers();
 	}
 
-	public Answers getAnswersById(long id) throws PortalException
+	public Answers getAnswersById(long id)
 	{
 		return answersLocalService.getAnswersById(id);
 	}

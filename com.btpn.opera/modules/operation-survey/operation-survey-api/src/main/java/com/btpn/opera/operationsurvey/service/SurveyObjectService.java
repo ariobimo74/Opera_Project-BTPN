@@ -63,6 +63,6 @@ public interface SurveyObjectService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SurveyObject getSurveyObjectById(long id) throws PortalException;
+	public SurveyObject getSurveyObjectById(long id);
 
 }

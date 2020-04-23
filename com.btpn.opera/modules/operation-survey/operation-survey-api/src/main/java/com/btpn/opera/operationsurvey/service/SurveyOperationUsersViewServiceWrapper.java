@@ -56,6 +56,15 @@ public class SurveyOperationUsersViewServiceWrapper
 	}
 
 	@Override
+	public java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperationUsersView>
+			getSurveyOperationUsersViewByRespondenId(long respondenId) {
+
+		return _surveyOperationUsersViewService.
+			getSurveyOperationUsersViewByRespondenId(respondenId);
+	}
+
+	@Override
 	public SurveyOperationUsersViewService getWrappedService() {
 		return _surveyOperationUsersViewService;
 	}

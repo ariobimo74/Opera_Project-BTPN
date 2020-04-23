@@ -65,7 +65,7 @@ public class SurveyOperationServiceImpl extends SurveyOperationServiceBaseImpl {
 		return surveyOperationLocalService.getAllSurveyOperationPaging(startPage, endPage);
 	}
 
-	public SurveyOperation getSurveyOperationById(long id) throws PortalException
+	public SurveyOperation getSurveyOperationById(long id)
 	{
 		return surveyOperationLocalService.getSurveyOperationById(id);
 	}

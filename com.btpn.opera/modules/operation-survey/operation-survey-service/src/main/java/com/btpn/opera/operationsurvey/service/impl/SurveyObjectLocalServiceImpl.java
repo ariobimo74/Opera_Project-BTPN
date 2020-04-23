@@ -14,7 +14,9 @@
 
 package com.btpn.opera.operationsurvey.service.impl;
 
+import com.btpn.opera.operationsurvey.exception.NoSuchSurveyObjectException;
 import com.btpn.opera.operationsurvey.model.SurveyObject;
+import com.btpn.opera.operationsurvey.model.impl.SurveyObjectImpl;
 import com.btpn.opera.operationsurvey.service.base.SurveyObjectLocalServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
@@ -55,8 +57,12 @@ public class SurveyObjectLocalServiceImpl
 		return surveyObjectPersistence.findAll();
 	}
 
-	public SurveyObject getSurveyObjectById(long id) throws PortalException
+	public SurveyObject getSurveyObjectById(long id)
 	{
-		return surveyObjectPersistence.findByPrimaryKey(id);
+		try {
+			return surveyObjectPersistence.findByPrimaryKey(id);
+		} catch (NoSuchSurveyObjectException e) {
+			return new SurveyObjectImpl();
+		}
 	}
 }

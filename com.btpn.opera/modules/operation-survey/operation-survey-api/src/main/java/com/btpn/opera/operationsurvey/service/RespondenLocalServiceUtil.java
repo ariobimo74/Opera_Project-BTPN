@@ -279,8 +279,7 @@ public class RespondenLocalServiceUtil {
 	}
 
 	public static com.btpn.opera.operationsurvey.model.Responden
-			getRespondenById(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		getRespondenById(long id) {
 
 		return getService().getRespondenById(id);
 	}

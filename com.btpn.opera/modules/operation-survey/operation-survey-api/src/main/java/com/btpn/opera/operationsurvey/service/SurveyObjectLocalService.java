@@ -207,7 +207,7 @@ public interface SurveyObjectLocalService
 	public SurveyObject getSurveyObject(long id) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SurveyObject getSurveyObjectById(long id) throws PortalException;
+	public SurveyObject getSurveyObjectById(long id);
 
 	/**
 	 * Returns a range of all the survey objects.

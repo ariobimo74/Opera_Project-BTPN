@@ -62,4 +62,8 @@ public interface SurveyOperationUsersViewService extends BaseService {
 	 */
 	public String getOSGiServiceIdentifier();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SurveyOperationUsersView>
+		getSurveyOperationUsersViewByRespondenId(long respondenId);
+
 }

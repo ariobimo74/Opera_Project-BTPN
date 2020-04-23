@@ -85,8 +85,7 @@ public class QuestionsServiceUtil {
 	}
 
 	public static com.btpn.opera.operationsurvey.model.Questions
-			getQuestionsById(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		getQuestionsById(long id) {
 
 		return getService().getQuestionsById(id);
 	}

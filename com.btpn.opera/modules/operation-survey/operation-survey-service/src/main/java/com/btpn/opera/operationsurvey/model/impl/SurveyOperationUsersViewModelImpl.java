@@ -75,7 +75,7 @@ public class SurveyOperationUsersViewModelImpl
 
 	public static final Object[][] TABLE_COLUMNS = {
 		{"id", Types.BIGINT}, {"title", Types.VARCHAR},
-		{"object_name", Types.VARCHAR}, {"start_date", Types.TIMESTAMP},
+		{"survey_object", Types.VARCHAR}, {"start_date", Types.TIMESTAMP},
 		{"end_date", Types.TIMESTAMP}, {"responden_id", Types.BIGINT},
 		{"responden_nik", Types.VARCHAR}, {"submitted_date", Types.TIMESTAMP}
 	};
@@ -86,7 +86,7 @@ public class SurveyOperationUsersViewModelImpl
 	static {
 		TABLE_COLUMNS_MAP.put("id", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("title", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("object_name", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("survey_object", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("start_date", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("end_date", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("responden_id", Types.BIGINT);
@@ -95,7 +95,7 @@ public class SurveyOperationUsersViewModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table survey_operation_users_view (id LONG not null primary key,title VARCHAR(75) null,object_name VARCHAR(75) null,start_date DATE null,end_date DATE null,responden_id LONG,responden_nik VARCHAR(75) null,submitted_date DATE null)";
+		"create table survey_operation_users_view (id LONG not null primary key,title VARCHAR(75) null,survey_object VARCHAR(75) null,start_date DATE null,end_date DATE null,responden_id LONG,responden_nik VARCHAR(75) null,submitted_date DATE null)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table survey_operation_users_view";
@@ -143,7 +143,7 @@ public class SurveyOperationUsersViewModelImpl
 
 		model.setId(soapModel.getId());
 		model.setTitle(soapModel.getTitle());
-		model.setObjectName(soapModel.getObjectName());
+		model.setSurveyObject(soapModel.getSurveyObject());
 		model.setStartDate(soapModel.getStartDate());
 		model.setEndDate(soapModel.getEndDate());
 		model.setRespondenId(soapModel.getRespondenId());
@@ -319,11 +319,11 @@ public class SurveyOperationUsersViewModelImpl
 			(BiConsumer<SurveyOperationUsersView, String>)
 				SurveyOperationUsersView::setTitle);
 		attributeGetterFunctions.put(
-			"objectName", SurveyOperationUsersView::getObjectName);
+			"surveyObject", SurveyOperationUsersView::getSurveyObject);
 		attributeSetterBiConsumers.put(
-			"objectName",
+			"surveyObject",
 			(BiConsumer<SurveyOperationUsersView, String>)
-				SurveyOperationUsersView::setObjectName);
+				SurveyOperationUsersView::setSurveyObject);
 		attributeGetterFunctions.put(
 			"startDate", SurveyOperationUsersView::getStartDate);
 		attributeSetterBiConsumers.put(
@@ -390,18 +390,18 @@ public class SurveyOperationUsersViewModelImpl
 
 	@JSON
 	@Override
-	public String getObjectName() {
-		if (_objectName == null) {
+	public String getSurveyObject() {
+		if (_surveyObject == null) {
 			return "";
 		}
 		else {
-			return _objectName;
+			return _surveyObject;
 		}
 	}
 
 	@Override
-	public void setObjectName(String objectName) {
-		_objectName = objectName;
+	public void setSurveyObject(String surveyObject) {
+		_surveyObject = surveyObject;
 	}
 
 	@JSON
@@ -525,7 +525,7 @@ public class SurveyOperationUsersViewModelImpl
 
 		surveyOperationUsersViewImpl.setId(getId());
 		surveyOperationUsersViewImpl.setTitle(getTitle());
-		surveyOperationUsersViewImpl.setObjectName(getObjectName());
+		surveyOperationUsersViewImpl.setSurveyObject(getSurveyObject());
 		surveyOperationUsersViewImpl.setStartDate(getStartDate());
 		surveyOperationUsersViewImpl.setEndDate(getEndDate());
 		surveyOperationUsersViewImpl.setRespondenId(getRespondenId());
@@ -621,12 +621,12 @@ public class SurveyOperationUsersViewModelImpl
 			surveyOperationUsersViewCacheModel.title = null;
 		}
 
-		surveyOperationUsersViewCacheModel.objectName = getObjectName();
+		surveyOperationUsersViewCacheModel.surveyObject = getSurveyObject();
 
-		String objectName = surveyOperationUsersViewCacheModel.objectName;
+		String surveyObject = surveyOperationUsersViewCacheModel.surveyObject;
 
-		if ((objectName != null) && (objectName.length() == 0)) {
-			surveyOperationUsersViewCacheModel.objectName = null;
+		if ((surveyObject != null) && (surveyObject.length() == 0)) {
+			surveyOperationUsersViewCacheModel.surveyObject = null;
 		}
 
 		Date startDate = getStartDate();
@@ -749,7 +749,7 @@ public class SurveyOperationUsersViewModelImpl
 
 	private long _id;
 	private String _title;
-	private String _objectName;
+	private String _surveyObject;
 	private Date _startDate;
 	private Date _endDate;
 	private long _respondenId;

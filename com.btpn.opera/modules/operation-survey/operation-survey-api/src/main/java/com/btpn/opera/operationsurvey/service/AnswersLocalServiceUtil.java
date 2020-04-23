@@ -244,8 +244,7 @@ public class AnswersLocalServiceUtil {
 	}
 
 	public static com.btpn.opera.operationsurvey.model.Answers getAnswersById(
-			long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		long id) {
 
 		return getService().getAnswersById(id);
 	}

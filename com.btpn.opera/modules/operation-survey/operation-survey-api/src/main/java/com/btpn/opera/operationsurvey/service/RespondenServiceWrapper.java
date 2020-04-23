@@ -89,8 +89,7 @@ public class RespondenServiceWrapper
 
 	@Override
 	public com.btpn.opera.operationsurvey.model.Responden getRespondenById(
-			long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		long id) {
 
 		return _respondenService.getRespondenById(id);
 	}

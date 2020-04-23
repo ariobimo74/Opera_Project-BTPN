@@ -50,7 +50,7 @@ public class SurveyOperationUsersViewWrapper
 
 		attributes.put("id", getId());
 		attributes.put("title", getTitle());
-		attributes.put("objectName", getObjectName());
+		attributes.put("surveyObject", getSurveyObject());
 		attributes.put("startDate", getStartDate());
 		attributes.put("endDate", getEndDate());
 		attributes.put("respondenId", getRespondenId());
@@ -74,10 +74,10 @@ public class SurveyOperationUsersViewWrapper
 			setTitle(title);
 		}
 
-		String objectName = (String)attributes.get("objectName");
+		String surveyObject = (String)attributes.get("surveyObject");
 
-		if (objectName != null) {
-			setObjectName(objectName);
+		if (surveyObject != null) {
+			setSurveyObject(surveyObject);
 		}
 
 		Date startDate = (Date)attributes.get("startDate");
@@ -132,16 +132,6 @@ public class SurveyOperationUsersViewWrapper
 	}
 
 	/**
-	 * Returns the object name of this survey operation users view.
-	 *
-	 * @return the object name of this survey operation users view
-	 */
-	@Override
-	public String getObjectName() {
-		return model.getObjectName();
-	}
-
-	/**
 	 * Returns the primary key of this survey operation users view.
 	 *
 	 * @return the primary key of this survey operation users view
@@ -192,6 +182,16 @@ public class SurveyOperationUsersViewWrapper
 	}
 
 	/**
+	 * Returns the survey object of this survey operation users view.
+	 *
+	 * @return the survey object of this survey operation users view
+	 */
+	@Override
+	public String getSurveyObject() {
+		return model.getSurveyObject();
+	}
+
+	/**
 	 * Returns the title of this survey operation users view.
 	 *
 	 * @return the title of this survey operation users view
@@ -224,16 +224,6 @@ public class SurveyOperationUsersViewWrapper
 	@Override
 	public void setId(long id) {
 		model.setId(id);
-	}
-
-	/**
-	 * Sets the object name of this survey operation users view.
-	 *
-	 * @param objectName the object name of this survey operation users view
-	 */
-	@Override
-	public void setObjectName(String objectName) {
-		model.setObjectName(objectName);
 	}
 
 	/**
@@ -284,6 +274,16 @@ public class SurveyOperationUsersViewWrapper
 	@Override
 	public void setSubmittedDate(Date submittedDate) {
 		model.setSubmittedDate(submittedDate);
+	}
+
+	/**
+	 * Sets the survey object of this survey operation users view.
+	 *
+	 * @param surveyObject the survey object of this survey operation users view
+	 */
+	@Override
+	public void setSurveyObject(String surveyObject) {
+		model.setSurveyObject(surveyObject);
 	}
 
 	/**

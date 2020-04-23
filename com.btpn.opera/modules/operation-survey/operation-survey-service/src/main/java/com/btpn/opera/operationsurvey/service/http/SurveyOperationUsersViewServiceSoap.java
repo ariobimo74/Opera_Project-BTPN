@@ -87,6 +87,29 @@ public class SurveyOperationUsersViewServiceSoap {
 		}
 	}
 
+	public static
+		com.btpn.opera.operationsurvey.model.SurveyOperationUsersViewSoap[]
+				getSurveyOperationUsersViewByRespondenId(long respondenId)
+			throws RemoteException {
+
+		try {
+			java.util.List
+				<com.btpn.opera.operationsurvey.model.SurveyOperationUsersView>
+					returnValue =
+						SurveyOperationUsersViewServiceUtil.
+							getSurveyOperationUsersViewByRespondenId(
+								respondenId);
+
+			return com.btpn.opera.operationsurvey.model.
+				SurveyOperationUsersViewSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		SurveyOperationUsersViewServiceSoap.class);
 

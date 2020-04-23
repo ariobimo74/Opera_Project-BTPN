@@ -1183,7 +1183,7 @@ public class SurveyOperationUsersViewPersistenceImpl
 
 		Map<String, String> dbColumnNames = new HashMap<String, String>();
 
-		dbColumnNames.put("objectName", "object_name");
+		dbColumnNames.put("surveyObject", "survey_object");
 		dbColumnNames.put("startDate", "start_date");
 		dbColumnNames.put("endDate", "end_date");
 		dbColumnNames.put("respondenId", "responden_id");
@@ -1934,8 +1934,8 @@ public class SurveyOperationUsersViewPersistenceImpl
 
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(
 		new String[] {
-			"objectName", "startDate", "endDate", "respondenId", "respondenNik",
-			"submittedDate"
+			"surveyObject", "startDate", "endDate", "respondenId",
+			"respondenNik", "submittedDate"
 		});
 
 	static {

@@ -69,7 +69,7 @@ public interface AnswersService extends BaseService {
 	public List<Answers> getAllAnswers();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Answers getAnswersById(long id) throws PortalException;
+	public Answers getAnswersById(long id);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Answers> getAnswersByQuestionsId(long questionsId);

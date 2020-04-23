@@ -243,8 +243,7 @@ public interface SurveyOperationLocalService
 	public List<SurveyOperation> getSurveyOperationBeforeEndDate();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SurveyOperation getSurveyOperationById(long id)
-		throws PortalException;
+	public SurveyOperation getSurveyOperationById(long id);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SurveyOperation> getSurveyOperationByTitle(String title);

@@ -210,6 +210,10 @@ public interface SurveyOperationUsersViewLocalService
 	public SurveyOperationUsersView getSurveyOperationUsersView(long id)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SurveyOperationUsersView>
+		getSurveyOperationUsersViewByRespondenId(long respondenId);
+
 	/**
 	 * Returns a range of all the survey operation users views.
 	 *

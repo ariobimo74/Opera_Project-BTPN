@@ -220,7 +220,7 @@ public interface QuestionsLocalService
 	public Questions getQuestions(long id) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Questions getQuestionsById(long id) throws PortalException;
+	public Questions getQuestionsById(long id);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Questions> getQuestionsBySurveyOperationId(

@@ -205,7 +205,7 @@ public interface AnswersLocalService
 	public Answers getAnswers(long id) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Answers getAnswersById(long id) throws PortalException;
+	public Answers getAnswersById(long id);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Answers> getAnswersByQuestionsId(long questionsId);

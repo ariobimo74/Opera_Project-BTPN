@@ -15,6 +15,7 @@
 package com.btpn.opera.operationsurvey.service.impl;
 
 import com.btpn.opera.operationsurvey.model.Questions;
+import com.btpn.opera.operationsurvey.model.impl.QuestionsImpl;
 import com.btpn.opera.operationsurvey.service.base.QuestionsLocalServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
@@ -55,9 +56,15 @@ public class QuestionsLocalServiceImpl extends QuestionsLocalServiceBaseImpl {
 		return questionsPersistence.findAll();
 	}
 
-	public Questions getQuestionsById(long id) throws PortalException
+	public Questions getQuestionsById(long id)
 	{
-		return questionsPersistence.findByPrimaryKey(id);
+		try {
+			return questionsPersistence.findByPrimaryKey(id);
+		}
+		catch (Exception e)
+		{
+			return new QuestionsImpl();
+		}
 	}
 
 	public List<Questions> getQuestionsBySurveyOperationId(long surveyOperationId)

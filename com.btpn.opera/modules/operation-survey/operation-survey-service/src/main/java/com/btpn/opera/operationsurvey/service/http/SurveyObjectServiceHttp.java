@@ -87,8 +87,7 @@ public class SurveyObjectServiceHttp {
 	}
 
 	public static com.btpn.opera.operationsurvey.model.SurveyObject
-			getSurveyObjectById(HttpPrincipal httpPrincipal, long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		getSurveyObjectById(HttpPrincipal httpPrincipal, long id) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -103,13 +102,6 @@ public class SurveyObjectServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				if (e instanceof
-						com.liferay.portal.kernel.exception.PortalException) {
-
-					throw (com.liferay.portal.kernel.exception.PortalException)
-						e;
-				}
-
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					e);
 			}

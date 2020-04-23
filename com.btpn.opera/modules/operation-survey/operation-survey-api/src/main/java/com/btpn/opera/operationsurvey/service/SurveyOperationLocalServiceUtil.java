@@ -318,8 +318,7 @@ public class SurveyOperationLocalServiceUtil {
 	}
 
 	public static com.btpn.opera.operationsurvey.model.SurveyOperation
-			getSurveyOperationById(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		getSurveyOperationById(long id) {
 
 		return getService().getSurveyOperationById(id);
 	}

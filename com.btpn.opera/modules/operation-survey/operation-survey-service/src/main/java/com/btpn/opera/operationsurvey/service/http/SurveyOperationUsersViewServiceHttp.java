@@ -88,10 +88,49 @@ public class SurveyOperationUsersViewServiceHttp {
 		}
 	}
 
+	public static java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperationUsersView>
+			getSurveyOperationUsersViewByRespondenId(
+				HttpPrincipal httpPrincipal, long respondenId) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				SurveyOperationUsersViewServiceUtil.class,
+				"getSurveyOperationUsersViewByRespondenId",
+				_getSurveyOperationUsersViewByRespondenIdParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, respondenId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+
+			return (java.util.List
+				<com.btpn.opera.operationsurvey.model.SurveyOperationUsersView>)
+					returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		SurveyOperationUsersViewServiceHttp.class);
 
 	private static final Class<?>[]
 		_getAllSurveyOperationUsersViewParameterTypes0 = new Class[] {};
+	private static final Class<?>[]
+		_getSurveyOperationUsersViewByRespondenIdParameterTypes1 = new Class[] {
+			long.class
+		};
 
 }

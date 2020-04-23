@@ -135,8 +135,7 @@ public class SurveyOperationServiceWrapper
 
 	@Override
 	public com.btpn.opera.operationsurvey.model.SurveyOperation
-			getSurveyOperationById(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		getSurveyOperationById(long id) {
 
 		return _surveyOperationService.getSurveyOperationById(id);
 	}

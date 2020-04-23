@@ -57,7 +57,7 @@
 	<model name="com.btpn.opera.operationsurvey.model.SurveyOperationUsersView">
 		<field name="id" type="long" />
 		<field name="title" type="String" />
-		<field name="objectName" type="String" />
+		<field name="surveyObject" type="String" />
 		<field name="startDate" type="Date">
 			<hint name="show-time">false</hint>
 		</field>
@@ -71,7 +71,7 @@
 	<model name="com.btpn.opera.operationsurvey.model.SurveyOperationView">
 		<field name="id" type="long" />
 		<field name="title" type="String" />
-		<field name="name" type="String" />
+		<field name="surveyObject" type="String" />
 		<field name="startDate" type="Date">
 			<hint name="show-time">false</hint>
 		</field>

@@ -248,6 +248,14 @@ public class SurveyOperationUsersViewLocalServiceUtil {
 		return getService().getSurveyOperationUsersView(id);
 	}
 
+	public static java.util.List
+		<com.btpn.opera.operationsurvey.model.SurveyOperationUsersView>
+			getSurveyOperationUsersViewByRespondenId(long respondenId) {
+
+		return getService().getSurveyOperationUsersViewByRespondenId(
+			respondenId);
+	}
+
 	/**
 	 * Returns a range of all the survey operation users views.
 	 *

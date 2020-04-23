@@ -69,8 +69,8 @@ public class AnswersServiceWrapper
 	}
 
 	@Override
-	public com.btpn.opera.operationsurvey.model.Answers getAnswersById(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public com.btpn.opera.operationsurvey.model.Answers getAnswersById(
+		long id) {
 
 		return _answersService.getAnswersById(id);
 	}

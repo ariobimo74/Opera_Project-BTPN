@@ -39,7 +39,7 @@ public class SurveyOperationUsersViewSoap implements Serializable {
 
 		soapModel.setId(model.getId());
 		soapModel.setTitle(model.getTitle());
-		soapModel.setObjectName(model.getObjectName());
+		soapModel.setSurveyObject(model.getSurveyObject());
 		soapModel.setStartDate(model.getStartDate());
 		soapModel.setEndDate(model.getEndDate());
 		soapModel.setRespondenId(model.getRespondenId());
@@ -124,12 +124,12 @@ public class SurveyOperationUsersViewSoap implements Serializable {
 		_title = title;
 	}
 
-	public String getObjectName() {
-		return _objectName;
+	public String getSurveyObject() {
+		return _surveyObject;
 	}
 
-	public void setObjectName(String objectName) {
-		_objectName = objectName;
+	public void setSurveyObject(String surveyObject) {
+		_surveyObject = surveyObject;
 	}
 
 	public Date getStartDate() {
@@ -174,7 +174,7 @@ public class SurveyOperationUsersViewSoap implements Serializable {
 
 	private long _id;
 	private String _title;
-	private String _objectName;
+	private String _surveyObject;
 	private Date _startDate;
 	private Date _endDate;
 	private long _respondenId;

@@ -245,8 +245,7 @@ public class SurveyObjectLocalServiceUtil {
 	}
 
 	public static com.btpn.opera.operationsurvey.model.SurveyObject
-			getSurveyObjectById(long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		getSurveyObjectById(long id) {
 
 		return getService().getSurveyObjectById(id);
 	}

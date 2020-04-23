@@ -14,7 +14,9 @@
 
 package com.btpn.opera.operationsurvey.service.impl;
 
+import com.btpn.opera.operationsurvey.exception.NoSuchRespondenException;
 import com.btpn.opera.operationsurvey.model.Responden;
+import com.btpn.opera.operationsurvey.model.impl.RespondenImpl;
 import com.btpn.opera.operationsurvey.service.base.RespondenLocalServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
@@ -56,9 +58,13 @@ public class RespondenLocalServiceImpl extends RespondenLocalServiceBaseImpl {
 		return respondenPersistence.findAll();
 	}
 
-	public Responden getRespondenById(long id) throws PortalException
+	public Responden getRespondenById(long id)
 	{
-		return respondenPersistence.findByPrimaryKey(id);
+		try {
+			return respondenPersistence.findByPrimaryKey(id);
+		} catch (NoSuchRespondenException e) {
+			return new RespondenImpl();
+		}
 	}
 
 	public Responden addRespondenByAdmin(String nik, String fullName, String lob, String division, long surveyOperationId, ServiceContext serviceContext)

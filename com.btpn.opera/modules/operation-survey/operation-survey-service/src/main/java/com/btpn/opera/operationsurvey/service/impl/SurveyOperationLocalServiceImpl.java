@@ -15,10 +15,12 @@
 package com.btpn.opera.operationsurvey.service.impl;
 
 import com.btpn.opera.operationsurvey.exception.EndDateException;
+import com.btpn.opera.operationsurvey.exception.NoSuchSurveyOperationException;
 import com.btpn.opera.operationsurvey.exception.StartDateException;
 import com.btpn.opera.operationsurvey.exception.SurveyObjectException;
 import com.btpn.opera.operationsurvey.model.SurveyOperation;
 import com.btpn.opera.operationsurvey.model.SurveyOperationView;
+import com.btpn.opera.operationsurvey.model.impl.SurveyOperationImpl;
 import com.btpn.opera.operationsurvey.service.base.SurveyOperationLocalServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
@@ -68,9 +70,13 @@ public class SurveyOperationLocalServiceImpl
 		return surveyOperationPersistence.findAll(startPage, endPage);
 	}
 
-	public SurveyOperation getSurveyOperationById(long id) throws PortalException
+	public SurveyOperation getSurveyOperationById(long id)
 	{
-		return surveyOperationPersistence.findByPrimaryKey(id);
+		try {
+			return surveyOperationPersistence.findByPrimaryKey(id);
+		} catch (NoSuchSurveyOperationException e) {
+			return new SurveyOperationImpl();
+		}
 	}
 
 	public SurveyOperation addSurveyOperation(long userId, String title, String description, long surveyObjectId, Date startDate, Date endDate, ServiceContext serviceContext) throws PortalException

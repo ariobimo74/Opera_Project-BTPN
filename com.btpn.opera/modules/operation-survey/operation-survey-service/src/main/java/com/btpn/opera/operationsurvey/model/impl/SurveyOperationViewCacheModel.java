@@ -72,8 +72,8 @@ public class SurveyOperationViewCacheModel
 		sb.append(id);
 		sb.append(", title=");
 		sb.append(title);
-		sb.append(", name=");
-		sb.append(name);
+		sb.append(", surveyObject=");
+		sb.append(surveyObject);
 		sb.append(", startDate=");
 		sb.append(startDate);
 		sb.append(", endDate=");
@@ -99,11 +99,11 @@ public class SurveyOperationViewCacheModel
 			surveyOperationViewImpl.setTitle(title);
 		}
 
-		if (name == null) {
-			surveyOperationViewImpl.setName("");
+		if (surveyObject == null) {
+			surveyOperationViewImpl.setSurveyObject("");
 		}
 		else {
-			surveyOperationViewImpl.setName(name);
+			surveyOperationViewImpl.setSurveyObject(surveyObject);
 		}
 
 		if (startDate == Long.MIN_VALUE) {
@@ -136,7 +136,7 @@ public class SurveyOperationViewCacheModel
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		id = objectInput.readLong();
 		title = objectInput.readUTF();
-		name = objectInput.readUTF();
+		surveyObject = objectInput.readUTF();
 		startDate = objectInput.readLong();
 		endDate = objectInput.readLong();
 		submitted_date = objectInput.readLong();
@@ -153,11 +153,11 @@ public class SurveyOperationViewCacheModel
 			objectOutput.writeUTF(title);
 		}
 
-		if (name == null) {
+		if (surveyObject == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
-			objectOutput.writeUTF(name);
+			objectOutput.writeUTF(surveyObject);
 		}
 
 		objectOutput.writeLong(startDate);
@@ -167,7 +167,7 @@ public class SurveyOperationViewCacheModel
 
 	public long id;
 	public String title;
-	public String name;
+	public String surveyObject;
 	public long startDate;
 	public long endDate;
 	public long submitted_date;

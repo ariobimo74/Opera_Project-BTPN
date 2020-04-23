@@ -285,8 +285,7 @@ public class QuestionsLocalServiceWrapper
 
 	@Override
 	public com.btpn.opera.operationsurvey.model.Questions getQuestionsById(
-			long id)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		long id) {
 
 		return _questionsLocalService.getQuestionsById(id);
 	}

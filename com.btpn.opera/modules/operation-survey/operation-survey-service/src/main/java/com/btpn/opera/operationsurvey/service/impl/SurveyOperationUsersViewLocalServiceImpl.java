@@ -53,4 +53,9 @@ public class SurveyOperationUsersViewLocalServiceImpl
 	{
 		return surveyOperationUsersViewPersistence.findAll();
 	}
+
+	public List<SurveyOperationUsersView> getSurveyOperationUsersViewByRespondenId(long respondenId)
+	{
+		return surveyOperationUsersViewPersistence.findByRespondenId(respondenId);
+	}
 }

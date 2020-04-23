@@ -47,7 +47,7 @@ public class SurveyOperationViewWrapper
 
 		attributes.put("id", getId());
 		attributes.put("title", getTitle());
-		attributes.put("name", getName());
+		attributes.put("surveyObject", getSurveyObject());
 		attributes.put("startDate", getStartDate());
 		attributes.put("endDate", getEndDate());
 		attributes.put("submitted_date", getSubmitted_date());
@@ -69,10 +69,10 @@ public class SurveyOperationViewWrapper
 			setTitle(title);
 		}
 
-		String name = (String)attributes.get("name");
+		String surveyObject = (String)attributes.get("surveyObject");
 
-		if (name != null) {
-			setName(name);
+		if (surveyObject != null) {
+			setSurveyObject(surveyObject);
 		}
 
 		Date startDate = (Date)attributes.get("startDate");
@@ -115,16 +115,6 @@ public class SurveyOperationViewWrapper
 	}
 
 	/**
-	 * Returns the name of this survey operation view.
-	 *
-	 * @return the name of this survey operation view
-	 */
-	@Override
-	public String getName() {
-		return model.getName();
-	}
-
-	/**
 	 * Returns the primary key of this survey operation view.
 	 *
 	 * @return the primary key of this survey operation view
@@ -152,6 +142,16 @@ public class SurveyOperationViewWrapper
 	@Override
 	public Date getSubmitted_date() {
 		return model.getSubmitted_date();
+	}
+
+	/**
+	 * Returns the survey object of this survey operation view.
+	 *
+	 * @return the survey object of this survey operation view
+	 */
+	@Override
+	public String getSurveyObject() {
+		return model.getSurveyObject();
 	}
 
 	/**
@@ -190,16 +190,6 @@ public class SurveyOperationViewWrapper
 	}
 
 	/**
-	 * Sets the name of this survey operation view.
-	 *
-	 * @param name the name of this survey operation view
-	 */
-	@Override
-	public void setName(String name) {
-		model.setName(name);
-	}
-
-	/**
 	 * Sets the primary key of this survey operation view.
 	 *
 	 * @param primaryKey the primary key of this survey operation view
@@ -227,6 +217,16 @@ public class SurveyOperationViewWrapper
 	@Override
 	public void setSubmitted_date(Date submitted_date) {
 		model.setSubmitted_date(submitted_date);
+	}
+
+	/**
+	 * Sets the survey object of this survey operation view.
+	 *
+	 * @param surveyObject the survey object of this survey operation view
+	 */
+	@Override
+	public void setSurveyObject(String surveyObject) {
+		model.setSurveyObject(surveyObject);
 	}
 
 	/**

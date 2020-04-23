@@ -86,19 +86,19 @@ public interface SurveyOperationUsersViewModel
 	public void setTitle(String title);
 
 	/**
-	 * Returns the object name of this survey operation users view.
+	 * Returns the survey object of this survey operation users view.
 	 *
-	 * @return the object name of this survey operation users view
+	 * @return the survey object of this survey operation users view
 	 */
 	@AutoEscape
-	public String getObjectName();
+	public String getSurveyObject();
 
 	/**
-	 * Sets the object name of this survey operation users view.
+	 * Sets the survey object of this survey operation users view.
 	 *
-	 * @param objectName the object name of this survey operation users view
+	 * @param surveyObject the survey object of this survey operation users view
 	 */
-	public void setObjectName(String objectName);
+	public void setSurveyObject(String surveyObject);
 
 	/**
 	 * Returns the start date of this survey operation users view.

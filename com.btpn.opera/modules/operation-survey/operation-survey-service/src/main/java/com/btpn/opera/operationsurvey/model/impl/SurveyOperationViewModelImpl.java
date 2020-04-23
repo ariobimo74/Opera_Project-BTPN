@@ -74,9 +74,9 @@ public class SurveyOperationViewModelImpl
 	public static final String TABLE_NAME = "survey_operation_view";
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"id", Types.BIGINT}, {"title", Types.VARCHAR}, {"name", Types.VARCHAR},
-		{"start_date", Types.TIMESTAMP}, {"end_date", Types.TIMESTAMP},
-		{"submitted_date", Types.TIMESTAMP}
+		{"id", Types.BIGINT}, {"title", Types.VARCHAR},
+		{"survey_object", Types.VARCHAR}, {"start_date", Types.TIMESTAMP},
+		{"end_date", Types.TIMESTAMP}, {"submitted_date", Types.TIMESTAMP}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -85,14 +85,14 @@ public class SurveyOperationViewModelImpl
 	static {
 		TABLE_COLUMNS_MAP.put("id", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("title", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("survey_object", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("start_date", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("end_date", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("submitted_date", Types.TIMESTAMP);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table survey_operation_view (id LONG not null primary key,title VARCHAR(75) null,name VARCHAR(75) null,start_date DATE null,end_date DATE null,submitted_date DATE null)";
+		"create table survey_operation_view (id LONG not null primary key,title VARCHAR(75) null,survey_object VARCHAR(75) null,start_date DATE null,end_date DATE null,submitted_date DATE null)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table survey_operation_view";
@@ -138,7 +138,7 @@ public class SurveyOperationViewModelImpl
 
 		model.setId(soapModel.getId());
 		model.setTitle(soapModel.getTitle());
-		model.setName(soapModel.getName());
+		model.setSurveyObject(soapModel.getSurveyObject());
 		model.setStartDate(soapModel.getStartDate());
 		model.setEndDate(soapModel.getEndDate());
 		model.setSubmitted_date(soapModel.getSubmitted_date());
@@ -306,11 +306,12 @@ public class SurveyOperationViewModelImpl
 			"title",
 			(BiConsumer<SurveyOperationView, String>)
 				SurveyOperationView::setTitle);
-		attributeGetterFunctions.put("name", SurveyOperationView::getName);
+		attributeGetterFunctions.put(
+			"surveyObject", SurveyOperationView::getSurveyObject);
 		attributeSetterBiConsumers.put(
-			"name",
+			"surveyObject",
 			(BiConsumer<SurveyOperationView, String>)
-				SurveyOperationView::setName);
+				SurveyOperationView::setSurveyObject);
 		attributeGetterFunctions.put(
 			"startDate", SurveyOperationView::getStartDate);
 		attributeSetterBiConsumers.put(
@@ -375,18 +376,18 @@ public class SurveyOperationViewModelImpl
 
 	@JSON
 	@Override
-	public String getName() {
-		if (_name == null) {
+	public String getSurveyObject() {
+		if (_surveyObject == null) {
 			return "";
 		}
 		else {
-			return _name;
+			return _surveyObject;
 		}
 	}
 
 	@Override
-	public void setName(String name) {
-		_name = name;
+	public void setSurveyObject(String surveyObject) {
+		_surveyObject = surveyObject;
 	}
 
 	@JSON
@@ -461,7 +462,7 @@ public class SurveyOperationViewModelImpl
 
 		surveyOperationViewImpl.setId(getId());
 		surveyOperationViewImpl.setTitle(getTitle());
-		surveyOperationViewImpl.setName(getName());
+		surveyOperationViewImpl.setSurveyObject(getSurveyObject());
 		surveyOperationViewImpl.setStartDate(getStartDate());
 		surveyOperationViewImpl.setEndDate(getEndDate());
 		surveyOperationViewImpl.setSubmitted_date(getSubmitted_date());
@@ -548,12 +549,12 @@ public class SurveyOperationViewModelImpl
 			surveyOperationViewCacheModel.title = null;
 		}
 
-		surveyOperationViewCacheModel.name = getName();
+		surveyOperationViewCacheModel.surveyObject = getSurveyObject();
 
-		String name = surveyOperationViewCacheModel.name;
+		String surveyObject = surveyOperationViewCacheModel.surveyObject;
 
-		if ((name != null) && (name.length() == 0)) {
-			surveyOperationViewCacheModel.name = null;
+		if ((surveyObject != null) && (surveyObject.length() == 0)) {
+			surveyOperationViewCacheModel.surveyObject = null;
 		}
 
 		Date startDate = getStartDate();
@@ -663,7 +664,7 @@ public class SurveyOperationViewModelImpl
 	private long _id;
 	private String _title;
 	private String _originalTitle;
-	private String _name;
+	private String _surveyObject;
 	private Date _startDate;
 	private Date _endDate;
 	private Date _submitted_date;

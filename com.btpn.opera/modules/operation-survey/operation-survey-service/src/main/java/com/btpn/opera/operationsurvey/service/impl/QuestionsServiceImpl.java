@@ -58,7 +58,7 @@ public class QuestionsServiceImpl extends QuestionsServiceBaseImpl {
 		return questionsLocalService.getAllQuestions();
 	}
 
-	public Questions getQuestionsById(long id) throws PortalException
+	public Questions getQuestionsById(long id)
 	{
 		return questionsLocalService.getQuestionsById(id);
 	}

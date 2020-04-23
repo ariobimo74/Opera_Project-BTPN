@@ -78,7 +78,7 @@ public interface RespondenService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Responden getRespondenById(long id) throws PortalException;
+	public Responden getRespondenById(long id);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Responden> getRespondenBySurveyOperationId(
